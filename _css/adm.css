@@ -1,0 +1,124 @@
+div#main {
+    margin:0px auto;
+    border: 1px solid green;
+    width: 700px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+div#crud p, h2 {
+    text-align: center;
+}
+
+form {
+    border: 1px solid black;
+    width: 650px;
+    margin:0px auto;
+}
+
+input[type="text"] {
+    margin: 5px;
+    width: 549px;
+}
+
+div#compras ul#titulo {
+    border: 1px solid #333;
+    border-bottom: none;
+    padding-left: 5px;
+    width: 650px;
+    margin:0px auto;
+}
+
+div#compras ul#titulo li{
+    list-style: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+div#compras ul#titulo li:nth-child(2){
+    margin-left: 90px;
+}
+
+/******/
+div#produto {
+    height: 289px;
+    width:650px;
+    border:1px solid #333;
+    font-family:sans-serif;
+    font-size:13px;
+    color:#333;
+    overflow-y:scroll;
+    margin:0px auto;
+}
+
+div#produto {
+    width:650px;
+    
+    border:1px solid #333;
+    font-family:sans-serif;
+    font-size:13px;
+    color:#333;
+}
+
+div#produto ul {
+    margin:0;padding:0; 
+    border-bottom:1px solid #333;
+}
+
+div#produto ul:last-child {
+    border-bottom: none;
+}
+
+div#produto li {
+    list-style:none;
+    display:inline-block;
+}
+
+div#produto li:nth-child(1) {
+    width:70px; 
+    padding:8px 4px;
+    text-align: center;
+}
+
+div#produto li:nth-child(1) a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+div#produto li:nth-child(2) {
+    width:260px;  
+    padding:5px 2px;
+    font-weight: bold;
+    color:#333;
+    margin-left: 80px;
+}    
+
+li .botao {
+    color:#333;
+    text-align:center;
+    padding:10px 10px;
+    text-decoration: none;
+}  
+
+.botao:hover {
+    background-color: rgba(0,0,0,0.4);
+}
+
+div#compras ul#rodape {
+    border: 1px solid #333;
+    border-top: none;
+    padding-left: 5px;
+    width: 650px;
+    margin:0px auto;
+    margin-bottom: 25px;
+}
+
+div#compras ul#rodape li{
+    list-style: none;
+    display: inline-block;
+    font-weight: bold;
+    padding:5px 2px;
+}
+
+
+

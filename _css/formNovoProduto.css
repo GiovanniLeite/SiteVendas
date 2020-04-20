@@ -1,0 +1,20 @@
+div#main {
+    margin:0px auto;
+    border: 1px solid green;
+    width: 750px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+p, h2 {
+    text-align: center;
+}
+
+
+textarea {
+    resize: none;
+    height: 250px;
+}
+
+
+

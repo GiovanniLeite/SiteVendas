@@ -1,0 +1,12 @@
+div#formulario {
+    height: 680px;
+    width: 600px;
+    border: 1px solid green;
+    margin: 0 auto;
+    margin-top:50px;
+    margin-bottom: 50px;
+}
+
+div#formulario form:nth-child(1) {
+    margin-top: 15px;
+}

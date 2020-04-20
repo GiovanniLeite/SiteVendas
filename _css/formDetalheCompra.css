@@ -1,0 +1,95 @@
+div#compras {
+    
+}
+
+div#compras ul#titulo {
+    border: 1px solid #333;
+    border-bottom: none;
+    padding-left: 5px;
+    width: 650px;
+    margin-bottom: 0;
+    margin:0 auto;
+}
+
+div#compras ul#titulo li{
+    list-style: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+div#compras ul#titulo li:nth-child(2){
+    margin-left: 90px;
+}
+
+div#compras ul#titulo li:nth-child(3){
+    margin-left: 90px;
+}
+
+div#compras ul#titulo li:nth-child(4){
+    margin-left: 90px;
+}
+
+div#listaProduto {
+    height: 289px;
+    width:650px;
+    margin:0 auto;
+    border:1px solid #333;
+    font-family:sans-serif;
+    font-size:13px;
+    color:#333;
+    overflow-y:scroll
+}
+
+div#listaProduto ul {
+    margin:0;
+    padding:0; 
+    border-bottom:1px solid #333;
+}
+
+div#listaProduto li {
+    list-style:none;
+    display:inline-block;
+}
+
+div#listaProduto li:nth-child(1) {
+    height: 70px;
+    width: 70px; 
+    padding-left: 30px;
+    margin: 2px solid black;
+    background-color: aqua;
+}
+
+div#listaProduto li:nth-child(2) {
+    width: 140px;  
+    padding:5px 2px;
+    font-weight: bold;
+    color:#333;
+    margin-left: 60px;
+}    
+
+div#listaProduto li:nth-child(3) {
+    width: 130px;
+}
+
+div#listaProduto li:nth-child(4) {
+    margin-left: 40px;
+}
+
+div#compras ul#valorTotal {
+    list-style: none;
+    font-weight: bold;
+}
+
+div#compras ul#valorTotal li {
+    border:1px solid black;
+    width: 650px;
+    margin-left: 9px;
+    border-top: none;
+}
+
+
+
+
+
+
+
