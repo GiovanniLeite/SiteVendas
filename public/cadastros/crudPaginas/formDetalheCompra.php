@@ -1,5 +1,6 @@
-<?php require_once("../../../../_scripts/conexao/conexaoVenda.php") ?>
+<?php require_once("../../../_scripts/conexao/conexaoVenda.php") ?>
 <?php
+    session_start();
     /**************Transacao*******************/
     // Consulta a tabela de 
     $tr = "SELECT * FROM transacao ";
@@ -36,13 +37,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Compras - Detalhe</title>
         
-        <link href="../../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
         
-        <link href="../../../../_css/formDetalheCompra.css" rel="stylesheet">
+        <link href="../../../_css/formDetalheCompra.css" rel="stylesheet">
         
-        <link href="../../../../_css/formNovoProduto.css" rel="stylesheet">
+        <link href="../../../_css/formNovoProduto.css" rel="stylesheet">
         <!-- estilo form -->
-        <link href="../../../../_css/estilo.css" rel="stylesheet">
+        <link href="../../../_css/estilo.css" rel="stylesheet">
         
         <style>
             header {
@@ -51,7 +52,7 @@
         </style>
     </head>
     <body>
-        <?php include_once("../../../principal/_incluir/topo.php"); ?>
+        <?php include_once("../../principal/_incluir/topo.php"); ?>
         
         <div id="main">
             <h2>Cliente - Detalhe</h2>
@@ -85,7 +86,9 @@
             
         </div>
         
-        <?php include_once("../../../principal/_incluir/rodape.php"); ?>
+        <?php include_once("../../principal/_incluir/rodape.php"); ?>
+        
+        <script src="../../../_scripts/js/topo2.js"></script>
     </body>
 </html>
 

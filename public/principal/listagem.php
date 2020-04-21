@@ -70,6 +70,9 @@
         </main>
 
         <?php include_once("_incluir/rodape.php"); ?>  
+        
+        <script src="../../_scripts/js/topo.js">
+        </script>
     </body>
 </html>
 

@@ -7,7 +7,7 @@ $('#compras ul li a#excluir').click(function(e){
     $.ajax({
         type:"POST",
         data:"codigo=" + id,
-        url:"../../../_scripts/crud/adm/excluirProduto.php",
+        url:"../../_scripts/crud/adm/excluirProduto.php",
         async:true
 
     }).done(function(data){

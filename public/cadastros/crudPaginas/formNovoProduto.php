@@ -1,6 +1,7 @@
-<?php require_once("../../../../_scripts/conexao/conexaoVenda.php") ?>
-<?php include_once("../../../../_scripts/crud/adm/funcoes.php") ?>
+<?php require_once("../../../_scripts/conexao/conexaoVenda.php") ?>
+<?php include_once("../../../_scripts/crud/adm/funcoes.php") ?>
 <?php
+    session_start();
     // Consulta a tabela de fornecedores
     $selectFornecedor = "SELECT * FROM fornecedor ";
     $conFornecedor = mysqli_query($conecta,$selectFornecedor);
@@ -54,13 +55,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Administrador - Inserir</title>
         
-        <link href="../../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
         
-        <link href="../../../../_css/formNovoProduto.css" rel="stylesheet">
+        <link href="../../../_css/formNovoProduto.css" rel="stylesheet">
         <!-- estilo form -->
-        <link href="../../../../_css/estilo.css" rel="stylesheet">
+        <link href="../../../_css/estilo.css" rel="stylesheet">
         
-        <script src="../../../../_scripts/js/jquery.js"></script>
+        <script src="../../../_scripts/js/jquery.js"></script>
         
         <style>
             header {
@@ -69,7 +70,7 @@
         </style>
     </head>
     <body>
-        <?php include_once("../../../principal/_incluir/topo.php"); ?>
+        <?php include_once("../../principal/_incluir/topo.php"); ?>
         
         <div id="main">
             <h2>Administrador - Inserir</h2>
@@ -195,8 +196,9 @@
             </div>
         </div>
         
-        <?php include_once("../../../principal/_incluir/rodape.php"); ?>
+        <?php include_once("../../principal/_incluir/rodape.php"); ?>
         
+        <script src="../../../_scripts/js/topo2.js"></script>
     </body>
 </html>
 

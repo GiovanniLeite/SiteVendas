@@ -26,7 +26,7 @@
         $arquivo_temporario = $imagem['tmp_name'];
         $nome_original      = $imagem['name'];
         $nome_novo          = gerarCodigoUnico() . getExtensao($nome_original);
-        $nome_completo      = "../../../principal/images/product_images/" . $nome_novo;
+        $nome_completo      = "../../principal/images/product_images/" . $nome_novo;
         /****mudanca****/
         $caminhoCerto = "images/product_images/" . $nome_novo;
         /****mudanca****/

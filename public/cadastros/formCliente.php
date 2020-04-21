@@ -1,6 +1,6 @@
-<?php require_once("../../../_scripts/conexao/conexaoVenda.php") ?>
+<?php require_once("../../_scripts/conexao/conexaoVenda.php") ?>
 <?php
-    
+    session_start();
     /********Usuário**********************************/
     
     // Consulta a tabela de usuario
@@ -113,11 +113,11 @@
         
         
         
-        <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
         
-        <link href="../../../_css/cliente.css" rel="stylesheet">
+        <link href="../../_css/cliente.css" rel="stylesheet">
         <!-- estilo form -->
-        <link href="../../../_css/estilo.css" rel="stylesheet">
+        <link href="../../_css/estilo.css" rel="stylesheet">
         
         <style>
             header {
@@ -126,7 +126,7 @@
         </style>
     </head>
     <body>
-        <?php include_once("../../principal/_incluir/topo.php"); ?>
+        <?php include_once("../principal/_incluir/topo.php"); ?>
         
         <div id="tabs">
             <ul>
@@ -439,7 +439,7 @@
             
         </div>
         
-        <?php include_once("../../principal/_incluir/rodape.php"); ?>
+        <?php include_once("../principal/_incluir/rodape.php"); ?>
         
         <script>
             $('#cep').blur(function(e){
@@ -475,22 +475,25 @@
             }
         </script>
 
-        <script src="../../../_scripts/js/cliente/atualizarCadastro.js">
+        <script src="../../_scripts/js/cliente/atualizarCadastro.js">
         </script>
         
-        <script src="../../../_scripts/js/cliente/atualizarCartao.js">
+        <script src="../../_scripts/js/cliente/atualizarCartao.js">
         </script>
         
-        <script src="../../../_scripts/js/cliente/atualizarEmail.js">
+        <script src="../../_scripts/js/cliente/atualizarEmail.js">
         </script>
         
-        <script src="../../../_scripts/js/cliente/atualizarSenha.js">
+        <script src="../../_scripts/js/cliente/atualizarSenha.js">
         </script>
         
-        <script src="../../../_scripts/js/cliente/excluir.js">
+        <script src="../../_scripts/js/cliente/excluir.js">
         </script>
         
-        <script src="../../../_scripts/js/cliente/finalizarCompra.js">
+        <script src="../../_scripts/js/cliente/finalizarCompra.js">
+        </script>
+        
+        <script src="../../_scripts/js/topo.js">
         </script>
     </body>
 </html>

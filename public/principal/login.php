@@ -70,6 +70,9 @@
                 <p>ANDES &eacute; uma empresa fict&iacute;cia.</p>
             </div>
         </footer>
+        
+        <script src="../../_scripts/js/topo.js">
+        </script>
     </body>
 </html>
 

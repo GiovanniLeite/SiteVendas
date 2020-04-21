@@ -10,7 +10,7 @@ function atualizarCartao(dados) {
     $.ajax({
         type:"POST",
         data:dados.serialize(),
-        url:"../../../_scripts/crud/cliente/atualizarCartao.php",
+        url:"../../_scripts/crud/cliente/atualizarCartao.php",
         async:true
     }).done(function(data){
         $sucesso = $.parseJSON(data)["sucesso"];

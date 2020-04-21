@@ -11,7 +11,7 @@ function atualizarEmail(dados) {
     $.ajax({
         type:"POST",
         data:dados.serialize(),
-        url:"../../../_scripts/crud/cliente/atualizarEmail.php",
+        url:"../../_scripts/crud/cliente/atualizarEmail.php",
         async:true
     }).done(function(data){
         $sucesso = $.parseJSON(data)["sucesso"];

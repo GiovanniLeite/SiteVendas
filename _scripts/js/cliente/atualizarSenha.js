@@ -11,7 +11,7 @@ function atualizarSenha(dados) {
     $.ajax({
         type:"POST",
         data:dados.serialize(),
-        url:"../../../_scripts/crud/cliente/atualizarSenha.php",
+        url:"../../_scripts/crud/cliente/atualizarSenha.php",
         async:true
     }).done(function(data){
         $sucesso = $.parseJSON(data)["sucesso"];

@@ -10,7 +10,7 @@ function alterarFormulario(dados) {
     $.ajax({
         type:"POST",
         data:dados.serialize(),
-        url:"../../../_scripts/crud/cliente/atualizarCadastro.php",
+        url:"../../_scripts/crud/cliente/atualizarCadastro.php",
         async:true
     }).done(function(data){
         $sucesso = $.parseJSON(data)["sucesso"];

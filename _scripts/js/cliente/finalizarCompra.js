@@ -2,7 +2,7 @@ function finalizar(transacao,produtos) {
     
     $.ajax({
         type:"POST",
-        url:"../../../_scripts/crud/cliente/finalizarCompra.php",
+        url:"../../_scripts/crud/cliente/finalizarCompra.php",
         data:{tran:transacao,prod:produtos},
         async:true
     }).done(function(data){

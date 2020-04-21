@@ -80,6 +80,13 @@
                     <li><b>Pre&ccedil;o Unit&aacute;rio: </b><?php echo $preco ?></li>
                     <li><b>Estoque: </b><?php echo $estoque ?></li>
                     <button name="comprar" id="comprar" onclick='comprar(7,<?php echo $codigo; ?>,"<?php echo $nomeproduto; ?>","<?php echo $preco; ?>","foto","<?php echo $infoCarrinho["pedido"]; ?>")'>Comprar</button>
+                    <a href="../cadastros/formCriarConta.php">Criar Conta</a>
+                    <a href="../cadastros/formCliente.php">Cliente</a>
+                    <a href="../cadastros/formAdm.php">ADM</a>
+                    <a href="../cadastros/crudPaginas/formDetalheCompra.php">Detalhe Compra</a>
+                    <a href="../cadastros/crudPaginas/formAtualizarProduto.php">Atualizar Produto</a>
+                    <a href="../cadastros/crudPaginas/formNovoProduto.php">Novo Produto</a>
+                    <a href="../cadastros/crudPaginas/formDetalheProduto.php">Detalhe Produto</a>
                 </ul>
                
             </div>
@@ -87,7 +94,17 @@
 
         <?php include_once("_incluir/rodape.php"); ?>
         
+        <script>
+            if(adm == 1)
+            {
+                document.getElementById("comprar").disabled = true;
+            }
+        </script>
+        
         <script src="../../_scripts/js/cliente/comprar.js">
+        </script>
+        
+        <script src="../../_scripts/js/topo.js">
         </script>
     </body>
 </html>

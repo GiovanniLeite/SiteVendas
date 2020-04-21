@@ -1,4 +1,4 @@
-<?php require_once("../../../_scripts/conexao/conexaoVenda.php"); ?>
+<?php require_once("../../_scripts/conexao/conexaoVenda.php"); ?>
 
 <?php
     // conferir se a navegacao veio pelo preenchimento do formulario
@@ -40,12 +40,12 @@
         <meta charset="UTF-8">
         <title>Criar Conta</title>
         
-        <script src="../../../_scripts/js/jquery.js"></script>
+        <script src="../../_scripts/js/jquery.js"></script>
         
         <!-- estilo -->
-        <link href="../../../_css/estilo.css" rel="stylesheet">
-        <link href="../../../_css/criarConta.css" rel="stylesheet">
-        <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../_css/estilo.css" rel="stylesheet">
+        <link href="../../_css/criarConta.css" rel="stylesheet">
+        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
         
         <style>
             header {
@@ -55,7 +55,7 @@
     </head>
 
     <body>
-        <?php include_once("../../principal/_incluir/topo.php"); ?>
+        <?php include_once("../principal/_incluir/topo.php"); ?>
         
         <main>  
             <div id="formulario">
@@ -182,13 +182,13 @@
                         ?>
                     </form>
                 </div>
-                <a href="../../principal/login.php">Login</a>
+                <a href="../principal/login.php">Login</a>
             </div>
             
             
         </main>
 
-        <?php include_once("../../principal/_incluir/rodape.php"); ?>  
+        <?php include_once("../principal/_incluir/rodape.php"); ?>  
         
                 
         <script>

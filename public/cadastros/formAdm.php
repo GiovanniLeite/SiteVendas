@@ -1,5 +1,6 @@
-<?php require_once("../../../_scripts/conexao/conexaoVenda.php") ?>
+<?php require_once("../../_scripts/conexao/conexaoVenda.php") ?>
 <?php
+    session_start();
     /**********ADM****************/
     // tabela de adm
     $selectAdm = "SELECT * FROM usuario ";
@@ -43,13 +44,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Administrador</title>
         
-        <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
         
-        <link href="../../../_css/adm.css" rel="stylesheet">
+        <link href="../../_css/adm.css" rel="stylesheet">
         <!-- estilo form -->
-        <link href="../../../_css/estilo.css" rel="stylesheet">
+        <link href="../../_css/estilo.css" rel="stylesheet">
         
-        <script src="../../../_scripts/js/jquery.js"></script>
+        <script src="../../_scripts/js/jquery.js"></script>
         
         <style>
             header {
@@ -58,7 +59,7 @@
         </style>
     </head>
     <body>
-        <?php include_once("../../principal/_incluir/topo.php"); ?>
+        <?php include_once("../principal/_incluir/topo.php"); ?>
         
         <div id="main">
             <div id="crud">
@@ -96,9 +97,11 @@
             </div>
         </div>
         
-        <?php include_once("../../principal/_incluir/rodape.php"); ?>
+        <?php include_once("../principal/_incluir/rodape.php"); ?>
         
-        <script src="../../../_scripts/js/adm/excluirProduto.js"></script>
+        <script src="../../_scripts/js/adm/excluirProduto.js"></script>
+        
+        <script src="../../_scripts/js/topo.js"></script>
     </body>
 </html>
 
