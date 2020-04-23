@@ -1,20 +1,54 @@
-div#main {
-    margin:0px auto;
-    border: 1px solid green;
-    width: 750px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+main {
+    background-color: #F2F2F2;
+    height:710px;
+    padding-top: 50px
 }
 
-p, h2 {
+div#formulario {
+    margin:0px auto;
+    border: 1px solid #333;
+    width: 750px;
+    background-color: white;
+    height:610px;
+    box-shadow:2px 2px 6px 2px #333;
+}
+
+div#formulario p, h2 {
     text-align: center;
 }
 
-
-textarea {
-    resize: none;
-    height: 250px;
+div#formulario form input{
+    border-radius:0;
+    border-color:#333;
 }
+
+div#formulario form select{
+    border-radius:0;
+    border-color:#333;
+}
+
+div#formulario form textarea {
+    resize: none;
+    height: 80px;
+    border-radius:0;
+    border-color:#333;
+}
+
+div#formulario form #modificar {
+    margin-bottom:5px;
+    border-radius:0;
+    border-color:#333;
+    background-color:#333;
+}
+
+div#formulario form #modificar:hover {
+    background-color:rgba(0,0,0,0.9);
+}
+
+
+
+
+
 
 
 

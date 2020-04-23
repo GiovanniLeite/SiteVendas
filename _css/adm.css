@@ -1,27 +1,48 @@
-div#main {
+main {
+    background-color: #F2F2F2;
+    height:600px;
+    padding-top: 50px;
+}
+
+div#crud {
     margin:0px auto;
-    border: 1px solid green;
+    border: 1px solid #333;
     width: 700px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    box-shadow:2px 2px 6px 2px #333;
+    background-color: #FFF;
 }
 
 div#crud p, h2 {
     text-align: center;
 }
 
-form {
+div#gerenciar form {
     border: 1px solid black;
     width: 650px;
     margin:0px auto;
 }
 
-input[type="text"] {
+div#gerenciar form input {
     margin: 5px;
-    width: 549px;
+    margin-left: 20px;
+    width: 537px;
+    border-color:#333;
+    border-radius:0;
 }
 
-div#compras ul#titulo {
+div#gerenciar form button {
+    margin: 5px;
+    border-radius:0;
+    border-color:#333;
+    background-color:#333;
+    width: 90px;
+}
+
+div#gerenciar form button:hover {
+    background-color: rgba(0,0,0,0.9);
+}
+
+div#gerenciar ul#titulo {
     border: 1px solid #333;
     border-bottom: none;
     padding-left: 5px;
@@ -29,13 +50,13 @@ div#compras ul#titulo {
     margin:0px auto;
 }
 
-div#compras ul#titulo li{
+div#gerenciar ul#titulo li{
     list-style: none;
     display: inline-block;
     font-weight: bold;
 }
 
-div#compras ul#titulo li:nth-child(2){
+div#gerenciar ul#titulo li:nth-child(2){
     margin-left: 90px;
 }
 
@@ -101,10 +122,11 @@ li .botao {
 }  
 
 .botao:hover {
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.9);
+    color: white;
 }
 
-div#compras ul#rodape {
+div#gerenciar ul#rodape {
     border: 1px solid #333;
     border-top: none;
     padding-left: 5px;
@@ -113,11 +135,15 @@ div#compras ul#rodape {
     margin-bottom: 25px;
 }
 
-div#compras ul#rodape li{
+div#gerenciar ul#rodape li{
     list-style: none;
     display: inline-block;
     font-weight: bold;
-    padding:5px 2px;
+}
+
+div#gerenciar ul#rodape li .botao:hover {
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 

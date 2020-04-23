@@ -5,20 +5,29 @@ body {
 /***Header****/
 header {
     width:100%;
-    height:66px;
-    background-color:#EDEDDC;
+    height:170px;
+    background-color:#DCDCDC;
     border-bottom:1px solid #333;
-    padding-top:20px;
-
+    padding-top: 65px;
 }
 
-div#header_central {
-    width:800px;
-    height:46px;
+div#headerSaudacao {
+    float: right;
+    margin-top: -60px;
+    margin-right: 10px;
+    font-size: 100%;
+}
+
+div#headerSaudacao a,p{
+    color:#333;
+}
+
+div#headerCentral {
+    width:879px;
+    height:104px;
     margin:0 auto;
-    border: 1px solid #333;
-    background-color: aqua;
-    margin-top: 0px
+    /*border-bottom: 1px solid black;*/
+    background-image: url(../_img/VENDAS.png);
 }
 /***Header****/
 

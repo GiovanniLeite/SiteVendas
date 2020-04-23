@@ -50,8 +50,8 @@
                 <div class="container">
                     <form action="login.php" method="post">
                         <h2>Tela de Login</h2>
-                        <input class="form-control" type="text" name="usuario" placeholder="Usuário">
-                        <input class="form-control" type="password" name="senha" placeholder="Senha">
+                        <input class="form-control" type="text" name="usuario" placeholder="Usuário" title="Digite o usuário">
+                        <input class="form-control" type="password" name="senha" placeholder="Senha" title="Digite a senha">
                         <button class="btn btn-success btn-block" type="submit" title="Fazer login">Login</button>
 
 

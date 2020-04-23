@@ -51,25 +51,21 @@
         <link href="../../_css/estilo.css" rel="stylesheet">
         
         <script src="../../_scripts/js/jquery.js"></script>
-        
-        <style>
-            header {
-                height:66px;
-            }
-        </style>
     </head>
     <body>
         <?php include_once("../principal/_incluir/topo.php"); ?>
         
-        <div id="main">
+        <main>
             <div id="crud">
                 <h2>Administrador</h2>
                 <p><strong><?php echo $infoAdm["nome"] ?></strong></p>
 
-                <div id="compras">
+                <div id="gerenciar">
                     <form>
-                        <input type="text" name="produto" id="produto" placeholder="Procurar" title="Procurar">
-                        <input class="btn-default" name="botaoProcurar" id="botaoProcurar" type="submit" value="Procurar" title="Procurar">
+                        <div class="row">
+                            <input class="form-control" type="text" name="produto" id="produto" placeholder="Procurar" title="Procurar">
+                            <button class="btn btn-success btn-block" name="botaoProcurar" id="botaoProcurar" type="submit" title="Procurar">Procurar</button>
+                        </div>
                     </form>
                     <ul id="titulo">
                         <li>Código</li>
@@ -95,7 +91,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </main>
         
         <?php include_once("../principal/_incluir/rodape.php"); ?>
         

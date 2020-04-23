@@ -46,12 +46,6 @@
         <link href="../../_css/estilo.css" rel="stylesheet">
         <link href="../../_css/criarConta.css" rel="stylesheet">
         <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        
-        <style>
-            header {
-                height:66px;
-            }
-        </style>
     </head>
 
     <body>
@@ -173,7 +167,7 @@
                             </div>
                         </div>
 
-                        <input class="btn btn-success btn-block" id="criarConta" type="submit" value="Criar Conta">
+                        <button class="btn btn-success btn-block" id="criarConta" type="submit" title="Criar Conta">Criar Conta</button>
                         
                         <?php
                             if( isset($mensagem) ) {
@@ -182,7 +176,6 @@
                         ?>
                     </form>
                 </div>
-                <a href="../principal/login.php">Login</a>
             </div>
             
             
