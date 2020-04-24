@@ -20,6 +20,12 @@ div#headerSaudacao {
 
 div#headerSaudacao a,p{
     color:#333;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+div#headerSaudacao a:hover{
+    text-decoration: underline;
 }
 
 div#headerCentral {
@@ -45,6 +51,7 @@ footer {
     background-color: #DCDCDC;
     overflow: hidden;
     padding-left:1%;
+    font-family: sans-serif;
 }
 
 footer ul {

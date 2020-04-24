@@ -7,17 +7,32 @@
        header("location:login.php");
     }*/
     
+
+    /* USAR ESTE
     if ( isset($_GET["codigo"]) ) {
         $produto_id = $_GET["codigo"];
     } else {
         header("Location:login.php");
+    }*/
+    
+    $selectAdm = "SELECT * FROM usuario ";
+    if(isset($_GET["codigo"]) ) {
+        $cod = $_GET["codigo"];
+        $selectAdm .= "WHERE codigo = {$cod} ";
+    } else {
+        $selectAdm .= "WHERE codigo= 1 ";
     }
 
     // Consulta ao banco de dados
     $consulta = "SELECT * ";
     $consulta .= "FROM produto ";
-    $consulta .= "WHERE codigo = {$produto_id} ";
-    $detalhe    = mysqli_query($conecta,$consulta);
+    if(isset($_GET["codigo"]) ) {
+        $produto_id = $_GET["codigo"];
+        $consulta .= "WHERE codigo = {$produto_id} ";
+    } else {
+        $consulta .= "WHERE codigo= 47 ";
+    }
+    $detalhe = mysqli_query($conecta,$consulta);
 
     // Testar erro
     if ( !$detalhe ) {
@@ -80,13 +95,6 @@
                     <li><b>Pre&ccedil;o Unit&aacute;rio: </b><?php echo $preco ?></li>
                     <li><b>Estoque: </b><?php echo $estoque ?></li>
                     <button name="comprar" id="comprar" onclick='comprar(7,<?php echo $codigo; ?>,"<?php echo $nomeproduto; ?>","<?php echo $preco; ?>","foto","<?php echo $infoCarrinho["pedido"]; ?>")'>Comprar</button>
-                    <a href="../cadastros/formCriarConta.php">Criar Conta</a>
-                    <a href="../cadastros/formCliente.php">Cliente</a>
-                    <a href="../cadastros/formAdm.php">ADM</a>
-                    <a href="../cadastros/crudPaginas/formDetalheCompra.php">Detalhe Compra</a>
-                    <a href="../cadastros/crudPaginas/formAtualizarProduto.php">Atualizar Produto</a>
-                    <a href="../cadastros/crudPaginas/formNovoProduto.php">Novo Produto</a>
-                    <a href="../cadastros/crudPaginas/formDetalheProduto.php">Detalhe Produto</a>
                 </ul>
                
             </div>

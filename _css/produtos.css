@@ -1,4 +1,9 @@
-/* estilos da listagem */
+main {
+    background-color: #F2F2F2;
+    overflow-y:scroll;
+    max-height: 1800px;
+}
+
 main div#listagem_produtos {
     width:860px;
     margin:0 auto;
@@ -9,14 +14,16 @@ main div#listagem_produtos ul {
     margin:5px 10px 5px;
     padding:0;
     width:400px;
-    height: 280px;
-    border:1px solid #333;
+    height: 300px;
+    box-shadow:2px 2px 6px 2px #333;
+    background-color: #FFF;
 }
 
 main div#listagem_produtos li {
     font-family: sans-serif;
     font-size: 12px;
     list-style: none;
+    text-align: center;
 }
 
 main div#listagem_produtos li.imagem {
@@ -24,10 +31,29 @@ main div#listagem_produtos li.imagem {
     margin-right: 10px;
 }
 
+main div#listagem_produtos li img {
+    height: 200px;
+    width: 400px;
+}
 main div#listagem_produtos li h3 {
     margin:0;   
 }
 
-main div#listagem_produtos li img {
-    border:1px solid #ddd;   
+main div#listagem_produtos li:nth-child(3){
+    padding: 1px;
+}
+
+main div#listagem_produtos li:nth-child(4) a{
+    color: #FFF;
+    background-color: #333;
+    display: block;
+    text-decoration: none;
+    padding: 10px 0px;
+    /*font-weight: bold;*/
+    font-size: 150%;
+}
+
+main div#listagem_produtos li:nth-child(4) a:hover{
+    background-color: rgba(0,0,0,0.9);
+   
 }

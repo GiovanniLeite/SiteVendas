@@ -40,51 +40,44 @@
         <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
         
         <link href="../../../_css/formDetalheCompra.css" rel="stylesheet">
-        
-        <link href="../../../_css/formNovoProduto.css" rel="stylesheet">
         <!-- estilo form -->
         <link href="../../../_css/estilo.css" rel="stylesheet">
-        
-        <style>
-            header {
-                height:66px;
-            }
-        </style>
     </head>
     <body>
         <?php include_once("../../principal/_incluir/topo.php"); ?>
         
-        <div id="main">
-            <h2>Cliente - Detalhe</h2>
-            <p><strong><?php echo "Transação código: Teste" /*$_GET["codigo"]*/ ?></strong></p>
-            
-            <div id="compras">
-                <ul id="titulo">
-                    <li>Foto</li>
-                    <li>Nome</li>
-                    <li>Quantidade</li>
-                    <li>Valor</li>
-                </ul>
-                <div id="listaProduto">
-                    <?php
-                        while($linha = mysqli_fetch_assoc($conProduto)) {
-                    ?>
-                    <ul title="<?php echo $linha["codigo"] ?>">
-                        <li><?php echo $linha["foto"] ?></li>
-                        <li><?php echo $linha["nome"] ?></li>
-                        <li><?php echo $linha["quantidade"] ?></li>
-                        <li><?php echo $linha["valor"] ?></li>
+        <main>
+            <div id="detalheCliente">
+                <h2>Cliente - Detalhe</h2>
+                <p><strong><?php echo "Transação código: " . $transacao["codigo"] ?></strong></p>
+
+                <div id="compras">
+                    <ul id="titulo">
+                        <li><p>Foto</p></li>
+                        <li><p>Nome</p></li>
+                        <li><p>Quantidade</p></li>
+                        <li><p>Valor</p></li>
                     </ul>
-                    <?php
-                        }
-                    ?>
+                    <div id="listaProduto">
+                        <?php
+                            while($linha = mysqli_fetch_assoc($conProduto)) {
+                        ?>
+                        <ul title="<?php echo $linha["codigo"] ?>">
+                            <li><img src="../../../_img/VENDAS.png"; id="fotoProduto"><?php /*echo "."/*$linha["foto"]*/ ?></li>
+                            <li><p><?php echo $linha["nome"] ?></p></li>
+                            <li><p><?php echo $linha["quantidade"] ?></p></li>
+                            <li><p><?php echo $linha["valor"] ?></p></li>
+                        </ul>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                    <ul id="valorTotal">
+                        <li> Total da Compra: <?php echo $transacao["totalVenda"] ?></li>
+                    </ul>
                 </div>
-                <ul id="valorTotal">
-                    <li>Total da Compra: <?php echo $transacao["totalVenda"] ?></li>
-                </ul>
             </div>
-            
-        </div>
+        </main>
         
         <?php include_once("../../principal/_incluir/rodape.php"); ?>
         

@@ -1,16 +1,20 @@
 main {
     background-color: #F2F2F2;
-    height:750px;
+    height:780px;
     padding-top: 35px;
 }
 
 div#formulario {
-    height: 680px;
+    height: 710px;
     width: 600px;
     border: 1px solid #333;
     margin: 0 auto;
     box-shadow:2px 2px 6px 2px #333;
     background-color: #FFF;
+}
+
+div#formulario h2 {
+    text-align: center;
 }
 
 div#formulario form:nth-child(1) {

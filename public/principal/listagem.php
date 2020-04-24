@@ -29,10 +29,13 @@
         <meta charset="UTF-8">
         <title>Listagem</title>
         
+        
+        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- estilo -->
-        <link href="../../_css/estilo.css" rel="stylesheet">
         <link href="../../_css/produtos.css" rel="stylesheet">
         <link href="../../_css/produto_pesquisa.css" rel="stylesheet">
+        <link href="../../_css/estilo.css" rel="stylesheet">
+        
     </head>
 
     <body>
@@ -41,8 +44,10 @@
         <main>
             <div id="janela_pesquisa">
                 <form action="listagem.php" method="get">
-                    <input type="text" name="produto" placeholder="Pesquisa">
-                    <input type="image"  src="assets/botao_search.png">
+                    <div class="row">
+                        <input type="text" name="produto" placeholder="Pesquisar" title="Pesquisar">
+                        <button name="botaoProcurar" id="botaoProcurar" type="submit" title="Procurar">Procurar</button>
+                    </div>
                 </form>
             </div>
             
@@ -51,22 +56,17 @@
                 while($linha = mysqli_fetch_assoc($resultado)) {
             ?>
                 <ul>
-                    <li class="imagem">
-                        <a href="detalhe.php?codigo=<?php echo $linha['codigo'] ?>">
-                            <img src="<?php echo $linha["fotoPequena"] ?>">
-                        </a>
-                    </li>
+                    <li class="imagem"><img src="<?php echo $linha["fotoPequena"] ?>"></li>
                     <li><h3><?php echo $linha["nome"] ?></h3></li>
                     <li>Quantidade : <?php echo $linha["quantidade"] ?></li>
-                    <li>Preço Unitário : <?php echo $linha["preco"] ?>
+                    <li>
+                        <a href="detalhe.php?codigo=<?php echo $linha['codigo'] ?>">Apenas : <?php echo $linha["preco"] ?></a>
+                    </li>
                 </ul>
              <?php
                 }
             ?>           
             </div>
-            
-            <a href="../cadastros/public/formAdm.php">Adm</a>
-            <a href="../cadastros/public/formCliente.php">Cliente</a>
         </main>
 
         <?php include_once("_incluir/rodape.php"); ?>  

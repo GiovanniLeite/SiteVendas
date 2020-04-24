@@ -53,6 +53,8 @@
         
         <main>  
             <div id="formulario">
+                <h2>Cadastre-se</h2>
+                
                 <div class="container">
                     <form action="formCriarConta.php" method="post">
                         <div class="row">

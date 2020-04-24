@@ -44,7 +44,15 @@ div#formulario form #modificar {
 div#formulario form #modificar:hover {
     background-color:rgba(0,0,0,0.9);
 }
-
+div#formulario form button {
+    margin-bottom:5px;
+    border-radius:0;
+    border-color:#333;
+    background-color:#333;
+}
+div#formulario form button:hover {
+    background-color:rgba(0,0,0,0.9);
+}
 
 
 

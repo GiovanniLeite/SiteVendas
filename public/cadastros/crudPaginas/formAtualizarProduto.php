@@ -84,150 +84,146 @@
         <link href="../../../_css/formNovoProduto.css" rel="stylesheet">
         <!-- estilo form -->
         <link href="../../../_css/estilo.css" rel="stylesheet">
-        
-        <style>
-            header {
-                height:66px;
-            }
-        </style>
     </head>
     <body>
         <?php include_once("../../principal/_incluir/topo.php"); ?>
         
-        <div id="main">
-            <h2>Administrador - Atualizar</h2>
-            <p><strong><?php echo "Giovanni Moraes de Oliveira Leite"/*$infoAdm["nome"]*/ ?></strong></p>
-            
-            <div class="container">
-                <form id="formularioAtualizarProduto" action="formAtualizarProduto.php" method="post" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="codigo">Código</label>
-                                <input class="form-control" type="text" value="<?php echo $infoProduto["codigo"]  ?>" name="codigo" id="codigo" placeholder="Código" disabled/>
-                                <input type="hidden" name="codigoProduto" value="<?php echo $infoProduto["codigo"]  ?>">
+        <main>
+            <div id="formulario">
+                <h2>Administrador - Atualizar</h2>
+                <p><strong><?php echo "Giovanni Moraes de Oliveira Leite"/*$infoAdm["nome"]*/ ?></strong></p>
+
+                <div class="container">
+                    <form id="formularioAtualizarProduto" action="formAtualizarProduto.php" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="codigo">Código</label>
+                                    <input class="form-control" type="text" value="<?php echo $infoProduto["codigo"]  ?>" name="codigo" id="codigo" placeholder="Código" disabled/>
+                                    <input type="hidden" name="codigoProduto" value="<?php echo $infoProduto["codigo"]  ?>">
+                                </div>
+                            </div>
+
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label for="nome">Nome*</label>
+                                    <input class="form-control" type="text" value="<?php echo $infoProduto["nome"]  ?>" name="nome" id="nome" title="Campo Obrigatório" placeholder="Nome"/>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-8">
-                            <div class="form-group">
-                                <label for="nome">Nome*</label>
-                                <input class="form-control" type="text" value="<?php echo $infoProduto["nome"]  ?>" name="nome" id="nome" title="Campo Obrigatório" placeholder="Nome"/>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="codigoFornecedor">Código do Fornecedor*</label>
+                                    <input class="form-control" type="text" value="<?php echo $infoProduto["codFornecedor"]  ?>" name="codigoFornecedor" id="codigoFornecedor" title="Campo Obrigatório" placeholder="Código"/>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="codigoFornecedor">Código do Fornecedor*</label>
-                                <input class="form-control" type="text" value="<?php echo $infoProduto["codFornecedor"]  ?>" name="codigoFornecedor" id="codigoFornecedor" title="Campo Obrigatório" placeholder="Código"/>
-                            </div>
-                        </div>
-
-                        <div class="col-8">
-                            <div class="form-group">
-                                <label for="fornecedor">Nome do Fornecedor*</label>
-                                <select class="form-control" name="fornecedor" id="fornecedor" title="Campo Obrigatório">
-                                    <?php 
-                                        $meuFornecedor = $infoProduto["codFornecedor"];
-                                        while($linha = mysqli_fetch_assoc($listaFornecedores)) {
-                                            $fornecedorPrincipal = $linha["codFornecedor"];
-                                            if($meuFornecedor == $fornecedorPrincipal) {
-                                    ?>
-                                        <option value="<?php echo $linha["nome"] ?>" selected>
-                                            <?php echo $linha["nome"] ?>
-                                        </option>
-                                    <?php
-                                            } else {
-                                    ?>
-                                        <option value="<?php echo $linha["nome"] ?>" >
-                                            <?php echo $linha["nome"] ?>
-                                        </option>                        
-                                    <?php 
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label for="fornecedor">Nome do Fornecedor*</label>
+                                    <select class="form-control" name="fornecedor" id="fornecedor" title="Campo Obrigatório">
+                                        <?php 
+                                            $meuFornecedor = $infoProduto["codFornecedor"];
+                                            while($linha = mysqli_fetch_assoc($listaFornecedores)) {
+                                                $fornecedorPrincipal = $linha["codFornecedor"];
+                                                if($meuFornecedor == $fornecedorPrincipal) {
+                                        ?>
+                                            <option value="<?php echo $linha["nome"] ?>" selected>
+                                                <?php echo $linha["nome"] ?>
+                                            </option>
+                                        <?php
+                                                } else {
+                                        ?>
+                                            <option value="<?php echo $linha["nome"] ?>" >
+                                                <?php echo $linha["nome"] ?>
+                                            </option>                        
+                                        <?php 
+                                                }
                                             }
-                                        }
-                                    ?> 
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="descricao">Descrição*</label>
-                                <textarea class="form-control" name="descricao" id="descricao" maxlength="255" placeholder="Descrição" title="Campo Obrigatório"><?php echo $infoProduto["descricao"]  ?></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="preco">Preço*</label>
-                                <input class="form-control" type="text" value="<?php echo $infoProduto["preco"]  ?>" name="preco" id="preco" placeholder="Preço" title="Campo Obrigatório"/>
+                                        ?> 
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="quantidade">Quantidade*</label>
-                                <input class="form-control" type="text" value="<?php echo $infoProduto["quantidade"]  ?>" name="quantidade" id="quantidade" placeholder="Quantidade" title="Campo Obrigatório"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group">
-
-                                <label for="fotoGrande">Foto Grande*</label>
-                                <input type="file" name="fotoGrande" id="fotoGrande" title="Campo Obrigatório">
-                                <span class="resposta">
-                                    <?php
-                                        if( isset($mensagem1) ) {
-                                            echo $mensagem1;
-                                        }    
-                                    ?>
-                                </span>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="descricao">Descrição*</label>
+                                    <textarea class="form-control" name="descricao" id="descricao" maxlength="255" placeholder="Descrição" title="Campo Obrigatório"><?php echo $infoProduto["descricao"]  ?></textarea>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="fotoPequena">Foto Pequena*</label>
-                                <input type="file" name="fotoPequena" id="fotoPequena" title="Campo Obrigatório">
-                                <span class="resposta">
-                                    <?php
-                                        if( isset($mensagem2) ) {
-                                            echo $mensagem2;
-                                        }
-                                    ?>
-                                </span>
+                        <div class="row">
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="preco">Preço*</label>
+                                    <input class="form-control" type="text" value="<?php echo $infoProduto["preco"]  ?>" name="preco" id="preco" placeholder="Preço" title="Campo Obrigatório"/>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="quantidade">Quantidade*</label>
+                                    <input class="form-control" type="text" value="<?php echo $infoProduto["quantidade"]  ?>" name="quantidade" id="quantidade" placeholder="Quantidade" title="Campo Obrigatório"/>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row" id="crud">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <button class="btn btn-success btn-block" type="submit" name="inserirProduto" id="inserirProduto">Atualizar</button>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+
+                                    <label for="fotoGrande">Foto Grande*</label>
+                                    <input type="file" name="fotoGrande" id="fotoGrande" title="Campo Obrigatório">
+                                    <span class="resposta">
+                                        <?php
+                                            if( isset($mensagem1) ) {
+                                                echo $mensagem1;
+                                            }    
+                                        ?>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="fotoPequena">Foto Pequena*</label>
+                                    <input type="file" name="fotoPequena" id="fotoPequena" title="Campo Obrigatório">
+                                    <span class="resposta">
+                                        <?php
+                                            if( isset($mensagem2) ) {
+                                                echo $mensagem2;
+                                            }
+                                        ?>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <?php
-                        if( isset($mensagem) ) {
-                            echo "<p>" . $mensagem . "</p>";
-                        }
-                    ?>
-                        
-                </form>
-                
+                        <div class="row" id="crud">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <button class="btn btn-success btn-block" type="submit" name="inserirProduto" id="inserirProduto">Atualizar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php
+                            if( isset($mensagem) ) {
+                                echo "<p>" . $mensagem . "</p>";
+                            }
+                        ?>
+
+                    </form>
+
+                </div>
             </div>
-        </div>
+        </main>
         
         <?php include_once("../../principal/_incluir/rodape.php"); ?>
         
