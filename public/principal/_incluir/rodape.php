@@ -1,13 +1,13 @@
 <footer>
     <div id="nav">
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="#" class="inicio" title="HOME">Home</a></li>
             <li>|</li>
-            <li><a href="listagem.php">Produtos</a></li>
+            <li title="Em construção"><a href="#">Produtos</a></li>
             <li>|</li>
-            <li><a href="#">Trocas/Devoluções</a></li>
+            <li title="Em construção"><a href="#">Trocas/Devoluções</a></li>
             <li>|</li>
-            <li><a href="#">Sobre</a></li>
+            <li title="Em construção"><a href="#">Sobre</a></li>
         </ul>
     </div>
     

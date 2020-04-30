@@ -98,6 +98,8 @@
         <script src="../../_scripts/js/adm/excluirProduto.js"></script>
         
         <script src="../../_scripts/js/topo.js"></script>
+        
+        <script src="../../_scripts/js/sair.js"></script>
     </body>
 </html>
 

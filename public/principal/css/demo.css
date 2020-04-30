@@ -1,0 +1,10 @@
+/*demo styles for xZoom*/
+main { padding: 15px; }
+section { padding-top: 20px; }
+.padding-top0 { padding-top: 0px !important;}
+
+html {
+    font-family: sans-serif; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+  }

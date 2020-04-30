@@ -1,0 +1,31 @@
+/***Header****/
+header {
+    width:100%;
+    height:210px;
+    background-color:#DCDCDC;
+    border-bottom:1px solid #333;
+    padding-top: 65px;
+}
+
+div.headerSaudacao {
+    margin-top: -70px;
+}
+
+div.headerSaudacao ul.menu {
+    font-family: sans-serif;
+    color:#333;
+}
+
+div.headerSaudacao ul.menu li {
+    display: inline;
+    
+}
+
+div.headerSaudacao ul.menu li a{
+    text-decoration: none;
+}
+
+div.headerSaudacao ul.menu li a:hover{
+    text-decoration: underline;
+}
+/***Header****/

@@ -497,8 +497,9 @@
         <script src="../../_scripts/js/cliente/finalizarCompra.js">
         </script>
         
-        <script src="../../_scripts/js/topo.js">
-        </script>
+        <script src="../../_scripts/js/topo.js"></script>
+        
+        <script src="../../_scripts/js/sair.js"></script>
     </body>
 </html>
 

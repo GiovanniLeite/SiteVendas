@@ -1,6 +1,19 @@
 $('#compras ul li a#excluir').click(function(e){
     e.preventDefault();
-
+    /*console.log("asdasd");*/
+    console.log("seila");
+    confirmBox();
+    //console.log("2");
+    /*
+    if (confirm("E ai?")) 
+    {
+        console.log("Foi")
+    }
+    else
+    {
+        console.log("Não foi")
+    }
+    /*
     var id =  $(this).parent().parent().attr("title");
     var elemento = $(this).parent().parent();
 
@@ -23,5 +36,13 @@ $('#compras ul li a#excluir').click(function(e){
         }
     }).fail(function(){
         console.log("Erro");
-    });
-});
+    });*/
+})
+
+function confirmBox() {
+    if (confirm("E ai?")) {
+        console.log("Foi");
+    }else{
+        console.log("Não foi");
+   }
+}

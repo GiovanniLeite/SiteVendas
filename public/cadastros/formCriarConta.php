@@ -1,6 +1,12 @@
 <?php require_once("../../_scripts/conexao/conexaoVenda.php"); ?>
 
 <?php
+    session_start();
+    
+    if(isset($_SESSION["user_portal"]))
+    {
+       header("location:../principal/login.php");
+    }
     // conferir se a navegacao veio pelo preenchimento do formulario
     if( isset($_POST['nome']) ) {
         
@@ -219,6 +225,10 @@
                 });
             }
         </script>
+        
+        <script src="../../_scripts/js/topo.js"></script>
+        
+        <script src="../../_scripts/js/topo3.js"></script>
     </body>
 </html>
 

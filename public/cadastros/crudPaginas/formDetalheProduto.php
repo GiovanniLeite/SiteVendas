@@ -161,6 +161,8 @@
         <?php include_once("../../principal/_incluir/rodape.php"); ?>
         
         <script src="../../../_scripts/js/topo2.js"></script>
+        
+        <script src="../../../_scripts/js/sair2.js"></script>
     </body>
 </html>
 
