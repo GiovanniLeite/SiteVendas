@@ -272,7 +272,6 @@ div#tabs-4 div#carrinho ul#rodape button:hover{
     background-color: rgba(0,0,0,0.9);
 }
 
-
 /**************TAB4****************************/
 /**************************************/
 
@@ -327,8 +326,33 @@ div#tabs-5 #excluirConta{
 div#tabs-5 #excluirConta:hover{
     background-color: rgb(255,0,0);
 }
+/***********JANELA*************/
+
+button.botaoNao {
+    color:#FFF;
+    background-color:#333;
+    border-radius: 0;
+}
+
+button.botaoNao:hover {
+    background-color: rgba(0,0,0,0.9);
+    color:#FFF;
+}
 
 
+button.botaoSim {
+    border:1px solid #333;
+    border-radius: 0;
+}
+
+button.botaoSim:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+h5 {
+    /*margin-left: 150px;*/
+}
+/**********JANELA*****************/
 
 
 

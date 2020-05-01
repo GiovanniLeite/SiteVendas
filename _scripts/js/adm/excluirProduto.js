@@ -1,25 +1,29 @@
-$('#compras ul li a#excluir').click(function(e){
-    e.preventDefault();
-    /*console.log("asdasd");*/
-    console.log("seila");
-    confirmBox();
-    //console.log("2");
-    /*
-    if (confirm("E ai?")) 
-    {
-        console.log("Foi")
-    }
-    else
-    {
-        console.log("Não foi")
-    }
-    /*
-    var id =  $(this).parent().parent().attr("title");
-    var elemento = $(this).parent().parent();
+var cProduto = 0;
+var idUl = "";
 
+function teste(codigoProduto,numeroUl)
+{
+    var codUl = "ul" + numeroUl;
+     
+    //console.log("Codigo do produto: ", codigoProduto);
+    //console.log("Número da ul: ", codUl);
+    //$('#'+codUl).fadeOut();
+    
+    idUl = "ul" + numeroUl;
+    cProduto = codigoProduto;
+}
+
+$('#botaoSim').click(function(e){
+    e.preventDefault();
+    
+    //console.log("Clicou SIM");
+    //console.log(cProduto);
+    //console.log(idUl);
+    //$('#'+idUl).fadeOut();
+    
     $.ajax({
         type:"POST",
-        data:"codigo=" + id,
+        data:"codigo=" + cProduto,
         url:"../../_scripts/crud/adm/excluirProduto.php",
         async:true
 
@@ -28,7 +32,7 @@ $('#compras ul li a#excluir').click(function(e){
 
         if($sucesso)
         {
-            elemento.fadeOut();//remove o registro da lista
+            $('#'+idUl).fadeOut();//remove o registro da lista
         }
         else
         {
@@ -36,13 +40,5 @@ $('#compras ul li a#excluir').click(function(e){
         }
     }).fail(function(){
         console.log("Erro");
-    });*/
-})
-
-function confirmBox() {
-    if (confirm("E ai?")) {
-        console.log("Foi");
-    }else{
-        console.log("Não foi");
-   }
-}
+    });
+});

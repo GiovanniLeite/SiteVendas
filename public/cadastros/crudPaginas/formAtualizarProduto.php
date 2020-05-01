@@ -30,7 +30,7 @@
     /**************************************************************/
     // conferir se a navegacao veio pelo preenchimento do formulario
     if(isset($_POST["nome"])) {
-        
+
         $resultado1 = publicarImagem($_FILES['fotoGrande']);
         $resultado2 = publicarImagem($_FILES['fotoPequena']);
         $mensagem1 = $resultado1[0]; 
@@ -84,6 +84,7 @@
         <link href="../../../_css/formNovoProduto.css" rel="stylesheet">
         <!-- estilo form -->
         <link href="../../../_css/estilo.css" rel="stylesheet">
+        <script src="../../../_scripts/js/jquery.js"></script>
     </head>
     <body>
         <?php include_once("../../principal/_incluir/topo.php"); ?>
@@ -208,7 +209,7 @@
                         <div class="row" id="crud">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <button class="btn btn-success btn-block" type="submit" name="inserirProduto" id="inserirProduto">Atualizar</button>
+                                    <button type="button" class="btn btn-success btn-block" name="inserirProduto" id="inserirProduto" data-toggle="modal" data-target="#janelaConfirmar">Atualizar</button>
                                 </div>
                             </div>
                         </div>
@@ -223,6 +224,29 @@
 
                 </div>
             </div>
+            
+            <!-- MODAL -->
+            <section id="janelaConfirmar" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-0">
+                        <div class="modal-header border-0 rounded-0">
+                            <h5 class="modal-title">Tem certeza de que quer alterar o produto?</h5>
+                            <button class="close cp" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body pt-0">
+                            <div class="col mt-sm-4">
+                                <button data-dismiss="modal" class="btn btn-block botaoNao">Não</button>
+                            </div>
+                            <div class="col mt-2 mt-sm-4">
+                                <button type="submit" form="formularioAtualizarProduto" class="btn btn-block botaoSim" >Sim</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- MODAL -->
         </main>
         
         <?php include_once("../../principal/_incluir/rodape.php"); ?>
@@ -230,6 +254,8 @@
         <script src="../../../_scripts/js/topo2.js"></script>
         
         <script src="../../../_scripts/js/sair2.js"></script>
+        
+        <script src="../../../bootstrap/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
 

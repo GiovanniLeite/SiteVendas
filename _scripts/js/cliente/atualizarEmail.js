@@ -1,5 +1,6 @@
-$('#formSeguranca').submit(function(e) {
+$('#formEmail').submit(function(e) {
     e.preventDefault();
+    $("#janelaConfirmarEmail").modal('hide');
 
     var f = $(this);
     var r = atualizarEmail(f);

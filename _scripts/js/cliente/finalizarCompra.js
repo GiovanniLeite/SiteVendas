@@ -1,4 +1,7 @@
 function finalizar(transacao,produtos) {
+    /*console.log("Finalizou Compra");
+    console.log(transacao);
+    console.log(produtos);*/
     
     $.ajax({
         type:"POST",

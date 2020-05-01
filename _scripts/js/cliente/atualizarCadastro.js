@@ -1,5 +1,6 @@
 $('#formAtualizarCadastro').submit(function(e) {
     e.preventDefault();
+    $("#janelaConfirmarCadastro").modal('hide');
 
     var formulario = $(this);
     var retorno = alterarFormulario(formulario)

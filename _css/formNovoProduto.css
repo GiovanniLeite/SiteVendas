@@ -54,6 +54,34 @@ div#formulario form button:hover {
     background-color:rgba(0,0,0,0.9);
 }
 
+/***********JANELA*************/
+
+button.botaoNao {
+    color:#FFF;
+    background-color:#333;
+    border-radius: 0;
+}
+
+button.botaoNao:hover {
+    background-color: rgba(0,0,0,0.9);
+    color:#FFF;
+}
+
+
+button.botaoSim {
+    border:1px solid #333;
+    border-radius: 0;
+}
+
+button.botaoSim:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+h5 {
+    /*margin-left: 150px;*/
+}
+/**********JANELA*****************/
+
 
 
 

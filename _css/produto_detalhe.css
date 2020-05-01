@@ -49,14 +49,64 @@ div#detalhe_produto li:nth-child(4) {
 div#detalhe_produto button {
     border-radius:0;
     border: none;
-    background-color:#333;
-    color:#FFF;
     padding: 15px 230px;
     font-size: 150%;
-    cursor: pointer;
     margin-top: 100px;
+    background-color:#333;
+    color:#FFF;
 }
 
-div#detalhe_produto button:hover {
+div#detalhe_produto button:hover, button#botaoNao:hover {
     background-color: rgba(0,0,0,0.9);
 }
+
+button#botaoNao {
+    color:#FFF;
+    background-color:#333;
+    border-radius: 0;
+}
+
+button#botaoSim {
+    border:1px solid #333;
+    border-radius: 0;
+}
+
+button#botaoSim:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+h5 {
+    margin-left: 85px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

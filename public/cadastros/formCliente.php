@@ -100,8 +100,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Cadastro do Cliente</title>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
@@ -110,15 +110,10 @@
                 $( "#tabs li" ).removeClass("ui-corner-top" ).addClass("ui-corner-left").addClass("ui-corner-right");
             });
         </script>
-        
-        
-        
+
         <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        
-        
         <!-- estilo form -->
         <link href="../../_css/estilo.css" rel="stylesheet">
-        
         <link href="../../_css/cliente.css" rel="stylesheet">
     </head>
     <body>
@@ -237,7 +232,7 @@
                                     </div>
                                 </div>
 
-                                <button class="btn btn-success btn-block" type="submit" name="atualizarCadastro" id="atualizarCadastro">Atualizar Cadastro</button>
+                                <button type="button" class="btn btn-success btn-block" name="atualizarCadastro" id="atualizarCadastro" data-toggle="modal" data-target="#janelaConfirmarCadastro">Atualizar Cadastro</button>
 
                                 <div id="mensagem">
                                     <p></p>
@@ -308,7 +303,7 @@
                                     </div>
                                 </div>
 
-                              <button class="btn btn-success btn-block" type="submit" name="atualizarCartao" id="atualizarCartao">Atualizar Cartão</button>
+                              <button type="button" class="btn btn-success btn-block" name="atualizarCartao" id="atualizarCartao" data-toggle="modal" data-target="#janelaConfirmarCartao">Atualizar Cartão</button>
 
                                 <div id="mensagemCartao">
                                     <p></p>
@@ -357,7 +352,7 @@
                                         $crudItens[$cont] = $linha;
                                         $cont ++;
                                 ?>
-                                <ul title="<?php echo $testeArray[i]. $linha["codigo"] ?>">
+                                <ul title="<?php /*echo $testeArray[i]. $linha["codigo"]*/ ?>">
                                     <li><img src="../../_img/VENDAS.png" id="fotoProduto"><?php /*echo $linha["foto"]*/ ?></li>
                                     <li><?php echo $linha["nome"] ?></li>
                                     <li><?php echo $linha["quantidade"] ?></li>
@@ -369,7 +364,7 @@
                             </div>
                             <ul id="rodape">
                                 <li><?php echo 'Total da compra ' . $infoCarrinho["totalVenda"] ?></li>
-                                <button name="finalizarCompra" onclick='finalizar(<?php echo json_encode($infoCarrinho); ?>,<?php echo json_encode($crudItens); ?>)' id="finalizarCompra">Finalizar Compra</button>
+                                <button name="finalizarCompra" data-toggle="modal" data-target="#janelaConfirmar">Finalizar Compra</button>
                             </ul>
                         </div>
                     </div>
@@ -390,7 +385,7 @@
 
                                     <div class="col-3">
                                         <div class="form-group">
-                                            <button class="btn btn-success" name="atualizarEmail" id="atualizarEmail" type="submit" title="Atualizar Email">Alterar Email  </button>
+                                            <button type="button" class="btn btn-success" name="atualizarEmail" id="atualizarEmail" title="Atualizar Email" data-toggle="modal" data-target="#janelaConfirmarEmail">Alterar Email  </button>
                                         </div>
                                     </div>
                                 </div>
@@ -418,7 +413,7 @@
 
                                     <div class="col-3">
                                         <div class="form-group">
-                                            <button class="btn btn-success" name="atualizarSenha" id="atualizarSenha" type="submit" title="Atualizar Senha">Alterar Senha</button>
+                                            <button type="button" class="btn btn-success" name="atualizarSenha" id="atualizarSenha" title="Atualizar Senha" data-toggle="modal" data-target="#janelaConfirmarSenha">Alterar Senha</button>
                                         </div>
                                     </div>
                                 </div>
@@ -429,20 +424,175 @@
                             </form>
                             <form id="formExcluir">
                                 <input type="hidden" name="codigoC" value="<?php echo $infoUsuario["codigo"] ?>">
+                         
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="usuario">Usuário*</label>
+                                            <input class="form-control" type="password" name="usuario" id="usuario" placeholder="Senha" title="Campo Obrigatório"/>
+                                        </div>
+                                    </div>
 
-                                <button class="btn btn-warning" name="excluirConta" id="excluirConta" type="submit" title="Confirme Email e Senha para Excluir">Excluir Conta</button>
+                                    <div class="col-5">
+                                        <div class="form-group">
+                                            <label for="senhaExcluir">Senha*</label>
+                                            <input class="form-control" type="password" name="senhaExcluir" id="senhaExcluir" placeholder="Senha" title="Campo Obrigatório"/>
+                                        </div>
+                                    </div>
 
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-warning" name="excluirConta" id="excluirConta" title="Confirme Usuário e Senha para Excluir" data-toggle="modal" data-target="#janelaConfirmar2">Excluir Conta</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <div id="mensagemExcluir">
                                     <p></p>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
 
                 </div>
             </div>
+            
+            <!-- MODAL 1-->
+            <section id="janelaConfirmar" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-0">
+                        <div class="modal-header border-0 rounded-0">
+                            <h5 class="modal-title">Tem certeza de que quer finalizar a compra?</h5>
+                            <button class="close cp" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body pt-0">
+                            <div class="col mt-sm-4">
+                                <button data-dismiss="modal" class="btn btn-block botaoNao">Não</button>
+                            </div>
+                            <div class="col mt-2 mt-sm-4">
+                                <button data-dismiss="modal" class="btn btn-block botaoSim" onclick='finalizar(<?php echo json_encode($infoCarrinho); ?>,<?php echo json_encode($crudItens); ?>)' id="finalizarCompra">Sim</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- MODAL 1-->
+            <!-- MODAL 2-->
+            <section id="janelaConfirmar2" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-0">
+                        <div class="modal-header border-0 rounded-0">
+                            <h5 class="modal-title">Tem certeza de que quer excluir a conta?</h5>
+                            <button class="close cp" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body pt-0">
+                            <div class="col mt-sm-4">
+                                <button data-dismiss="modal" class="btn btn-block botaoNao">Não</button>
+                            </div>
+                            <div class="col mt-2 mt-sm-4">
+                                <button type="submit" form="formExcluir" class="btn btn-block botaoSim" >Sim</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- MODAL 2-->
+            <!-- MODAL 3-->
+            <section id="janelaConfirmarEmail" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-0">
+                        <div class="modal-header border-0 rounded-0">
+                            <h5 class="modal-title">Tem certeza de que quer alterar o email?</h5>
+                            <button class="close cp" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body pt-0">
+                            <div class="col mt-sm-4">
+                                <button data-dismiss="modal" class="btn btn-block botaoNao">Não</button>
+                            </div>
+                            <div class="col mt-2 mt-sm-4">
+                                <button type="submit" form="formEmail" class="btn btn-block botaoSim" >Sim</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- MODAL 3-->
+            <!-- MODAL 4-->
+            <section id="janelaConfirmarSenha" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-0">
+                        <div class="modal-header border-0 rounded-0">
+                            <h5 class="modal-title">Tem certeza de que quer alterar a senha?</h5>
+                            <button class="close cp" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body pt-0">
+                            <div class="col mt-sm-4">
+                                <button data-dismiss="modal" class="btn btn-block botaoNao">Não</button>
+                            </div>
+                            <div class="col mt-2 mt-sm-4">
+                                <button type="submit" form="formSenha" class="btn btn-block botaoSim" >Sim</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- MODAL 4-->
+            <!-- MODAL 5-->
+            <section id="janelaConfirmarCartao" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-0">
+                        <div class="modal-header border-0 rounded-0">
+                            <h5 class="modal-title">Tem certeza de que quer alterar o cartão?</h5>
+                            <button class="close cp" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body pt-0">
+                            <div class="col mt-sm-4">
+                                <button data-dismiss="modal" class="btn btn-block botaoNao">Não</button>
+                            </div>
+                            <div class="col mt-2 mt-sm-4">
+                                <button type="submit" form="formAtualizarCartao" class="btn btn-block botaoSim" >Sim</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- MODAL 5-->
+            <!-- MODAL 6-->
+            <section id="janelaConfirmarCadastro" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-0">
+                        <div class="modal-header border-0 rounded-0">
+                            <h5 class="modal-title">Tem certeza de que quer alterar o cadastro?</h5>
+                            <button class="close cp" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body pt-0">
+                            <div class="col mt-sm-4">
+                                <button data-dismiss="modal" class="btn btn-block botaoNao">Não</button>
+                            </div>
+                            <div class="col mt-2 mt-sm-4">
+                                <button type="submit" form="formAtualizarCadastro" class="btn btn-block botaoSim" >Sim</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- MODAL 6-->
+            
         </main>
-        
+
         <?php include_once("../principal/_incluir/rodape.php"); ?>
         
         <script>
@@ -500,6 +650,8 @@
         <script src="../../_scripts/js/topo.js"></script>
         
         <script src="../../_scripts/js/sair.js"></script>
+
+        <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
 

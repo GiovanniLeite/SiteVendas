@@ -1,5 +1,7 @@
 $('#formSenha').submit(function(e) {
     e.preventDefault();
+    
+    $("#janelaConfirmarSenha").modal('hide');
 
     var fo = $(this);
     var re = atualizarSenha(fo);

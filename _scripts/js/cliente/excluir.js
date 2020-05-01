@@ -1,6 +1,8 @@
 $('#formExcluir').submit(function(e) {
     e.preventDefault();
 
+    $("#janelaConfirmar2").modal('hide');
+
     var fl = $(this);
     var ret = excluir(fl);
 })

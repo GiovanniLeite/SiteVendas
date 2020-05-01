@@ -1,5 +1,6 @@
 $('#formAtualizarCartao').submit(function(e) {
     e.preventDefault();
+    $("#janelaConfirmarCartao").modal('hide');
 
     var form = $(this);
     var retorn = atualizarCartao(form)

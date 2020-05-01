@@ -122,12 +122,31 @@
                     
                     <li><b>Disponíveis: </b><?php echo $estoque ?></li>
                     <li>Cód.: <?php echo $codigo ?></li>
-                    <button name="comprar" id="comprar" title="Comprar" onclick='comprar(7,<?php echo $codigo; ?>,"<?php echo $nomeproduto; ?>","<?php echo $preco; ?>","foto","<?php echo $infoCarrinho["pedido"]; ?>")'>Comprar</button>
+                    <button id="comprar" data-toggle="modal" data-target="#janelaConfirmar">Comprar</button>
                 </ul>
-
-               
             </div>
-
+            <!-- MODAL -->
+            <section id="janelaConfirmar" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-0">
+                        <div class="modal-header border-0 rounded-0">
+                            <h5 class="modal-title">Adicionar produto ao carrinho?</h5>
+                            <button class="close cp" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body pt-0">
+                            <div class="col mt-sm-4">
+                                <button id="botaoNao" data-dismiss="modal" class="btn btn-block">Não</button>
+                            </div>
+                            <div class="col mt-2 mt-sm-4">
+                                <button id="botaoSim" data-dismiss="modal" class="btn btn-block" onclick='comprar(7,<?php echo $codigo; ?>,"<?php echo $nomeproduto; ?>","<?php echo $preco; ?>","foto","<?php echo $infoCarrinho["pedido"]; ?>")'>Sim</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- MODAL -->
         </main>
 
         <?php include_once("_incluir/rodape.php"); ?>
@@ -152,23 +171,8 @@
         <script src="js/setup.js"></script>
         <!-- teste -->
 
-
+        <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
     </body>
-    
-    <!--
-        <div class="xzoom-container">images/gallery/preview/01_b_car.jpg
-            <img class="xzoom" id="fotoPrincipal" src="<?php /* echo $imagemgrande */ ?>" xoriginal="images/gallery/original/01_b_car.jpg"><!-- images/gallery/preview/01_b_car.jpg --><!--
-            <div class="xzoom-thumbs" id="fotoPequena">
-                <a href="images/gallery/original/01_b_car.jpg"><img class="xzoom-gallery" width="80" src="images/gallery/preview/01_b_car.jpg" title="Primeira foto"></a>
-
-                <a href="images/gallery/original/02_o_car.jpg"><img class="xzoom-gallery" width="80" src="images/gallery/preview/02_o_car.jpg" title="Segunda foto"></a>
-
-                <a href="images/gallery/original/03_r_car.jpg"><img class="xzoom-gallery" width="80" src="images/gallery/preview/03_r_car.jpg" title="Terceira foto"></a>
-
-                <a href="images/gallery/original/04_g_car.jpg"><img class="xzoom-gallery" width="80" src="images/gallery/preview/04_g_car.jpg" title="Quarta foto"></a>
-            </div>
-        </div>  
-    -->
 </html>
 
 <?php

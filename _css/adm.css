@@ -126,6 +126,36 @@ li .botao {
     color: white;
 }
 
+button#excluir {
+    border: none;
+    padding: 8px 10px;
+    background-color: #fff;
+}
+
+button#botaoSim {
+    border:1px solid #333;
+    border-radius: 0;
+}
+
+button#botaoSim:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+button#botaoNao {
+    color:#FFF;
+    background-color:#333;
+    border-radius: 0;
+}
+
+button#botaoNao:hover ,button#excluir:hover{
+    background-color: rgba(0,0,0,0.9);
+}
+
+
+h5 {
+    margin-left: 145px;
+}
+
 div#gerenciar ul#rodape {
     border: 1px solid #333;
     border-top: none;
