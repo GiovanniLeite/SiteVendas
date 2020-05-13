@@ -1,14 +1,44 @@
 <?php require_once("../../../_scripts/conexao/conexaoVenda.php") ?>
 <?php
     session_start();
+
+    /********Usuário**********************************/
+    // Consulta a tabela de usuario
+     if(isset($_SESSION["user_portal"]))
+        {
+            $selectUsuario = "SELECT * FROM usuario ";
+            $selectUsuario .= "WHERE codigo = {$_SESSION["user_portal"]} ";
+
+            // cria objeto com dados do usuario
+            $conUsuario = mysqli_query($conecta,$selectUsuario);
+            if(!$conUsuario) 
+            {
+                die("Erro na consulta - Usuário");
+            }
+
+            $infoUsuario = mysqli_fetch_assoc($conUsuario);
+
+            if($infoUsuario["adm"] != 0)
+            {
+                header("location:../../principal/login.php");
+            }
+        }
+        else
+        {
+            header("location:../../principal/login.php");
+        }
+    /********Usuário**********************************/
     /**************Transacao*******************/
     // Consulta a tabela de 
     $tr = "SELECT * FROM transacao ";
-    if(isset($_GET["codigo"]) ) {
+    if(isset($_GET["codigo"]) ) 
+    {
         $id = $_GET["codigo"];
         $tr .= "WHERE codigo = {$id} ";
-    } else {
-        $tr .= "WHERE codigo = 1 ";
+    } 
+    else 
+    {
+        header("location:../../principal/login.php");
     }
 
 
@@ -21,8 +51,8 @@
 
     /*************Produtos**********************/
     $itens = "SELECT * FROM produtovenda ";
-    $itens .= "WHERE pedido = ";
-    $itens .= $transacao["pedido"];
+    $itens .= "WHERE pedido = '";
+    $itens .= $transacao["pedido"] . "'";
 
     // cria objeto com dados da 
     $conProduto = mysqli_query($conecta,$itens);
@@ -63,19 +93,20 @@
                             while($linha = mysqli_fetch_assoc($conProduto)) {
                         ?>
                         <ul title="<?php echo $linha["codigo"] ?>">
-                            <li><img src="../../../_img/VENDAS.png"; id="fotoProduto"><?php /*echo "."/*$linha["foto"]*/ ?></li>
+                            <li><img src="<?php echo "../../../_img/produtos/preview/" . $linha["foto"] ?>"; id="fotoProduto"></li>
                             <li><p><?php echo $linha["nome"] ?></p></li>
                             <li><p><?php echo $linha["quantidade"] ?></p></li>
-                            <li><p><?php echo $linha["valor"] ?></p></li>
+                            <li><p>R$ <?php echo $linha["valor"] ?></p></li>
                         </ul>
                         <?php
                             }
                         ?>
                     </div>
                     <ul id="valorTotal">
-                        <li> Total da Compra: <?php echo $transacao["totalVenda"] ?></li>
+                        <li> Total da Compra: R$ <?php echo $transacao["totalVenda"] ?></li>
                     </ul>
                 </div>
+                <p><a href="../formCliente.php"><i class="fas fa-undo-alt"></i> Voltar</a></p>
             </div>
         </main>
         
@@ -88,6 +119,11 @@
 </html>
 
 <?php
+    // Fechar as queries
+    mysqli_free_result($conUsuario);
+    mysqli_free_result($conTran);
+    mysqli_free_result($conProduto);
+
     // Fechar conexao
     mysqli_close($conecta);
 ?>

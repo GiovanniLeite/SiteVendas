@@ -1,14 +1,14 @@
 main {
-    background-color: #F2F2F2;
+    background-color: rgba(0,127,255,0.1);
     height:600px;
     padding-top: 50px;
 }
 
 div#crud {
     margin:0px auto;
-    border: 1px solid #333;
+    border: 1px solid #00010F;
     width: 700px;
-    box-shadow:2px 2px 6px 2px #333;
+    box-shadow:2px 2px 6px 2px #00010F;
     background-color: #FFF;
 }
 
@@ -26,24 +26,24 @@ div#gerenciar form input {
     margin: 5px;
     margin-left: 20px;
     width: 537px;
-    border-color:#333;
+    border-color:#00010F;
     border-radius:0;
 }
 
 div#gerenciar form button {
     margin: 5px;
     border-radius:0;
-    border-color:#333;
-    background-color:#333;
+    border-color:#00021C;
+    background-color:#00021C;
     width: 90px;
 }
 
 div#gerenciar form button:hover {
-    background-color: rgba(0,0,0,0.9);
+    background-color: #00010F;
 }
 
 div#gerenciar ul#titulo {
-    border: 1px solid #333;
+    border: 1px solid #00010F;
     border-bottom: none;
     padding-left: 5px;
     width: 650px;
@@ -64,10 +64,10 @@ div#gerenciar ul#titulo li:nth-child(2){
 div#produto {
     height: 289px;
     width:650px;
-    border:1px solid #333;
+    border:1px solid #00010F;
     font-family:sans-serif;
     font-size:13px;
-    color:#333;
+    color:#00010F;
     overflow-y:scroll;
     margin:0px auto;
 }
@@ -75,7 +75,7 @@ div#produto {
 div#produto {
     width:650px;
     
-    border:1px solid #333;
+    border:1px solid #00010F;
     font-family:sans-serif;
     font-size:13px;
     color:#333;
@@ -83,7 +83,7 @@ div#produto {
 
 div#produto ul {
     margin:0;padding:0; 
-    border-bottom:1px solid #333;
+    border-bottom:1px solid #00010F;
 }
 
 div#produto ul:last-child {
@@ -93,6 +93,10 @@ div#produto ul:last-child {
 div#produto li {
     list-style:none;
     display:inline-block;
+}
+
+div#produto li a {
+    text-decoration: none;
 }
 
 div#produto li:nth-child(1) {
@@ -110,20 +114,20 @@ div#produto li:nth-child(2) {
     width:260px;  
     padding:5px 2px;
     font-weight: bold;
-    color:#333;
+    color:#00010F;
     margin-left: 80px;
 }    
 
 li .botao {
-    color:#333;
+    color:#00010F;
     text-align:center;
     padding:10px 10px;
-    text-decoration: none;
 }  
 
 .botao:hover {
-    background-color: rgba(0,0,0,0.9);
+    background-color: #00010F;
     color: white;
+    text-decoration: none;
 }
 
 button#excluir {
@@ -138,26 +142,28 @@ button#botaoSim {
 }
 
 button#botaoSim:hover {
-    background-color: rgba(0,0,0,0.1);
+    background-color: #00010F;
+    color:white;
 }
 
 button#botaoNao {
     color:#FFF;
-    background-color:#333;
+    background-color:#00021C;
     border-radius: 0;
 }
 
 button#botaoNao:hover ,button#excluir:hover{
-    background-color: rgba(0,0,0,0.9);
+    background-color: #00010F;
 }
 
 
 h5 {
     margin-left: 145px;
+    color:#00010F;
 }
 
 div#gerenciar ul#rodape {
-    border: 1px solid #333;
+    border: 1px solid #00010F;
     border-top: none;
     padding-left: 5px;
     width: 650px;

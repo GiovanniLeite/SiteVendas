@@ -1,0 +1,29 @@
+main div#janelaPesquisa {
+    width:900px;
+    height: 70px;
+    margin:0 auto;
+    border-bottom:1px solid #00021C;
+}
+
+main div#janelaPesquisa form {
+    width:860px;
+    margin:0 auto;
+    padding-top: 15px;
+}
+
+main div#janelaPesquisa form input[type="text"] {
+    width:500px;
+    margin-left: 150px;
+    border: 1px solid #00021C;
+}
+
+main div#janelaPesquisa form button {
+    padding: 5px 10px;
+    border: 1px solid #00021C;
+    color: white;
+    background-color: #00021C;
+}
+
+main div#janelaPesquisa form button:hover {
+    background-color: #00010F;
+}

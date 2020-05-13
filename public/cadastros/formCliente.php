@@ -2,81 +2,62 @@
 <?php
     session_start();
     /********Usuário**********************************/
-    
     // Consulta a tabela de usuario
-    $selectUsuario = "SELECT * FROM usuario ";
-    if(isset($_GET["codigo"]) ) {
-        $cod = $_GET["codigo"];
-        $selectUsuario .= "WHERE codigo = {$cod} ";
-    } else {
-        $selectUsuario .= "WHERE codigo= 2 ";
+     if(isset($_SESSION["user_portal"]))
+    {
+        $selectUsuario = "SELECT * FROM usuario ";
+        $selectUsuario .= "WHERE codigo = {$_SESSION["user_portal"]} ";
+
+        // cria objeto com dados do usuario
+        $conUsuario = mysqli_query($conecta,$selectUsuario);
+        if(!$conUsuario) 
+        {
+            die("Erro ao consultar usuário");
+        }
+
+        $infoUsuario = mysqli_fetch_assoc($conUsuario);
+
+        if($infoUsuario["adm"] != 0)
+        {
+            header("location:../principal/login.php");
+        }
     }
-
-    // cria objeto com dados do usuario
-    $conUsuario = mysqli_query($conecta,$selectUsuario);
-    if(!$conUsuario) {
-        die("Erro na consulta");
+    else
+    {
+        header("location:../principal/login.php");
     }
-
-    $infoUsuario = mysqli_fetch_assoc($conUsuario);
-
     /********Usuário**********************************/
-        /**/
+        
     /********Cartão**********************************/
-
     // Consulta a tabela de cartao
-    $selectCartao = "SELECT * FROM cartao ";
-    if(isset($_GET["codigo"]) ) {
-        $codCliente = $_GET["codigo"];
-        $selectCartao .= "WHERE codCliente = {$codCliente} ";
-    } else {
-        $selectCartao .= "WHERE codCliente= 2 ";
-    }
-
-    // cria objeto com dados do cartao
+    $selectCartao = "SELECT * FROM cartao WHERE codCliente = {$_SESSION["user_portal"]} ";
     $conCartao = mysqli_query($conecta,$selectCartao);
-    if(!$conCartao) {
-        die("Erro na consulta");
+    if(!$conCartao) 
+    {
+        die("Erro ao consultar cartão");
     }
 
     $infoCartao = mysqli_fetch_assoc($conCartao);
-
     /********Cartão**********************************/
-        /**/
+        
     /********Compras**********************************/
-
     // Consulta a tabela de transacoes
-    $selectTransacao = "SELECT * FROM transacao ";
-    if(isset($_GET["codigo"]) ) {
-        $codCliente = $_GET["codigo"];
-        $selectTransacao .= "WHERE codCliente = {$codCliente} ";
-    } else {
-        $selectTransacao .= "WHERE codCliente= 2 ";
-    }
-
-    // cria objeto com dados do transacao
+    $selectTransacao = "SELECT * FROM transacao WHERE codCliente = {$_SESSION["user_portal"]} ";
     $conTransacao = mysqli_query($conecta,$selectTransacao);
-    if(!$conTransacao) {
-        die("Erro na consulta");
+    if(!$conTransacao) 
+    {
+        die("Erro ao consultar compras");
     }
-
     /********Compras**********************************/
 
     /********Carrinho - Transacao**********************************/
     
     // Consulta a tabela de 
-    $selectCarrinho = "SELECT * FROM transacaotemp ";
-    if(isset($_GET["codigo"]) ) {
-        $codCliente = $_GET["codigo"];
-        $selectCarrinho .= "WHERE codCliente = {$cod} ";
-    } else {
-        $selectCarrinho .= "WHERE codCliente = 2 ";
-    }
-
-    // cria objeto com dados do
+    $selectCarrinho = "SELECT * FROM transacaotemp WHERE codCliente = {$_SESSION["user_portal"]} ";
     $conCarrinho = mysqli_query($conecta,$selectCarrinho);
-    if(!$conCarrinho) {
-        die("Erro na consulta");
+    if(!$conCarrinho) 
+    {
+        die("Erro ao consultar carrinho");
     }
 
     $infoCarrinho = mysqli_fetch_assoc($conCarrinho);
@@ -89,6 +70,8 @@
     /**************************/
     $crudItens = [];
     $cont = 0;
+    $retirados = array();
+    $contRetirados = 0;
     /***************************/
 
     /********Carrinho - Transacao**********************************/
@@ -101,6 +84,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Cadastro do Cliente</title>
         
+        
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -110,7 +94,7 @@
                 $( "#tabs li" ).removeClass("ui-corner-top" ).addClass("ui-corner-left").addClass("ui-corner-right");
             });
         </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
         <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- estilo form -->
         <link href="../../_css/estilo.css" rel="stylesheet">
@@ -143,7 +127,7 @@
                                     <div class="col-8">
                                         <div class="form-group">
                                             <label for="nome">Nome*</label>
-                                            <input class="form-control" type="text" name="nome" id="nome" value="<?php echo $infoUsuario["nome"] ?>" placeholder="Nome" title="Campo Obrigatório"/>
+                                            <input class="form-control" type="text" name="nome" id="nome" maxlength="35" value="<?php echo $infoUsuario["nome"] ?>" placeholder="Nome" title="Campo Obrigatório"/>
                                         </div>
                                     </div>
 
@@ -161,7 +145,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="rg">RG*</label>
-                                            <input class="form-control" type="text" name="rg" id="rg" value="<?php echo $infoUsuario["rg"] ?>" placeholder="RG" title="Campo Obrigatório"/>
+                                            <input class="form-control" type="text" name="rg" id="rg" maxlength="12" value="<?php echo $infoUsuario["rg"] ?>" placeholder="RG" title="Campo Obrigatório"/>
                                         </div>
                                     </div>
 
@@ -185,7 +169,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="email">Email*</label>
-                                            <input class="form-control" type="email" name="email" id="email" value="<?php echo $infoUsuario["email"] ?>" placeholder="Email" title="Campo Obrigatório"/>
+                                            <input class="form-control" type="email" name="email" id="email" maxlength="50" value="<?php echo $infoUsuario["email"] ?>" placeholder="Email" title="Campo Obrigatório"/>
                                         </div>
                                     </div>
 
@@ -202,7 +186,7 @@
                                     <div class="col-8">
                                         <div class="form-group">
                                             <label for="endereco">Endereço*</label>
-                                            <input class="form-control" type="text" name="endereco" id="endereco" value="<?php echo $infoUsuario["endereco"] ?>" placeholder="Endereço" title="Campo Obrigatório">
+                                            <input class="form-control" type="text" name="endereco" id="endereco" maxlength="35" value="<?php echo $infoUsuario["endereco"] ?>" placeholder="Endereço" title="Campo Obrigatório">
                                         </div>
                                     </div>
                                 </div>
@@ -211,7 +195,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="bairro">Bairro*</label>
-                                            <input class="form-control" type="text" name="bairro" id="bairro" value="<?php echo $infoUsuario["bairro"] ?>" placeholder="Bairro" title="Campo Obrigatório">
+                                            <input class="form-control" type="text" name="bairro" id="bairro" maxlength="50" value="<?php echo $infoUsuario["bairro"] ?>" placeholder="Bairro" title="Campo Obrigatório">
                                         </div>
                                     </div>
                                 </div>
@@ -220,14 +204,14 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="cidade">Cidade*</label>
-                                            <input class="form-control" type="text" name="cidade" id="cidade" value="<?php echo $infoUsuario["cidade"] ?>" placeholder="Cidade" title="Campo Obrigatório">
+                                            <input class="form-control" type="text" name="cidade" id="cidade" maxlength="27" value="<?php echo $infoUsuario["cidade"] ?>" placeholder="Cidade" title="Campo Obrigatório">
                                         </div>
                                     </div>
 
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="estado">Estado*</label>
-                                            <input class="form-control" type="text" name="estado" id="estado" value="<?php echo $infoUsuario["estado"] ?>" placeholder="Estado" title="Campo Obrigatório">
+                                            <input class="form-control" type="text" name="estado" id="estado" maxlength="27" value="<?php echo $infoUsuario["estado"] ?>" placeholder="Estado" title="Campo Obrigatório">
                                         </div>
                                     </div>
                                 </div>
@@ -244,12 +228,13 @@
                     <div id="tabs-2">
                         <div class="container">
                             <form id="formAtualizarCartao">
-
+                                
+                                <input type="hidden" name="codigoCliente" value="<?php echo $infoUsuario["codigo"] ?>">
                                 <input type="hidden" name="codCartao" value="<?php echo $infoCartao["codigo"] ?>">
 
                                 <div class="form-group">
                                     <label for="numeroCartao">Número do Cartão*</label>
-                                    <input class="form-control" type="text" name="numeroCartao" id="numeroCartao" value="<?php echo $infoCartao["numero"] ?>" placeholder="Número do Cartão" title="Campo Obrigatório"/>  
+                                    <input class="form-control" type="text" name="numeroCartao" id="numeroCartao" maxlength="16" value="<?php echo $infoCartao["numero"] ?>" placeholder="Número do Cartão" title="Campo Obrigatório"/>  
                                 </div>
 
                                 <div class="row">
@@ -258,7 +243,7 @@
 
 
                                             <label for="nomeTitular">Nome do Titular*</label>
-                                            <input class="form-control" type="text" name="nomeTitular" id="nomeTitular" value="<?php echo $infoCartao["titular"] ?>" placeholder="Nome do Titular" title="Campo Obrigatório"/>
+                                            <input class="form-control" type="text" name="nomeTitular" id="nomeTitular" maxlength="50" value="<?php echo $infoCartao["titular"] ?>" placeholder="Nome do Titular" title="Campo Obrigatório"/>
                                         </div>
                                     </div>
 
@@ -266,44 +251,41 @@
                                         <div class="form-group">
                                             <label for="bandeira">Bandeira*</label>
                                             <select class="form-control" name="bandeira" id="bandeira" title="Campo Obrigatório">
-                                                <option>Visa</option>    
-                                                <option>Mastercard</option>   
+                                                <option <?=($infoCartao["bandeira"] == 'Visa')?'selected':''?> >Visa</option>    
+                                                <option <?=($infoCartao["bandeira"] == 'Mastercard')?'selected':''?> >Mastercard</option>   
                                             </select>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <div class="form-group">
-                                            <label for="validade">Validade MM/AAAA*</label>
-                                            <input class="form-control" type="text" name="validade" id="validade" value="<?php echo $infoCartao["validade"] ?>" placeholder="Validade MM/AAAA" title="Campo Obrigatório"/>
+                                            <label for="validade">Validade MM/AA*</label>
+                                            <input class="form-control" type="text" name="validade" id="validade" maxlength="7" value="<?php echo $infoCartao["validade"] ?>" placeholder="Validade MM/AA" title="Campo Obrigatório"/>
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <div class="form-group">
                                             <label for="codigoSeguranca">Código*</label>
-                                            <input class="form-control" type="text" name="codigoSeguranca" id="codigoSeguranca" value="<?php echo $infoCartao["codSegu"] ?>" placeholder="Código de Segurança" title="Campo Obrigatório"/>
+                                            <input class="form-control" type="text" name="codigoSeguranca" id="codigoSeguranca" maxlength="3" value="<?php echo $infoCartao["codSegu"] ?>" placeholder="Código de Segurança" title="Campo Obrigatório"/>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="checkbox">
-                                    <label title="Campo Obrigatório">Tipo*</label>
-                                    <div class="col-12">
-                                        <label for="credito">
-                                            <input type="checkbox" name="credito" id="credito">Crédito
-                                        </label>
+                                    
+                                     <div class="col-3">
+                                        <div class="form-group">
+                                            <label for="tipo">Tipo*</label>
+                                            <select class="form-control" name="tipo" id="tipo" title="Campo Obrigatório">
+                                                <option <?=($infoCartao["tipo"] == 'Crédito')?'selected':''?> >Crédito</option>    
+                                                <option <?=($infoCartao["tipo"] == 'Débito')?'selected':''?> >Débito</option>   
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="col-12">
-                                        <label for="debito">
-                                            <input type="checkbox" name="debito" id="debito">Débito
-                                        </label>
-                                    </div>
+                                    
                                 </div>
-
-                              <button type="button" class="btn btn-success btn-block" name="atualizarCartao" id="atualizarCartao" data-toggle="modal" data-target="#janelaConfirmarCartao">Atualizar Cartão</button>
+                                
+                                <button type="button" class="btn btn-success btn-block" name="atualizarCartao" id="atualizarCartao" data-toggle="modal" data-target="#janelaConfirmarCartao">Atualizar Cartão</button>
 
                                 <div id="mensagemCartao">
                                     <p></p>
@@ -322,11 +304,12 @@
                             </ul>
                             <div id="listaCompras">
                                 <?php
-                                    while($linha = mysqli_fetch_assoc($conTransacao)) {
+                                    while($linha = mysqli_fetch_assoc($conTransacao)) 
+                                    {
                                 ?>
                                 <ul>
                                     <li><?php echo $linha["codigo"] ?></li>
-                                    <li><?php echo $linha["totalVenda"] ?></li>
+                                    <li>R$ <?php echo $linha["totalVenda"] ?></li>
                                     <li><?php echo $linha["dataVenda"] ?></li>
                                     <li><a href="crudPaginas/formDetalheCompra.php?&codigo='<?php echo $linha["codigo"] ?>'">Detalhes</a></li>
                                 </ul>
@@ -348,22 +331,24 @@
                             </ul>
                             <div id="produto">
                                 <?php
-                                    while($linha = mysqli_fetch_assoc($conItens)) {
+                                    while($linha = mysqli_fetch_assoc($conItens)) 
+                                    {
                                         $crudItens[$cont] = $linha;
-                                        $cont ++;
                                 ?>
-                                <ul title="<?php /*echo $testeArray[i]. $linha["codigo"]*/ ?>">
-                                    <li><img src="../../_img/VENDAS.png" id="fotoProduto"><?php /*echo $linha["foto"]*/ ?></li>
+                                <ul id="<?php echo "ul" . $cont;?>">
+                                    <li><img src="<?php echo "../../_img/produtos/preview/" . $linha["foto"] ?>" id="fotoProduto"></li>
                                     <li><?php echo $linha["nome"] ?></li>
                                     <li><?php echo $linha["quantidade"] ?></li>
-                                    <li><?php echo $linha["valor"] ?></li>
+                                    <li>R$ <?php echo $linha["valor"] ?></li>
+                                    <li><button id="remover" title="Remover Produto" onclick='remover(<?php echo $cont ?>,<?php echo json_encode($linha) ?>,<?php echo json_encode($infoCarrinho) ?>)'>X</button></li>
                                 </ul>
                                 <?php
+                                    $cont ++;
                                     }
                                 ?>
                             </div>
                             <ul id="rodape">
-                                <li><?php echo 'Total da compra ' . $infoCarrinho["totalVenda"] ?></li>
+                                <li><?php echo 'Total da compra: R$ ' . $infoCarrinho["totalVenda"] ?></li>
                                 <button name="finalizarCompra" data-toggle="modal" data-target="#janelaConfirmar">Finalizar Compra</button>
                             </ul>
                         </div>
@@ -379,7 +364,7 @@
                                     <div class="col-9">
                                         <div class="form-group">
                                             <label for="emailSeguranca">Email*</label>
-                                            <input class="form-control" type="email" name="emailSeguranca" id="emailSeguranca" placeholder="exemplo@outlook.com" title="Campo Obrigatório"/>
+                                            <input class="form-control" type="email" name="emailSeguranca" id="emailSeguranca" maxlength="55" placeholder="exemplo@outlook.com" title="Campo Obrigatório"/>
                                         </div>
                                     </div>
 
@@ -399,21 +384,21 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="senha">Senha*</label>
-                                            <input class="form-control" type="password" name="senha" id="senha" placeholder="Senha" title="Campo Obrigatório"/>
+                                            <label for="senha">Nova Senha*</label>
+                                            <input class="form-control" type="password" name="senha" id="senha" maxlength="25" placeholder="Senha" title="Campo Obrigatório"/>
                                         </div>
                                     </div>
 
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <label for="confirmarSenha">Confirmar Senha*</label>
-                                            <input class="form-control" type="password" name="confirmarSenha" id="confirmarSenha" placeholder="Senha" title="Campo Obrigatório"/>
+                                            <label for="confirmarSenha">Confirmar Nova Senha*</label>
+                                            <input class="form-control" type="password" name="confirmarSenha" id="confirmarSenha" maxlength="25" placeholder="Senha" title="Campo Obrigatório"/>
                                         </div>
                                     </div>
 
                                     <div class="col-3">
                                         <div class="form-group">
-                                            <button type="button" class="btn btn-success" name="atualizarSenha" id="atualizarSenha" title="Atualizar Senha" data-toggle="modal" data-target="#janelaConfirmarSenha">Alterar Senha</button>
+                                            <button type="button" class="btn btn-success" name="atualizarSenha" id="atualizarSenha" itle="Atualizar Senha" data-toggle="modal" data-target="#janelaConfirmarSenha">Alterar Senha</button>
                                         </div>
                                     </div>
                                 </div>
@@ -429,14 +414,14 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="usuario">Usuário*</label>
-                                            <input class="form-control" type="password" name="usuario" id="usuario" placeholder="Senha" title="Campo Obrigatório"/>
+                                            <input class="form-control" type="password" name="usuario" id="usuario" maxlength="25" placeholder="Senha" title="Campo Obrigatório"/>
                                         </div>
                                     </div>
 
                                     <div class="col-5">
                                         <div class="form-group">
                                             <label for="senhaExcluir">Senha*</label>
-                                            <input class="form-control" type="password" name="senhaExcluir" id="senhaExcluir" placeholder="Senha" title="Campo Obrigatório"/>
+                                            <input class="form-control" type="password" name="senhaExcluir" id="senhaExcluir" maxlength="25" placeholder="Senha" title="Campo Obrigatório"/>
                                         </div>
                                     </div>
 
@@ -616,8 +601,7 @@
             function pesquisarCEP(endereco){
                 $.ajax({
                     type:"GET",
-                    url:endereco,
-                    async:false
+                    url:endereco
                 }).done(function(data){
                     $('#bairro').val(data.bairro);
                     $('#cidade').val(data.localidade);
@@ -627,25 +611,27 @@
                     console.log("erro");
                 });
             }
+            
+            $("#cpf").mask("000.000.000-00");
+            $("#telefone").mask("(00)0000-0000");
+            $("#celular").mask("(00)00000-0000");
+            $("#cep").mask("00000-000");
+            $("#validade").mask("00/00");
         </script>
 
-        <script src="../../_scripts/js/cliente/atualizarCadastro.js">
-        </script>
+        <script src="../../_scripts/js/cliente/atualizarCadastro.js"></script>
         
-        <script src="../../_scripts/js/cliente/atualizarCartao.js">
-        </script>
+        <script src="../../_scripts/js/cliente/atualizarCartao.js"></script>
         
-        <script src="../../_scripts/js/cliente/atualizarEmail.js">
-        </script>
+        <script src="../../_scripts/js/cliente/atualizarEmail.js"></script>
         
-        <script src="../../_scripts/js/cliente/atualizarSenha.js">
-        </script>
+        <script src="../../_scripts/js/cliente/atualizarSenha.js"></script>
         
-        <script src="../../_scripts/js/cliente/excluir.js">
-        </script>
+        <script src="../../_scripts/js/cliente/excluir.js"></script>
         
-        <script src="../../_scripts/js/cliente/finalizarCompra.js">
-        </script>
+        <script src="../../_scripts/js/cliente/finalizarCompra.js"></script>
+        
+        <script src="../../_scripts/js/cliente/removerProduto.js"></script>
         
         <script src="../../_scripts/js/topo.js"></script>
         
@@ -656,6 +642,13 @@
 </html>
 
 <?php
+    // Fechar as queries
+    mysqli_free_result($conUsuario);
+    mysqli_free_result($conCartao);
+    mysqli_free_result($conTransacao);
+    mysqli_free_result($conCarrinho);
+    mysqli_free_result($conItens);
+        
     // Fechar conexao
     mysqli_close($conecta);
 ?>

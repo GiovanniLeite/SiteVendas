@@ -16,11 +16,11 @@
         {
             die("Falha na consulta ao banco");
         }
-        
+
         $informacao = mysqli_fetch_assoc($acesso);
         if( empty($informacao) )
         {
-            $mensagem = "Login sem sucesso.";
+            $mensagem = "Usuário e/ou Senha incorretos.";
         }
         else
         {   
@@ -37,7 +37,6 @@
         
         <script src="https://kit.fontawesome.com/9a0becbb52.js" crossorigin="anonymous"></script>
         <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <!-- estilo -->
         <link href="../../_css/estilo.css" rel="stylesheet">
         <link href="../../_css/login.css" rel="stylesheet">
     </head>
@@ -77,6 +76,7 @@
 </html>
 
 <?php
+
     // Fechar conexao
     mysqli_close($conecta);
 ?>

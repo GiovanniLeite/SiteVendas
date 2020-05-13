@@ -1,12 +1,12 @@
-function comprar(quantidade,codProduto,nome,valor,foto,pedido) {
+function comprar(quantidade,codProduto,nome,valor,foto,pedido,codigoCliente) {
     
     
-    console.log("Atributos: ",quantidade,codProduto,nome,valor,foto,pedido);
+    console.log("Atributos: ",quantidade,codProduto,nome,valor,foto,pedido,codigoCliente);
 
     $.ajax({
         type:"POST",
         url:"../../_scripts/crud/cliente/comprar.php",
-        data:{quan:quantidade,cod:codProduto,nom:nome,val:valor,ft:foto,ped:pedido},
+        data:{quan:quantidade,cod:codProduto,nom:nome,val:valor,ft:foto,ped:pedido,cl:codigoCliente},
         async:true
     }).done(function(data){
 

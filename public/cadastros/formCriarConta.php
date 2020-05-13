@@ -1,5 +1,3 @@
-<?php require_once("../../_scripts/conexao/conexaoVenda.php"); ?>
-
 <?php
     session_start();
     
@@ -7,37 +5,6 @@
     {
        header("location:../principal/login.php");
     }
-    // conferir se a navegacao veio pelo preenchimento do formulario
-    if( isset($_POST['nome']) ) {
-        
-        $adm = '0';
-        $nome = $_POST['nome'];
-        $cpf = $_POST['cpf'];
-        $rg = $_POST['rg'];
-        $telefone = $_POST['telefone'];
-        $celular = $_POST['celular'];
-        $cep = $_POST['cep'];
-        $endereco = $_POST['endereco'];
-        $bairro = $_POST['bairro'];
-        $cidade = $_POST['cidade'];
-        $estado = $_POST['estado'];
-        $email = $_POST['email'];
-        $usuario = $_POST['usuario'];
-        $senha = $_POST['senha'];
-        
-        // Insercao no banco
-        $inserir = "INSERT INTO usuario ";
-        $inserir .="(adm,nome,cpf,rg,telefone,celular,cep,endereco,bairro,cidade,estado,email,usuario,senha) ";
-        $inserir .="VALUES ";
-        $inserir .="('$adm','$nome','$cpf','$rg','$telefone','$celular','$cep','$endereco','$bairro','$cidade','$estado','$email','$usuario','$senha')";
-        $qInserir = mysqli_query($conecta,$inserir);
-        if(!$qInserir) {
-            die("Erro na insercao");   
-        } else {
-            $mensagem = "Inserção ocorreu com sucesso.";
-        }
-    }
-
 ?>
 
 <!doctype html>
@@ -46,9 +13,10 @@
         <meta charset="UTF-8">
         <title>Criar Conta</title>
         
-        <script src="../../_scripts/js/jquery.js"></script>
         
-        <!-- estilo -->
+        <script src="../../_scripts/js/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+        
         <link href="../../_css/estilo.css" rel="stylesheet">
         <link href="../../_css/criarConta.css" rel="stylesheet">
         <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -62,12 +30,12 @@
                 <h2>Cadastre-se</h2>
                 
                 <div class="container">
-                    <form action="formCriarConta.php" method="post">
+                    <form id="formCriarConta">
                         <div class="row">
                             <div class="col-8">
                                 <div class="form-group">
                                     <label for="nome">Nome*</label>
-                                    <input class="form-control" type="text" name="nome" id="nome" placeholder="Nome" title="Campo Obrigatório"/>
+                                    <input class="form-control" type="text" name="nome" id="nome" maxlength="43" placeholder="Nome" title="Campo Obrigatório"/>
                                 </div>
                             </div>
 
@@ -83,7 +51,7 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="rg">RG*</label>
-                                    <input class="form-control" type="text" name="rg" id="rg" placeholder="RG" title="Campo Obrigatório"/>
+                                    <input class="form-control" type="text" name="rg" id="rg" maxlength="12" placeholder="RG" title="Campo Obrigatório"/>
                                 </div>
                             </div>
                             
@@ -113,7 +81,7 @@
                             <div class="col-8">
                                 <div class="form-group">
                                     <label for="endereco">Endereço*</label>
-                                    <input class="form-control" type="text" name="endereco" id="endereco" placeholder="Endereço" title="Campo Obrigatório">
+                                    <input class="form-control" type="text" name="endereco" id="endereco" maxlength="45" placeholder="Endereço" title="Campo Obrigatório">
                                 </div>
                             </div>
                         </div>
@@ -122,7 +90,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="bairro">Bairro*</label>
-                                    <input class="form-control" type="text" name="bairro" id="bairro" placeholder="Bairro" title="Campo Obrigatório">
+                                    <input class="form-control" type="text" name="bairro" id="bairro" maxlength="60" placeholder="Bairro" title="Campo Obrigatório">
                                 </div>
                             </div>
                         </div>
@@ -131,14 +99,14 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="cidade">Cidade*</label>
-                                    <input class="form-control" type="text" name="cidade" id="cidade" placeholder="Cidade" title="Campo Obrigatório">
+                                    <input class="form-control" type="text" name="cidade" id="cidade" maxlength="30" placeholder="Cidade" title="Campo Obrigatório">
                                 </div>
                             </div>
                                     
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="estado">Estado*</label>
-                                    <input class="form-control" type="text" name="estado" id="estado" placeholder="Estado" title="Campo Obrigatório">
+                                    <input class="form-control" type="text" name="estado" id="estado" maxlength="30" placeholder="Estado" title="Campo Obrigatório">
                                 </div>
                             </div>
                         </div>
@@ -147,14 +115,14 @@
                             <div class="col-8">
                                 <div class="form-group">
                                     <label for="email">Email*</label>
-                                    <input class="form-control" type="email" name="email" id="email" placeholder="Email" title="Campo Obrigatório"/>
+                                    <input class="form-control" type="email" name="email" id="email" maxlength="45" placeholder="Email" title="Campo Obrigatório"/>
                                 </div>
                             </div>
                             
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="usuario">Usuário*</label>
-                                    <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Usuário" title="Campo Obrigatório">
+                                    <input class="form-control" type="text" name="usuario" id="usuario" maxlength="16" placeholder="Usuário" title="Campo Obrigatório">
                                 </div>
                             </div>
                         </div>
@@ -163,25 +131,25 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="senha">Senha*</label>
-                                    <input class="form-control" type="password" name="senha" id="senha" placeholder="Senha" title="Campo Obrigatório">
+                                    <input class="form-control" type="password" name="senha" id="senha" maxlength="25" placeholder="Senha" title="Campo Obrigatório">
                                 </div>
                             </div>
                             
                              <div class="col-6">
                                 <div class="form-group">
                                     <label for="confirmarSenha">Confirmar Senha*</label>
-                                    <input class="form-control" type="password" name="confirmarSenha" id="confirmarSenha" placeholder="Confirmar Senha" title="Campo Obrigatório">
+                                    <input class="form-control" type="password" name="confirmarSenha" id="confirmarSenha" maxlength="25" placeholder="Confirmar Senha" title="Campo Obrigatório">
                                 </div>
                             </div>
                         </div>
 
                         <button class="btn btn-success btn-block" id="criarConta" type="submit" title="Criar Conta">Criar Conta</button>
                         
-                        <?php
-                            if( isset($mensagem) ) {
-                                echo "<p>" . $mensagem . "</p>";
-                            }
-                        ?>
+                        <span class="resposta">
+                            <div id="mensagem">
+                                <p></p>
+                            </div>
+                        </span>
                     </form>
                 </div>
             </div>
@@ -213,8 +181,7 @@
             function pesquisarCEP(endereco){
                 $.ajax({
                     type:"GET",
-                    url:endereco,
-                    async:false
+                    url:endereco
                 }).done(function(data){
                     $('#bairro').val(data.bairro);
                     $('#cidade').val(data.localidade);
@@ -223,17 +190,19 @@
                 }).fail(function(){
                     console.log("erro");
                 });
-            }
+            } 
+            
+            $("#cpf").mask("000.000.000-00");
+            $("#telefone").mask("(00) 0000-0000");
+            $("#celular").mask("(00) 00000-0000");
+            $("#cep").mask("00000-000");
         </script>
         
         <script src="../../_scripts/js/topo.js"></script>
         
         <script src="../../_scripts/js/topo3.js"></script>
+        
+        <script src="../../_scripts/js/cliente/criarConta.js"></script>
     </body>
 </html>
-
-<?php
-    // Fechar conexao
-    mysqli_close($conecta);
-?>
 

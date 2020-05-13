@@ -4,10 +4,6 @@ var idUl = "";
 function teste(codigoProduto,numeroUl)
 {
     var codUl = "ul" + numeroUl;
-     
-    //console.log("Codigo do produto: ", codigoProduto);
-    //console.log("Número da ul: ", codUl);
-    //$('#'+codUl).fadeOut();
     
     idUl = "ul" + numeroUl;
     cProduto = codigoProduto;
@@ -16,11 +12,6 @@ function teste(codigoProduto,numeroUl)
 $('#botaoSim').click(function(e){
     e.preventDefault();
     
-    //console.log("Clicou SIM");
-    //console.log(cProduto);
-    //console.log(idUl);
-    //$('#'+idUl).fadeOut();
-    
     $.ajax({
         type:"POST",
         data:"codigo=" + cProduto,
@@ -28,16 +19,45 @@ $('#botaoSim').click(function(e){
         async:true
 
     }).done(function(data){
+        
         $sucesso = $.parseJSON(data)["sucesso"];
+        $mensagem = $.parseJSON(data)["mensagem"];
+        $mensagem1 = $.parseJSON(data)["mensagem1"];
+        $mensagem2 = $.parseJSON(data)["mensagem2"];
+        $mensagem3 = $.parseJSON(data)["mensagem3"];
+        $mensagem4 = $.parseJSON(data)["mensagem4"];
+        $mensagem5 = $.parseJSON(data)["mensagem5"];
+        $mensagem6 = $.parseJSON(data)["mensagem6"];
+        $mensagem7 = $.parseJSON(data)["mensagem7"];
+        $mensagem8 = $.parseJSON(data)["mensagem8"];
 
         if($sucesso)
         {
             $('#'+idUl).fadeOut();//remove o registro da lista
+            console.log("Apagou produto");
+            console.log($mensagem1);
+            console.log($mensagem2);
+            console.log($mensagem3);
+            console.log($mensagem4);
+            console.log($mensagem5);
+            console.log($mensagem6);
+            console.log($mensagem7);
+            console.log($mensagem8);
         }
         else
         {
-            console.log("Erro na exclusão");
+            console.log("Erro na exclusão do produto");
+            console.log($mensagem);
+            console.log($mensagem1);
+            console.log($mensagem2);
+            console.log($mensagem3);
+            console.log($mensagem4);
+            console.log($mensagem5);
+            console.log($mensagem6);
+            console.log($mensagem7);
+            console.log($mensagem8);
         }
+        
     }).fail(function(){
         console.log("Erro");
     });

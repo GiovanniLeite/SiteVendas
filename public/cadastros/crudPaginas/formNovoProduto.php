@@ -1,52 +1,41 @@
 <?php require_once("../../../_scripts/conexao/conexaoVenda.php") ?>
-<?php include_once("../../../_scripts/crud/adm/funcoes.php") ?>
 <?php
     session_start();
+    /**********ADM****************/
+    // tabela de adm
+    if(isset($_SESSION["user_portal"]))
+    {
+        $selectAdm = "SELECT * FROM usuario ";
+        $selectAdm .= "WHERE codigo = {$_SESSION["user_portal"]} ";
+        
+        // cria objeto com dados do usuario
+        $conAdm = mysqli_query($conecta,$selectAdm);
+        if(!$conAdm) 
+        {
+            die("Erro na consulta - Usuário");
+        }
+
+        $infoAdm = mysqli_fetch_assoc($conAdm);
+       
+        if($infoAdm["adm"] != 1)
+        {
+            header("location:../../principal/login.php");
+        }
+    }
+    else
+    {
+        header("location:../../principal/login.php");
+    }
+    /***********ADM***************/
+
+
     // Consulta a tabela de fornecedores
     $selectFornecedor = "SELECT * FROM fornecedor ";
     $conFornecedor = mysqli_query($conecta,$selectFornecedor);
-    if(!$conFornecedor) {
-        die("Erro na consulta");
+    if(!$conFornecedor) 
+    {
+        die("Erro na consulta - Fornecedor");
     }
-
-    /*********************************************/
-    // conferir se a navegacao veio pelo preenchimento do formulario
-    if(isset($_POST["nome"])) {
-        
-
-        $resultado1 = publicarImagem($_FILES['fotoGrande']);
-        $resultado2 = publicarImagem($_FILES['fotoPequena']);
-        $mensagem1 = $resultado1[0]; 
-        $mensagem2 = $resultado2[0];
-
-        $nome = $_POST['nome'];
-        $codigoFornecedor = $_POST['codigoFornecedor'];
-        $fornecedor = $_POST['fornecedor'];
-        $descricao = $_POST['descricao'];
-        $preco = $_POST['preco'];
-        $quantidade = $_POST['quantidade'];
-
-        $imagemGrande  = $resultado1[1];
-        $imagemPequena = $resultado2[1];
-
-        // Insercao no banco
-        $inserir = "INSERT INTO produto ";
-        $inserir .="(nome,preco,descricao,fotoPequena,fotoGrande,quantidade,codFornecedor,nomeFornecedor) ";
-        $inserir .="VALUES ";
-        $inserir .="('$nome','$preco','$descricao','$imagemPequena','$imagemGrande','$quantidade','$codigoFornecedor','$fornecedor')";
-        
-        $operacaoInserir = mysqli_query($conecta,$inserir);
-        if($operacaoInserir) {
-            $mensagem = "Cadastro inserido com sucesso.";
-        } else {
-            $mensagem = "Falha no sistema, tente mais tarde.";
-        }
-        
-        unset($_POST);
-
-    }
-    /*********************************************/
-
 ?>
 
 <!doctype html>
@@ -56,13 +45,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Administrador - Inserir</title>
         
-        <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <script src="../../../_scripts/js/jquery.js"></script>
         
         <link href="../../../_css/formNovoProduto.css" rel="stylesheet">
-        <!-- estilo form -->
         <link href="../../../_css/estilo.css" rel="stylesheet">
-        
-        <script src="../../../_scripts/js/jquery.js"></script>
+        <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
         <?php include_once("../../principal/_incluir/topo.php"); ?>
@@ -70,10 +57,10 @@
         <main>
             <div id="formulario">
                 <h2>Administrador - Inserir</h2>
-                <p><strong><?php echo "Giovanni Moraes de Oliveira Leite"/*$infoAdm["nome"]*/ ?></strong></p>
+                <p><strong><?php echo $infoAdm["nome"] ?></strong></p>
 
                 <div class="container">
-                    <form id="formularioNovoProduto" action="formNovoProduto.php" method="post" enctype="multipart/form-data">
+                    <form id="formularioNovoProduto" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group">
@@ -85,25 +72,19 @@
                             <div class="col-8">
                                 <div class="form-group">
                                     <label for="nome">Nome*</label>
-                                    <input class="form-control" type="text" name="nome" id="nome" title="Campo Obrigatório" placeholder="Nome"/>
+                                    <input class="form-control" type="text" name="nome" id="nome" maxlength="60" title="Campo Obrigatório" placeholder="Nome"/>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label for="codigoFornecedor">Código do Fornecedor*</label>
-                                    <input class="form-control" type="text" name="codigoFornecedor" id="codigoFornecedor" title="Campo Obrigatório" placeholder="Código"/>
-                                </div>
-                            </div>
-
-                            <div class="col-8">
+                            <div class="col-12">
                                 <div class="form-group">
                                     <label for="fornecedor">Nome do Fornecedor*</label>
                                     <select class="form-control" name="fornecedor" id="fornecedor" title="Campo Obrigatório">
                                         <?php
-                                            while($linha = mysqli_fetch_assoc($conFornecedor)) {
+                                            while($linha = mysqli_fetch_assoc($conFornecedor)) 
+                                            {
                                         ?>
                                             <option value="<?php echo $linha["nome"];  ?>">
                                                 <?php echo $linha["nome"];  ?>
@@ -130,14 +111,14 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="preco">Preço*</label>
-                                    <input class="form-control" type="text" name="preco" id="preco" placeholder="Preço" title="Campo Obrigatório"/>
+                                    <input class="form-control" type="text" name="preco" id="preco" maxlength="8" placeholder="Preço" title="Campo Obrigatório"/>
                                 </div>
                             </div>
 
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="quantidade">Quantidade*</label>
-                                    <input class="form-control" type="text" name="quantidade" id="quantidade" placeholder="Quantidade" title="Campo Obrigatório"/>
+                                    <input class="form-control" type="text" name="quantidade" id="quantidade" maxlength="3" placeholder="Quantidade" title="Campo Obrigatório"/>
                                 </div>
                             </div>
                         </div>
@@ -146,31 +127,103 @@
                             <div class="col-6">
                                 <div class="form-group">
 
-                                    <label for="fotoGrande">Foto Grande*</label>
-                                    <input type="file" name="fotoGrande" id="fotoGrande" title="Campo Obrigatório">
+                                    <label for="fotoGrande1">Foto Grande 1*</label>
+                                    <input type="file" name="fotoGrande1" id="fotoGrande1" title="Campo Obrigatório">
                                     <span class="resposta">
-                                        <?php
-                                            if( isset($mensagem1) ) {
-                                                echo "<p>" . $mensagem1 . "</p>";
-                                            }    
-                                        ?>
+                                        <div id="mensagem1">
+                                            <p></p>
+                                        </div>
                                     </span>
                                 </div>
                             </div>
 
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="fotoPequena">Foto Pequena*</label>
-                                    <input type="file" name="fotoPequena" id="fotoPequena" title="Campo Obrigatório">
+                                    <label for="fotoPequena1">Foto Pequena 1*</label>
+                                    <input type="file" name="fotoPequena1" id="fotoPequena1" title="Campo Obrigatório">
                                     <span class="resposta">
-                                        <?php
-                                            if( isset($mensagem2) ) {
-                                                echo "<p>" . $mensagem2 . "</p>";
-                                            }
-                                        ?>
+                                        <div id="mensagem5">
+                                            <p></p>
+                                        </div>
                                     </span>
                                 </div>
                             </div>
+                            
+                            <div class="col-6">
+                                <div class="form-group">
+
+                                    <label for="fotoGrande2">Foto Grande 2*</label>
+                                    <input type="file" name="fotoGrande2" id="fotoGrande2" title="Campo Obrigatório">
+                                    <span class="resposta">
+                                        <div id="mensagem2">
+                                            <p></p>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="fotoPequena2">Foto Pequena 2*</label>
+                                    <input type="file" name="fotoPequena2" id="fotoPequena2" title="Campo Obrigatório">
+                                    <span class="resposta">
+                                        <div id="mensagem6">
+                                            <p></p>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="col-6">
+                                <div class="form-group">
+
+                                    <label for="fotoGrande3">Foto Grande 3*</label>
+                                    <input type="file" name="fotoGrande3" id="fotoGrande3" title="Campo Obrigatório">
+                                    <span class="resposta">
+                                        <div id="mensagem3">
+                                            <p></p>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="fotoPequena3">Foto Pequena 3*</label>
+                                    <input type="file" name="fotoPequena3" id="fotoPequena3" title="Campo Obrigatório">
+                                    <span class="resposta">
+                                        <div id="mensagem7">
+                                            <p></p>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="col-6">
+                                <div class="form-group">
+
+                                    <label for="fotoGrande4">Foto Grande 4*</label>
+                                    <input type="file" name="fotoGrande4" id="fotoGrande4" title="Campo Obrigatório">
+                                    <span class="resposta">
+                                        <div id="mensagem4">
+                                            <p></p>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="fotoPequena4">Foto Pequena 4*</label>
+                                    <input type="file" name="fotoPequena4" id="fotoPequena4" title="Campo Obrigatório">
+                                    <span class="resposta">
+                                        <div id="mensagem8">
+                                            <p></p>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            
                         </div>
 
                         <div class="row">
@@ -181,11 +234,9 @@
                             </div>
                         </div>
 
-                        <?php
-                            if( isset($mensagem) ) {
-                                echo "<p>" . $mensagem . "</p>";
-                            }
-                        ?>
+                        <div id="mensagem">
+                            <p></p>
+                        </div>
 
                     </form>
 
@@ -222,16 +273,17 @@
         
         <script src="../../../_scripts/js/sair2.js"></script>
         
+        <script src="../../../_scripts/js/adm/novoProduto.js"></script>
+        
         <script src="../../../bootstrap/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
 
 <?php
     // Fechar as queries
+    mysqli_free_result($conAdm);
     mysqli_free_result($conFornecedor);
-?>
 
-<?php
     // Fechar conexao
     mysqli_close($conecta);
 ?>

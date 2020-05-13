@@ -2,8 +2,19 @@ $('#formEmail').submit(function(e) {
     e.preventDefault();
     $("#janelaConfirmarEmail").modal('hide');
 
-    var f = $(this);
-    var r = atualizarEmail(f);
+    //pegando valores dos campos
+    var em = $('#emailSeguranca').val().trim();
+    
+    //Validacao de campos
+    if(em == "")
+    { 
+        alert("Campo Email está vazio.");
+    }
+    else
+    {
+        var f = $(this);
+        var r = atualizarEmail(f);
+    }
 })
 
 
@@ -17,14 +28,17 @@ function atualizarEmail(dados) {
     }).done(function(data){
         $sucesso = $.parseJSON(data)["sucesso"];
         $mensagem = $.parseJSON(data)["mensagem"];
+        $mensagem1 = $.parseJSON(data)["mensagem1"];
 
         if($sucesso)
         {
-            $('#mensagemEmail p').html($mensagem);        
+            console.log($mensagem);
+            $('#mensagemEmail p').html($mensagem1);        
         }
         else//aq e quando houve uma falha no momento da operacao 
         {
-            $('#mensagemEmail p').html($mensagem);       
+            console.log($mensagem);
+            $('#mensagemEmail p').html($mensagem1);       
         }
     }).fail(function(){//essa falha ele nem conseguiu se comunicar com a pagina atualizar.php
          $('#mensagemEmail p').html("Erro no sistema, tente mais tarde."); 

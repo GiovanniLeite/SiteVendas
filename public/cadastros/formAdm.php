@@ -3,37 +3,45 @@
     session_start();
     /**********ADM****************/
     // tabela de adm
-    $selectAdm = "SELECT * FROM usuario ";
-    if(isset($_GET["codigo"]) ) {
-        $cod = $_GET["codigo"];
-        $selectAdm .= "WHERE codigo = {$cod} ";
-    } else {
-        $selectAdm .= "WHERE codigo= 1 ";
-    }
+    if(isset($_SESSION["user_portal"]))
+    {
+        $selectAdm = "SELECT * FROM usuario ";
+        $selectAdm .= "WHERE codigo = {$_SESSION["user_portal"]} ";
+        
+        // cria objeto com dados do usuario
+        $conAdm = mysqli_query($conecta,$selectAdm);
+        if(!$conAdm) 
+        {
+            die("Erro na consulta - Usuário");
+        }
 
-    // cria objeto com dados do usuario
-    $conAdm = mysqli_query($conecta,$selectAdm);
-    if(!$conAdm) {
-        die("Erro na consulta");
+        $infoAdm = mysqli_fetch_assoc($conAdm);
+       
+        if($infoAdm["adm"] != 1)
+        {
+            header("location:../principal/login.php");
+        }
     }
-
-    $infoAdm = mysqli_fetch_assoc($conAdm);
+    else
+    {
+        header("location:../principal/login.php");
+    }
     /***********ADM***************/
 
     /***********Produtos****************/
     // tabela de produtos
     $selectProduto = "SELECT * FROM produto ";
-    if ( isset($_GET["produto"]) ) {
+    if ( isset($_GET["produto"]) ) 
+    {
         $nomeProduto = $_GET["produto"];
         $selectProduto .= "WHERE nome LIKE '%{$nomeProduto}%' ";
     }
     // cria objeto com dados dos produtos
     $conProduto = mysqli_query($conecta,$selectProduto);
-    if(!$conProduto) {
-        die("Erro na consulta");
+    if(!$conProduto) 
+    {
+        die("Erro na consulta - Produto");
     }
-
-    /* $listaProduto = mysqli_fetch_assoc($conProduto); */
     /***********Produtos***************/
 ?>
 
@@ -44,13 +52,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Administrador</title>
         
-        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        
-        <link href="../../_css/adm.css" rel="stylesheet">
-        <!-- estilo form -->
-        <link href="../../_css/estilo.css" rel="stylesheet">
-        
         <script src="../../_scripts/js/jquery.js"></script>
+
+        <link href="../../_css/adm.css" rel="stylesheet">
+        <link href="../../_css/estilo.css" rel="stylesheet">
+        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
         <?php include_once("../principal/_incluir/topo.php"); ?>
@@ -63,7 +69,7 @@
                 <div id="gerenciar">
                     <form>
                         <div class="row">
-                            <input class="form-control" type="text" name="produto" id="produto" placeholder="Procurar" title="Procurar">
+                            <input class="form-control" type="text" name="produto" id="produto" placeholder="Procurar" title="Procurar por nome">
                             <button class="btn btn-success btn-block" name="botaoProcurar" id="botaoProcurar" type="submit" title="Procurar">Procurar</button>
                         </div>
                     </form>
@@ -74,7 +80,8 @@
                     <div id="produto">
                         <?php
                             $cont = 0;
-                            while($linha = mysqli_fetch_assoc($conProduto)) {
+                            while($linha = mysqli_fetch_assoc($conProduto)) 
+                            {
                                 $cont ++;
                         ?>
                         <ul id="<?php echo 'ul' . $cont ?>">
@@ -130,6 +137,10 @@
 </html>
 
 <?php
+    // Fechar as queries
+    mysqli_free_result($conAdm);
+    mysqli_free_result($conProduto);
+
     // Fechar conexao
     mysqli_close($conecta);
 ?>

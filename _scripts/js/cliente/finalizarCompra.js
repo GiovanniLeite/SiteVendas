@@ -1,20 +1,23 @@
 function finalizar(transacao,produtos) {
-    /*console.log("Finalizou Compra");
-    console.log(transacao);
-    console.log(produtos);*/
     
-    $.ajax({
+    if(transacao == "" || produtos =="")
+    {
+       alert("Nenhum pedido para finalizar.");
+    }
+    else
+    {
+        $.ajax({
         type:"POST",
         url:"../../_scripts/crud/cliente/finalizarCompra.php",
-        data:{tran:transacao,prod:produtos},
-        async:true
-    }).done(function(data){
-        
-        console.log(data);
+        data:{tran:transacao,prod:produtos}
+        }).done(function(data){
 
-        alert("Compra realizada com sucesso, em breve informações serão enviadas para o seu email.");
-        
-    }).fail(function(){//essa falha ele nem conseguiu se comunicar com a pagina atualizar.php
-         alert("Erro no sistema, tente mais tarde.");
-    })
+            console.log(data);
+            alert("Compra realizada com sucesso, em breve informações serão enviadas para o seu email.");
+            location.reload();
+
+        }).fail(function(){//essa falha ele nem conseguiu se comunicar com a pagina atualizar.php
+             alert("Erro no sistema, tente mais tarde.");
+        })
+    }
 }

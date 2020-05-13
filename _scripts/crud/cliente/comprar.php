@@ -1,78 +1,159 @@
 <?php require_once("../../conexao/conexaoVenda.php") ?>
 <?php
     
-    if(isset($_POST['cod'])){
+if(isset($_POST['cod']))
+{
 
-        /***************Transacao colocar valor na transacao*********************
-        
-        //Pega os dados da transacao temporaria
-        $codTranTemp = $transacao['codigo'];
-        $totalVenda = $transacao['totalVenda'];
-        $dataVenda = $transacao['dataVenda'];
-        $codCliente = $transacao['codCliente'];
-        $pedido = $transacao['pedido'];
-        
+    //ProdutoVendaTemp
+    $pedido = $_POST['ped'];
+    $quantidade = $_POST['quan'];
+    $codProduto = $_POST['cod'];
+    $nome = $_POST['nom'];
+    $valor = $_POST['val'];
+    $foto = $_POST['ft'];
+    $codCliente = $_POST['cl'];
+
+    //retorno
+    $retorno = array();
+
+    if($pedido == "SP") //primeira compra do cliente SP = sem pedido pois n existe uma transacao temporaria pra ele ainda
+    {
+        $totalVenda = $valor;
+        $dataVenda = "00/00/00";
+        $pedido = gerarPedido();
+
         //Cria a transacao permanente
-        $inserirTransacao = "INSERT INTO transacao ";
+        $inserirTransacao = "INSERT INTO transacaotemp ";
         $inserirTransacao .= "(totalVenda,dataVenda,codCliente,pedido) ";
         $inserirTransacao .= "VALUES ";
         $inserirTransacao .= "('$totalVenda','$dataVenda','$codCliente','$pedido')";
-        
-        $retorno = array();//RETORNO
-        
+
         $opInserirTransacao = mysqli_query($conecta,$inserirTransacao);
         if($opInserirTransacao) {
-            $retorno["inseriuTran"] = "Transação permanente salva com sucesso.";
-        } else {
-            $retorno["inseriuTran"] = "Transação permanente não pode ser salva.";
-        }
+            $retorno["inseriuTran"] = "Transação salva com sucesso.";
 
-        //Apaga a transacao temporaria
-        $excluirTranTemp = "DELETE FROM transacaotemp ";
-        $excluirTranTemp .= "WHERE codigo = {$codTranTemp}";
-        
-        $opExcluirTranTemp = mysqli_query($conecta,$excluirTranTemp);
-        if($opExcluirTranTemp) {
-            $retorno["apagouTran"] = "Transação temporária excluída com sucesso.";
-        } else {
-            $retorno["apagouTran"] = "Transação temporária não pode ser excluída.";
-        }
-        /***************Transacao colocar valor na transacao***********************/
-        
-        
-        /***************Produto***************/
-        $quantidade = $_POST['quan'];
-        $codProduto = $_POST['cod'];
-        $nome = $_POST['nom'];
-        $valor = $_POST['val'];
-        $foto = $_POST['ft'];
-        $pedido = $_POST['ped'];
-        
-        //Cria o produtoVenda permanente
-        $inserirProdVend = "INSERT INTO produtovendatemp ";
-        $inserirProdVend .= "(quantidade,codProduto,nome,valor,foto,pedido) ";
-        $inserirProdVend .= "VALUES ";
-        $inserirProdVend .= "('$quantidade','$codProduto','$nome','$valor','$foto','$pedido')";
+            /***************Usuario***************/
+            $alterarCli = "UPDATE usuario ";
+            $alterarCli .= "SET ";
+            $alterarCli .= "transacao = '1' ";
+            $alterarCli .= "WHERE codigo = {$codCliente} ";
+            $opAlterarCli = mysqli_query($conecta,$alterarCli);
+            if($opAlterarCli) 
+            {
+                $retorno["alterouCli"] = "Transacao alterada no cliente";
 
-        $retorno = array();
-        
-        $opInserirProdVend = mysqli_query($conecta,$inserirProdVend);
-        if($opInserirProdVend) {
-            $retorno["inseriuProd"] = "ProdutoVenda temporário salvo com sucesso.";
-        } else {
+                /***************Produto***************/
+                //Cria o produtoVenda permanente
+                $inserirProdVend = "INSERT INTO produtovendatemp ";
+                $inserirProdVend .= "(quantidade,codProduto,nome,valor,foto,pedido) ";
+                $inserirProdVend .= "VALUES ";
+                $inserirProdVend .= "('$quantidade','$codProduto','$nome','$valor','$foto','$pedido')";
+
+                $opInserirProdVend = mysqli_query($conecta,$inserirProdVend);
+                if($opInserirProdVend) {
+                    $retorno["inseriuProd"] = "ProdutoVenda temporário salvo com sucesso.";
+                } else {
+                    $retorno["inseriuProd"] = "ProdutoVenda temporário não pode ser salvo.";
+                }
+
+                /***************Produtos**************/
+            } 
+            else 
+            {
+                $retorno["alterouCli"] = "Erro ao alterar - Cliente continua SP";
+                $retorno["inseriuProd"] = "ProdutoVenda temporário não pode ser salvo.";
+            }
+            /***************Usuario***************/
+        } 
+        else 
+        {
+            $retorno["inseriuTran"] = "Transação não pode ser salva.";
+            $retorno["alterouCli"] = "Erro ao alterar - Cliente continua SP";
             $retorno["inseriuProd"] = "ProdutoVenda temporário não pode ser salvo.";
         }
+    }
+    else
+    {
+        /***************Transação***************/
+        $consulta = "SELECT * FROM transacaotemp ";
+        $consulta .= "WHERE pedido = '{$pedido}' ";
+        $opConsulta = mysqli_query($conecta,$consulta);
+        if($opConsulta) 
+        {
+            $transacao = mysqli_fetch_assoc($opConsulta);
+            $totalVenda = $valor + $transacao['totalVenda'];
 
-        /***************Produtos**************************************************/
+            $alterar = "UPDATE transacaotemp ";
+            $alterar .= "SET ";
+            $alterar .= "totalVenda = '{$totalVenda}' ";
+            $alterar .= "WHERE codigo = {$transacao['codigo']} ";
+            $opAlterar = mysqli_query($conecta,$alterar);
 
-        echo print_r($retorno);
+            if($opAlterar) 
+            {
+                $retorno["alterouTran"] = "Valor da Transação atualizado";
 
+                /***************Produto***************/
+                //Cria o produtoVenda permanente
+                $inserirProdVend = "INSERT INTO produtovendatemp ";
+                $inserirProdVend .= "(quantidade,codProduto,nome,valor,foto,pedido) ";
+                $inserirProdVend .= "VALUES ";
+                $inserirProdVend .= "('$quantidade','$codProduto','$nome','$valor','$foto','$pedido')";
+
+                $opInserirProdVend = mysqli_query($conecta,$inserirProdVend);
+                if($opInserirProdVend) 
+                {
+                    $retorno["inseriuProd"] = "ProdutoVenda temporário salvo com sucesso.";
+                } 
+                else 
+                {
+                    $retorno["inseriuProd"] = "ProdutoVenda temporário não pode ser salvo.";
+                }
+                /***************Produtos**************/
+            }
+            else
+            {
+                $retorno["alterouTran"] = "Erro na alteração - Valor da Transação não atualizado";
+                $retorno["inseriuProd"] = "ProdutoVenda temporário não pode ser salvo.";
+            }
+        } 
+        else 
+        {
+            $retorno["alterouTran"] = "Erro na consulta - Valor da Transação não atualizado";
+            $retorno["inseriuProd"] = "ProdutoVenda temporário não pode ser salvo.";
+        }
+        /***************Transação***************/
     }
     
-    unset($_POST);
+    echo print_r($retorno);
+}
 
-	// Fechar conexao
-    mysqli_close($conecta);
+unset($_POST);
+
+// Fechar conexao
+mysqli_close($conecta);
+
+function gerarPedido() 
+{
+    $alfabeto = "23456789ABCDEFGHJKMNPQRS";
+    $tamanho = 20;
+    $letra = "";
+    $resultado = "";
+
+    for($i = 1; $i < $tamanho ;$i++)
+    {
+        $letra = substr($alfabeto, rand(0,23), 1); //sorteia
+        $resultado .= $letra;
+    }
+
+    date_default_timezone_set('America/Sao_Paulo');
+    $agora = getdate();
+
+    $codigo_data = $agora['year'] . $agora["yday"];
+    $codigo_data .= $agora['hours'] . $agora['minutes'] . $agora['seconds'];
+
+    return "PD" . $codigo_data . $resultado . "PD";
+}
 ?>
 
 

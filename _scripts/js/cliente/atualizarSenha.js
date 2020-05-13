@@ -3,8 +3,24 @@ $('#formSenha').submit(function(e) {
     
     $("#janelaConfirmarSenha").modal('hide');
 
-    var fo = $(this);
-    var re = atualizarSenha(fo);
+    //pegando valores dos campos
+    var se = $('#senha').val().trim()
+    var cs = $('#confirmarSenha').val().trim()
+    
+    //Validacao de campos
+    if(se == "" || cs == "")
+    { 
+        alert("Campo Senha e/ou Confirmar Senha estão vazios");
+    }
+    else if(se != cs)
+    { 
+        alert("Senha e Confirmação não coincidem");
+    }
+    else if(se == cs)
+    {
+        var fo = $(this);
+        var re = atualizarSenha(fo);
+    }
 })
 
 

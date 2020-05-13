@@ -2,9 +2,24 @@ $('#formAtualizarCartao').submit(function(e) {
     e.preventDefault();
     $("#janelaConfirmarCartao").modal('hide');
 
-    var form = $(this);
-    var retorn = atualizarCartao(form)
-
+    //pegando valores dos campos
+    var numeroC = $('#numeroCartao').val().trim();
+    var nomeT = $('#nomeTitular').val().trim();
+    var va = $('#validade').val().trim();
+    var ban = $('#bandeira').val().trim();
+    var codS = $('#codigoSeguranca').val().trim();
+    var tip = $('#tipo').val().trim();
+    
+    //Validacao de campos
+    if(numeroC == "" || nomeT == "" || va == "" || ban == "" || codS == "" || tip == "")
+    { 
+        alert("Um ou mais campos obrigatórios estão vazios.");
+    }
+    else
+    {
+        var form = $(this);
+        var retorn = atualizarCartao(form);
+    }
 });
  
 function atualizarCartao(dados) {
@@ -14,6 +29,8 @@ function atualizarCartao(dados) {
         url:"../../_scripts/crud/cliente/atualizarCartao.php",
         async:true
     }).done(function(data){
+        console.log(data);
+        
         $sucesso = $.parseJSON(data)["sucesso"];
         $mensagem = $.parseJSON(data)["mensagem"];
 

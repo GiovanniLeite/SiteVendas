@@ -1,5 +1,5 @@
 main {
-    background-color: #F2F2F2;
+    background-color: rgba(0,127,255,0.1);
     padding-top: 50px;
 }
 
@@ -7,7 +7,7 @@ div#detalhe_produto {
     overflow: hidden;
     width:1000px;
     margin:0px auto;
-    box-shadow:2px 2px 6px 2px #333;
+    box-shadow:2px 2px 6px 2px #00021C;
     background-color: #FFF;
 }
 
@@ -52,31 +52,33 @@ div#detalhe_produto button {
     padding: 15px 230px;
     font-size: 150%;
     margin-top: 100px;
-    background-color:#333;
+    background-color:#00021C;
     color:#FFF;
 }
 
 div#detalhe_produto button:hover, button#botaoNao:hover {
-    background-color: rgba(0,0,0,0.9);
+    background-color: #00010F;
 }
 
 button#botaoNao {
     color:#FFF;
-    background-color:#333;
+    background-color:#00021C;
     border-radius: 0;
 }
 
 button#botaoSim {
-    border:1px solid #333;
+    border:1px solid #00021C;
     border-radius: 0;
 }
 
 button#botaoSim:hover {
-    background-color: rgba(0,0,0,0.1);
+    color:#FFF;
+    background-color: #00010F;
 }
 
 h5 {
     margin-left: 85px;
+    color: #00010F;
 }
 
 

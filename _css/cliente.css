@@ -1,16 +1,16 @@
 main {
-    background-color: #F2F2F2;
+    background-color: rgba(0,127,255,0.1);
     height:900px;
     padding-top: 100px;
 }
 
 div#formCliente {
-    border: 1px solid black;
+    border: 1px solid #00010F;
     width:900px;
     margin: 0 auto;
     background-color: #FFF;
-    border: 1px solid #333;
-    box-shadow:2px 2px 6px 2px #333;
+    border: 1px solid #00010F;
+    box-shadow:2px 2px 6px 2px #00010F;
 }
 
 div#formCliente p, h2 {
@@ -34,7 +34,7 @@ div#formCliente p, h2 {
     margin-bottom: 5px;
     outline: none;
     width:200px;
-    background-color: #333;
+    background-color: #00021C;
     border-radius:0;
 }
 
@@ -46,14 +46,14 @@ div#formCliente p, h2 {
 }
 
 .ui-tabs-vertical .ui-tabs-nav li:hover {
-    background-color: rgba(0,0,0,0.9);
+    background-color: #00010F;
 }
 
 .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active{
     margin-bottom: 5px;
     outline: none;
     width:200px;
-    background-color:rgba(0,0,0,0.9);
+    background-color:#00010F;
     border-radius:0;
 }
 
@@ -82,7 +82,7 @@ div#tabs-3 div#compras {
 }
 
 div#compras ul#titulo {
-    border: 1px solid #333;
+    border: 1px solid #00010F;
     border-bottom: none;
     padding-left: 5px;
     width: 640px;
@@ -115,17 +115,17 @@ div#listaCompras {
     height: 289px;
     width:640px;
     margin:0 auto;
-    border:1px solid #333;
+    border:1px solid #00010F;
     font-family:sans-serif;
     font-size:13px;
-    color:#333;
+    color:#00010F;
     overflow-y:scroll
 }
 
 div#listaCompras ul {
     margin:0;
     padding:0; 
-    border-bottom:1px solid #333;
+    border-bottom:1px solid #00010F;
 }
 
 div#listaCompras li {
@@ -154,7 +154,7 @@ div#listaCompras li:nth-child(4){
 }
 
 div#listaCompras li:nth-child(4) a:hover {
-    background-color: rgba(0,0,0,0.9);
+    background-color: #00010F;
     color:#FFF;
     text-decoration: none;
     padding: 7px;
@@ -162,12 +162,12 @@ div#listaCompras li:nth-child(4) a:hover {
 
 /**************TAB4****************************/
 div#tabs-4 div#carrinho {
-    border: 1px solid #333;
+    border: 1px solid #00010F;
     width: 650px;
 }
 
 div#tabs-4 div#carrinho ul#legenda {
-    border: 1px solid #333;
+    border: 1px solid #00010F;
     border-bottom: none;
     padding-left: 5px;
     margin-bottom: 0;
@@ -193,15 +193,15 @@ div#tabs-4 div#carrinho ul#legenda li:nth-child(2){
 }
 
 div#tabs-4 div#carrinho ul#legenda li:nth-child(3){
-    width:140px;
+    width:100px;
 }
 
 div#tabs-4 div#carrinho ul#legenda li:nth-child(4){
-    width:145px;
+    width:140px;
 }
 
 div#tabs-4 div#carrinho div#produto {
-    border: 1px solid #333;
+    border: 1px solid #00010F;
     overflow-y: scroll;
     height: 250px;
     width: 648px;
@@ -210,7 +210,7 @@ div#tabs-4 div#carrinho div#produto {
 div#tabs-4 div#carrinho div#produto ul {
     margin:0;
     padding:0; 
-    border-bottom:1px solid #333;
+    border-bottom:1px solid #00010F;
 }
 
 div#tabs-4 div#carrinho div#produto ul:nth-last-child() {
@@ -237,16 +237,16 @@ div#tabs-4 div#carrinho div#produto li:nth-child(2) {
 }    
 
 div#tabs-4 div#carrinho div#produto li:nth-child(3) {
-    width: 140px;
+    width: 100px;
 }
 
 div#tabs-4 div#carrinho div#produto li:nth-child(4) {
-    width:145px;
+    width:140px;
 }
 /****************************/
 
 div#tabs-4 div#carrinho ul#rodape {
-    border: 1px solid #333;
+    border: 1px solid #00010F;
     padding-left: 5px;
     margin-bottom: 0;
 }
@@ -264,12 +264,12 @@ div#tabs-4 div#carrinho ul#rodape button{
     margin-right: 30px;
     padding: 6px;
     color: #FFF;
-    background-color: #333;
+    background-color: #00021C;
     border: 0;
 }
 
 div#tabs-4 div#carrinho ul#rodape button:hover{
-    background-color: rgba(0,0,0,0.9);
+    background-color: #00010F;
 }
 
 /**************TAB4****************************/
@@ -282,39 +282,39 @@ div#tabs-5 #atualizarSenha, #atualizarEmail, #excluirConta{
 /************CSS FORMULARIO************************/
 div#formCliente form input{
     border-radius:0;
-    border-color:#333;
+    border-color:#00010F;
 }
 
 div#formCliente form select{
     border-radius:0;
-    border-color:#333;
+    border-color:#00010F;
 }
 
 div#formCliente form textarea {
     resize: none;
     height: 80px;
     border-radius:0;
-    border-color:#333;
+    border-color:#00010F;
 }
 
 div#formCliente form #modificar {
     margin-bottom:5px;
     border-radius:0;
-    border-color:#333;
-    background-color:#333;
+    border-color:#00021C;
+    background-color:#00021C;
 }
 
 div#formCliente form #modificar:hover {
-    background-color:rgba(0,0,0,0.9);
+    background-color:#00010F;
 }
 div#formCliente form button {
     margin-bottom:5px;
     border-radius:0;
-    border-color:#333;
-    background-color:#333;
+    border-color:#00021C;
+    background-color:#00021C;
 }
 div#formCliente form button:hover {
-    background-color:rgba(0,0,0,0.9);
+    background-color:#00010F;
 }
 
 div#tabs-5 #excluirConta{
@@ -330,27 +330,29 @@ div#tabs-5 #excluirConta:hover{
 
 button.botaoNao {
     color:#FFF;
-    background-color:#333;
+    background-color:#00021C;
     border-radius: 0;
 }
 
 button.botaoNao:hover {
-    background-color: rgba(0,0,0,0.9);
+    background-color: #00010F;
     color:#FFF;
 }
 
 
 button.botaoSim {
-    border:1px solid #333;
+    border:1px solid #00021C;
     border-radius: 0;
+    color: #00010F;
 }
 
 button.botaoSim:hover {
-    background-color: rgba(0,0,0,0.1);
+    background-color: #00010F;
+    color:#FFF;
 }
 
 h5 {
-    /*margin-left: 150px;*/
+    color:#00010F;
 }
 /**********JANELA*****************/
 
