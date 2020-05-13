@@ -18,9 +18,10 @@ $('#formularioNovoProduto').submit(function(e) {
     var foto7 = $('#fotoPequena3').val().trim();
     var foto8 = $('#fotoPequena4').val().trim();
     
-    //console.log(foto);
+    //console.log(foto1);
     
     //Validacao de campos
+    
     if(nome == "" || fornecedor == "" || descricao == "" || preco == "" || quantidade == "" || foto1 == "" || foto2 == "" || foto3 == "" || foto4 == "" || foto5 == "" || foto6 == "" || foto7 == "" || foto8 == "")
     { 
         alert("Um ou mais campos obrigatórios permanecem em branco.");

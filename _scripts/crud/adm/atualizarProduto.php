@@ -1,15 +1,13 @@
 <?php require_once("../../conexao/conexaoVenda.php") ?>
 <?php include_once("funcoes.php"); ?>
 <?php
-// conferir se a navegacao veio pelo preenchimento do formulario
-/****/
+
 if(isset($_POST["nome"])) 
 {
 
     $codigo = $_POST['codigoProduto'];
 
-    /********************************/
-    //Apagando fotos
+    /***************Apagando fotos antigas*****************/
     $pesquisa = "SELECT * FROM produto ";
     $pesquisa .= "WHERE codigo = {$codigo} ";
 
@@ -57,11 +55,12 @@ if(isset($_POST["nome"]))
         $retorno["mensagem15"] = "Falha ao apagar fotos. 7";
         $retorno["mensagem16"] = "Falha ao apagar fotos. 8";
     }
-    /***********/
+    /***************Apagando fotos antigas*****************/
 
+    //Publicando fotos novas
     //Grandes
     $resultado1 = publicarImagem($_FILES['fotoGrande1'],"grande");
-    $mensagem1 = $resultado1[0]; 
+    $mensagem1 = $resultado1[0]; //recebendo mensagem de se foi publicada ou nao
     $resultado2 = publicarImagem($_FILES['fotoGrande2'],"grande");
     $mensagem2 = $resultado2[0];
     $resultado3 = publicarImagem($_FILES['fotoGrande3'],"grande");
@@ -77,7 +76,8 @@ if(isset($_POST["nome"]))
     $mensagem7 = $resultado7[0];
     $resultado8 = publicarImagem($_FILES['fotoPequena4'],"pequena");
     $mensagem8 = $resultado8[0];
-
+    
+    //recebendo o nome das fotos depois de publicadas
     $imagemGrande1  = $resultado1[1];
     $imagemGrande2  = $resultado2[1];
     $imagemGrande3  = $resultado3[1];

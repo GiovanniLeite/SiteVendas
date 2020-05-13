@@ -1,4 +1,5 @@
 <?php require_once("../../conexao/conexaoVenda.php") ?>
+<?php include_once("gerarPedido.php") ?>
 <?php
     
 if(isset($_POST['cod']))
@@ -22,7 +23,7 @@ if(isset($_POST['cod']))
         $dataVenda = "00/00/00";
         $pedido = gerarPedido();
 
-        //Cria a transacao permanente
+        //Cria a transacao
         $inserirTransacao = "INSERT INTO transacaotemp ";
         $inserirTransacao .= "(totalVenda,dataVenda,codCliente,pedido) ";
         $inserirTransacao .= "VALUES ";
@@ -43,7 +44,7 @@ if(isset($_POST['cod']))
                 $retorno["alterouCli"] = "Transacao alterada no cliente";
 
                 /***************Produto***************/
-                //Cria o produtoVenda permanente
+                //Cria o produtoVenda
                 $inserirProdVend = "INSERT INTO produtovendatemp ";
                 $inserirProdVend .= "(quantidade,codProduto,nome,valor,foto,pedido) ";
                 $inserirProdVend .= "VALUES ";
@@ -94,7 +95,7 @@ if(isset($_POST['cod']))
                 $retorno["alterouTran"] = "Valor da Transação atualizado";
 
                 /***************Produto***************/
-                //Cria o produtoVenda permanente
+                //Cria o produtoVenda
                 $inserirProdVend = "INSERT INTO produtovendatemp ";
                 $inserirProdVend .= "(quantidade,codProduto,nome,valor,foto,pedido) ";
                 $inserirProdVend .= "VALUES ";
@@ -133,27 +134,6 @@ unset($_POST);
 // Fechar conexao
 mysqli_close($conecta);
 
-function gerarPedido() 
-{
-    $alfabeto = "23456789ABCDEFGHJKMNPQRS";
-    $tamanho = 20;
-    $letra = "";
-    $resultado = "";
-
-    for($i = 1; $i < $tamanho ;$i++)
-    {
-        $letra = substr($alfabeto, rand(0,23), 1); //sorteia
-        $resultado .= $letra;
-    }
-
-    date_default_timezone_set('America/Sao_Paulo');
-    $agora = getdate();
-
-    $codigo_data = $agora['year'] . $agora["yday"];
-    $codigo_data .= $agora['hours'] . $agora['minutes'] . $agora['seconds'];
-
-    return "PD" . $codigo_data . $resultado . "PD";
-}
 ?>
 
 

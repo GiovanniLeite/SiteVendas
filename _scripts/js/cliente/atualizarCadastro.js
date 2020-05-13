@@ -48,7 +48,7 @@ function alterarFormulario(dados) {
             console.log($mensagem);
             $('#mensagem p').html($mensagem1);       
         }
-    }).fail(function(){//essa falha ele nem conseguiu se comunicar com a pagina atualizar.php
+    }).fail(function(){//essa falha ele nem conseguiu se comunicar com a pagina
          $('#mensagem p').html("Erro no sistema, tente mais tarde."); 
     }).always(function(){
          $('#mensagem').show(); 

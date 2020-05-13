@@ -42,7 +42,7 @@ function excluir(dados) {
             $('#mensagemExcluir p').html($mensagem);       
         }
         
-    }).fail(function(){//essa falha ele nem conseguiu se comunicar com a pagina atualizar.php
+    }).fail(function(){//essa falha ele nem conseguiu se comunicar com a pagina
          $('#mensagemExcluir p').html("Erro no sistema, tente mais tarde."); 
     }).always(function(){
          $('#mensagemExcluir').show(); 

@@ -1,6 +1,6 @@
 <?php require_once("../../conexao/conexaoVenda.php") ?>  
 <?php
-// conferir se a navegacao veio pelo preenchimento do formulario
+
 if(isset($_POST["codigoCl"])) 
 {
 
@@ -15,10 +15,13 @@ if(isset($_POST["codigoCl"]))
 
     $retorno = array();
     $operacaoAlterar = mysqli_query($conecta, $alterar);
-    if($operacaoAlterar) {
+    if($operacaoAlterar) 
+    {
         $retorno["sucesso"] = true;
         $retorno["mensagem"] = "Senha alterada com sucesso.";
-    } else {
+    } 
+    else 
+    {
         $retorno["sucesso"] = false;
         $retorno["mensagem"] = "Falha no sistema, tente mais tarde.";
     }

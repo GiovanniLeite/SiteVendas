@@ -15,10 +15,10 @@ function gerarCodigoUnico()
     date_default_timezone_set('America/Sao_Paulo');
     $agora = getdate();
 
-    $codigo_data = $agora['year'] . "_" . $agora["yday"];
-    $codigo_data .= $agora['hours'] . $agora['minutes'] . $agora['seconds'];
+    $codigoData = $agora['year'] . "_" . $agora["yday"];
+    $codigoData .= $agora['hours'] . $agora['minutes'] . $agora['seconds'];
 
-    return "foto_" . $codigo_data . "_" . $resultado;
+    return "foto_" . $codigoData . "_" . $resultado;
 }
 
 function getExtensao($nome) 
@@ -26,9 +26,9 @@ function getExtensao($nome)
     return strrchr($nome,"."); //pega oq tiver depois do "."
 }
 
-function retornarErro($numero_erro) 
+function retornarErro($numeroErro) 
 {
-    $array_erro = array(
+    $arrayErro = array(
         UPLOAD_ERR_OK =>            "Sem erro.",
         UPLOAD_ERR_INI_SIZE =>      "O arquivo enviado excede o limite definido na diretiva upload_max_filesize do php.ini.",
         UPLOAD_ERR_FORM_SIZE =>     "O arquivo excede o limite máximo de 600Kb.",
@@ -39,31 +39,31 @@ function retornarErro($numero_erro)
         UPLOAD_ERR_EXTENSION =>     "Uma extensão do PHP interrompeu o upload do arquivo."
     ); 
 
-    return $array_erro[$numero_erro];
+    return $arrayErro[$numeroErro];
 }
 
 function publicarImagem($imagem,$grandePequena) 
 {
-    $arquivo_temporario = $imagem['tmp_name'];
-    $nome_original      = $imagem['name'];
-    $nome_novo          = gerarCodigoUnico() . getExtensao($nome_original);
-    $nome_completo      = "../../../_img/produtos/" . $nome_novo;
+    $arquivoTemporario = $imagem['tmp_name'];
+    $nomeOriginal      = $imagem['name'];
+    $nomeNovo          = gerarCodigoUnico() . getExtensao($nomeOriginal);
+    $nomeCompleto      = "../../../_img/produtos/" . $nomeNovo;
 
     //verifica se e pequena ou grande
 
     if($grandePequena == "grande")
     {
-        $nome_completo      = "../../../_img/produtos/original/" . $nome_novo;
+        $nomeCompleto      = "../../../_img/produtos/original/" . $nomeNovo;
     }
     else if($grandePequena == "pequena")
     {
-        $nome_completo      = "../../../_img/produtos/preview/" . $nome_novo;
+        $nomeCompleto      = "../../../_img/produtos/preview/" . $nomeNovo;
     }
 
     //move a imagem
-    if(move_uploaded_file($arquivo_temporario, $nome_completo)) 
+    if(move_uploaded_file($arquivoTemporario, $nomeCompleto)) 
     {
-        return array("Imagem publicada com sucesso",$nome_novo);  
+        return array("Imagem publicada com sucesso",$nomeNovo);  
     } 
     else 
     {

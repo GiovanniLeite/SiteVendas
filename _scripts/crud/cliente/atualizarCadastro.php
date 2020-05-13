@@ -1,6 +1,6 @@
 <?php require_once("../../conexao/conexaoVenda.php") ?>  
 <?php
-// conferir se a navegacao veio pelo preenchimento do formulario
+
 if(isset($_POST["nome"])) 
 {
 
@@ -18,7 +18,7 @@ if(isset($_POST["nome"]))
     $estado = $_POST['estado'];   
 
     $retorno = array();
-    /****************************************************************************************************************************/
+    
     //validando cpf, rg, email
     $consulta = "SELECT * FROM usuario";
 
@@ -82,7 +82,7 @@ if(isset($_POST["nome"]))
         $retorno["mensagem"] = "ERRO - CPF, RG E EMAIL Não verificados.";
         $retorno["mensagem1"] = "Falha no sistema-(CONSULTA), tente mais tarde..";
     }
-    /****************************************************************************************************************************/
+    
     echo json_encode($retorno); 
 }
 

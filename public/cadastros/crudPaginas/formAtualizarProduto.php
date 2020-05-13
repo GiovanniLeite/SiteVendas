@@ -28,7 +28,8 @@
         header("location:../../principal/login.php");
     }
     /***********ADM***************/
-    // Consulta a tabela de transportadoras
+
+    /************Produto*****************/
     $tr = "SELECT * FROM produto ";
     if(isset($_GET["codigo"]) ) 
     {
@@ -40,14 +41,15 @@
         header("location:../../principal/login.php");
     }
 
-    // cria objeto com dados da transportadora
+    
     $conProduto = mysqli_query($conecta,$tr);
     if(!$conProduto) {
         die("Erro na consulta");
     }
     $infoProduto = mysqli_fetch_assoc($conProduto);
+    /************Produto*****************/
 
-    // consulta aos estados
+    /*************fornecedor*****************/
     $fornecedores = "SELECT * ";
     $fornecedores .= "FROM fornecedor ";
     $listaFornecedores = mysqli_query($conecta, $fornecedores);
@@ -55,6 +57,7 @@
     {
        die("erro no banco"); 
     }
+    /*************fornecedor*****************/
 ?>
 
 <!doctype html>
@@ -62,12 +65,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Administrador - Atualizar</title>
+        <title>Administrador - Atualizar Produto</title>
         
         <script src="../../../_scripts/js/jquery.js"></script>
         
         <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../_css/formNovoProduto.css" rel="stylesheet">
+        <link href="../../../_css/formProduto.css" rel="stylesheet">
         <link href="../../../_css/estilo.css" rel="stylesheet">
     </head>
     <body>

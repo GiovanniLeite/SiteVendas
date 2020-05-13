@@ -1,7 +1,7 @@
 <?php
     session_start();
     
-    if(isset($_SESSION["user_portal"]))
+    if(isset($_SESSION["user_portal"]))//se tiver usuario logado redireciona a pagina
     {
        header("location:../principal/login.php");
     }
@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Criar Conta</title>
+        <title>Cadastramento do cliente</title>
         
         
         <script src="../../_scripts/js/jquery.js"></script>

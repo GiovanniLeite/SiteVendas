@@ -20,6 +20,7 @@ $('#botaoSim').click(function(e){
 
     }).done(function(data){
         
+        console.log(data);
         $sucesso = $.parseJSON(data)["sucesso"];
         $mensagem = $.parseJSON(data)["mensagem"];
         $mensagem1 = $.parseJSON(data)["mensagem1"];

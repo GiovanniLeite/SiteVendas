@@ -4,30 +4,31 @@
 
     /********Usuário**********************************/
     // Consulta a tabela de usuario
-     if(isset($_SESSION["user_portal"]))
+    if(isset($_SESSION["user_portal"]))
+    {
+        $selectUsuario = "SELECT * FROM usuario ";
+        $selectUsuario .= "WHERE codigo = {$_SESSION["user_portal"]} ";
+
+        // cria objeto com dados do usuario
+        $conUsuario = mysqli_query($conecta,$selectUsuario);
+        if(!$conUsuario) 
         {
-            $selectUsuario = "SELECT * FROM usuario ";
-            $selectUsuario .= "WHERE codigo = {$_SESSION["user_portal"]} ";
-
-            // cria objeto com dados do usuario
-            $conUsuario = mysqli_query($conecta,$selectUsuario);
-            if(!$conUsuario) 
-            {
-                die("Erro na consulta - Usuário");
-            }
-
-            $infoUsuario = mysqli_fetch_assoc($conUsuario);
-
-            if($infoUsuario["adm"] != 0)
-            {
-                header("location:../../principal/login.php");
-            }
+            die("Erro na consulta - Usuário");
         }
-        else
+
+        $infoUsuario = mysqli_fetch_assoc($conUsuario);
+
+        if($infoUsuario["adm"] != 0)
         {
             header("location:../../principal/login.php");
         }
+    }
+    else
+    {
+        header("location:../../principal/login.php");
+    }
     /********Usuário**********************************/
+    
     /**************Transacao*******************/
     // Consulta a tabela de 
     $tr = "SELECT * FROM transacao ";
@@ -69,7 +70,7 @@
         
         <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
         
-        <link href="../../../_css/formDetalheCompra.css" rel="stylesheet">
+        <link href="../../../_css/detalheCompra.css" rel="stylesheet">
         <!-- estilo form -->
         <link href="../../../_css/estilo.css" rel="stylesheet">
     </head>
@@ -78,7 +79,7 @@
         
         <main>
             <div id="detalheCliente">
-                <h2>Cliente - Detalhe</h2>
+                <h2>Compra - Detalhe</h2>
                 <p><strong><?php echo "Transação código: " . $transacao["codigo"] ?></strong></p>
 
                 <div id="compras">

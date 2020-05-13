@@ -1,4 +1,5 @@
 <?php require_once("../../conexao/conexaoVenda.php") ?>
+<?php include_once("gerarPedido.php") ?>
 <?php
     
 if(isset($_POST['tran']))
@@ -105,27 +106,6 @@ unset($_POST);
 // Fechar conexao
 mysqli_close($conecta);
 
-function gerarPedido() 
-{
-    $alfabeto = "23456789ABCDEFGHJKMNPQRS";
-    $tamanho = 20;
-    $letra = "";
-    $resultado = "";
-
-    for($i = 1; $i < $tamanho ;$i++)
-    {
-        $letra = substr($alfabeto, rand(0,23), 1); //sorteia
-        $resultado .= $letra;
-    }
-
-    date_default_timezone_set('America/Sao_Paulo');
-    $agora = getdate();
-
-    $codigo_data = $agora['year'] . $agora["yday"];
-    $codigo_data .= $agora['hours'] . $agora['minutes'] . $agora['seconds'];
-
-    return "PD" . $codigo_data . $resultado . "PD";
-}
 ?>
 
 

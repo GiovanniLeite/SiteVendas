@@ -1,14 +1,13 @@
 <?php require_once("../../conexao/conexaoVenda.php") ?>
 <?php include_once("funcoes.php"); ?>
 <?php
-// conferir se a navegacao veio pelo preenchimento do formulario
 
 if(isset($_POST["nome"])) 
 {
-
+    //Publicando fotos
     //Grandes
     $resultado1 = publicarImagem($_FILES['fotoGrande1'],"grande");
-    $mensagem1 = $resultado1[0]; 
+    $mensagem1 = $resultado1[0]; //recebendo mensagem de se foi publicada ou nao
     $resultado2 = publicarImagem($_FILES['fotoGrande2'],"grande");
     $mensagem2 = $resultado2[0];
     $resultado3 = publicarImagem($_FILES['fotoGrande3'],"grande");
@@ -31,6 +30,7 @@ if(isset($_POST["nome"]))
     $preco = $_POST['preco'];
     $quantidade = $_POST['quantidade'];
 
+    //recebendo o nome das fotos depois de publicadas
     $imagemGrande1  = $resultado1[1];
     $imagemGrande2  = $resultado2[1];
     $imagemGrande3  = $resultado3[1];

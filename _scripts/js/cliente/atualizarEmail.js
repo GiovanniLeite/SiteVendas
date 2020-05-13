@@ -40,7 +40,7 @@ function atualizarEmail(dados) {
             console.log($mensagem);
             $('#mensagemEmail p').html($mensagem1);       
         }
-    }).fail(function(){//essa falha ele nem conseguiu se comunicar com a pagina atualizar.php
+    }).fail(function(){//essa falha ele nem conseguiu se comunicar com a pagina
          $('#mensagemEmail p').html("Erro no sistema, tente mais tarde."); 
     }).always(function(){
          $('#mensagemEmail').show(); 

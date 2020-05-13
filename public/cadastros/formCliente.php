@@ -94,7 +94,7 @@
                 $( "#tabs li" ).removeClass("ui-corner-top" ).addClass("ui-corner-left").addClass("ui-corner-right");
             });
         </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
         <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- estilo form -->
         <link href="../../_css/estilo.css" rel="stylesheet">

@@ -8,14 +8,13 @@ if(isset($_POST['prodR']))
     $valor = $produto['valor'];
 
 
-    /***************Transação***************/
     $consulta = "SELECT * FROM transacaotemp ";
     $consulta .= "WHERE pedido = '{$tranc['codigo']}' ";
     $opConsulta = mysqli_query($conecta,$consulta);
     if($opConsulta) 
     {
         $transacao = mysqli_fetch_assoc($opConsulta);
-        $totalVenda = $tranc['totalVenda'] - $valor;
+        $totalVenda = $tranc['totalVenda'] - $valor; //reduz o valor da transacao
 
         $alterar = "UPDATE transacaotemp ";
         $alterar .= "SET ";
@@ -57,7 +56,6 @@ if(isset($_POST['prodR']))
         $retorno["mensagem"] = "Erro na consulta - Valor da Transação não atualizado";
         $retorno["mensagem1"] = "Produto não pode ser removido.";
     }
-    /***************Transação***************/
 
     echo json_encode($retorno);
 }

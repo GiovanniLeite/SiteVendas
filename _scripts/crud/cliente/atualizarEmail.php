@@ -1,6 +1,6 @@
 <?php require_once("../../conexao/conexaoVenda.php") ?>  
 <?php
-// conferir se a navegacao veio pelo preenchimento do formulario
+
 if(isset($_POST["codigoCli"])) 
 {
 
@@ -8,7 +8,7 @@ if(isset($_POST["codigoCli"]))
     $email = $_POST['emailSeguranca']; 
 
     $retorno = array();
-    /****************************************************************************************************************************/
+    
     //validando email
     $consulta = "SELECT * FROM usuario";
 
@@ -33,7 +33,7 @@ if(isset($_POST["codigoCli"]))
             }
         }
 
-        if($cont == 0)//cpf, rg, email e usuario estao livres
+        if($cont == 0)//email esta livre
         {
             $retorno["mensagem"] = "EMAIL LIVRE";   
 
@@ -62,7 +62,7 @@ if(isset($_POST["codigoCli"]))
         $retorno["mensagem"] = "ERRO - CPF, RG E EMAIL Não verificados.";
         $retorno["mensagem1"] = "Falha no sistema-(CONSULTA), tente mais tarde..";
     }
-    /****************************************************************************************************************************/
+    
     echo json_encode($retorno); 
 }
 

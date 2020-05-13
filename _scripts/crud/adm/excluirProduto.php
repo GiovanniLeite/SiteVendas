@@ -5,7 +5,7 @@ if( isset($_POST["codigo"]) )
 {
     $codigo = $_POST["codigo"];
 
-    //Apagando fotos
+    //Apagando fotos ja publicadas
     $pesquisa = "SELECT * FROM produto ";
     $pesquisa .= "WHERE codigo = {$codigo} ";
 
@@ -54,7 +54,7 @@ if( isset($_POST["codigo"]) )
         $retorno["mensagem8"] = "Falha ao apagar fotos. 8";
     }
 
-    //Apagando o registro
+    //Apagando o produto
     $exclusao = "DELETE FROM produto ";
     $exclusao .= "WHERE codigo = {$codigo}";
     $conExclusao = mysqli_query($conecta,$exclusao);

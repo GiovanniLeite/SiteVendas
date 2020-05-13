@@ -36,13 +36,14 @@ function atualizarCartao(dados) {
 
         if($sucesso)
         {
-            $('#mensagemCartao p').html($mensagem);        
+            $('#mensagemCartao p').html($mensagem);    
+            location.reload();
         }
         else//aq e quando houve uma falha no momento da operacao 
         {
             $('#mensagemCartao p').html($mensagem);       
         }
-    }).fail(function(){//essa falha ele nem conseguiu se comunicar com a pagina atualizar.php
+    }).fail(function(){//essa falha ele nem conseguiu se comunicar com a pagina
          $('#mensagemCartao p').html("Erro no sistema, tente mais tarde."); 
     }).always(function(){
          $('#mensagemCartao').show(); 

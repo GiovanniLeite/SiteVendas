@@ -5,10 +5,10 @@
     // Consulta ao banco de dados
     $consulta = "SELECT * ";
     $consulta .= "FROM produto ";
-    if(isset($_GET["codigo"]) ) 
+    if(isset($_GET["codigo"]) ) //se n vier o codigo do produto por get redireciona
     {
-        $produto_id = $_GET["codigo"];
-        $consulta .= "WHERE codigo = {$produto_id} ";
+        $produtoId = $_GET["codigo"];
+        $consulta .= "WHERE codigo = {$produtoId} ";
     } 
     else 
     {
@@ -22,27 +22,27 @@
     {
         die("Falha no Banco de dados - Produto não encontrado");
     } 
-    else 
+    else //dados do produto
     {
-        $dados_detalhe = mysqli_fetch_assoc($detalhe);
-        $codigo     = $dados_detalhe["codigo"];
-        $nomeproduto    = $dados_detalhe["nome"];
-        $descricao      = $dados_detalhe["descricao"];
-        $preco  = $dados_detalhe["preco"];
-        $estoque        = $dados_detalhe["quantidade"];
-        $foto1   = $dados_detalhe["foto1"];
-        $foto2   = $dados_detalhe["foto2"];
-        $foto3   = $dados_detalhe["foto3"];
-        $foto4   = $dados_detalhe["foto4"];
-        $foto5   = $dados_detalhe["foto5"];
-        $foto6   = $dados_detalhe["foto6"];
-        $foto7   = $dados_detalhe["foto7"];
-        $foto8   = $dados_detalhe["foto8"];
+        $dadosDetalhe = mysqli_fetch_assoc($detalhe);
+        $codigo     = $dadosDetalhe["codigo"];
+        $nomeproduto    = $dadosDetalhe["nome"];
+        $descricao      = $dadosDetalhe["descricao"];
+        $preco  = $dadosDetalhe["preco"];
+        $estoque        = $dadosDetalhe["quantidade"];
+        $foto1   = $dadosDetalhe["foto1"];
+        $foto2   = $dadosDetalhe["foto2"];
+        $foto3   = $dadosDetalhe["foto3"];
+        $foto4   = $dadosDetalhe["foto4"];
+        $foto5   = $dadosDetalhe["foto5"];
+        $foto6   = $dadosDetalhe["foto6"];
+        $foto7   = $dadosDetalhe["foto7"];
+        $foto8   = $dadosDetalhe["foto8"];
     }
     /************Produto**************************/
 
     /************VERIFICA SE TEM TRANSACAO**************************/
-
+    //caso o usuario esteja logado verifica se ele tem uma transacao ativa no carrinho ou se sera preciso criar outra
     $selectU = "SELECT * FROM usuario ";
     if(isset($_SESSION["user_portal"]) ) 
     {
@@ -84,7 +84,7 @@
         }
         else
         {
-            $pedidoU = "SP";
+            $pedidoU = "SP"; //cliente nao tem uma transacao para adicionar produtos
         }
     }
 
@@ -94,13 +94,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Detalhe</title>
-        
+        <title>Detalhe - Produto</title>
 
-        
-        <!-- estilo -->
-        
-        
         <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <script src="../../_scripts/js/jquery.js"></script>
 
@@ -115,7 +110,7 @@
         <?php include_once("_incluir/topo.php"); ?>
         
         <main>  
-            <div id="detalhe_produto">
+            <div id="detalheProduto">
                 <!-- teste -->
                 <section id="foto" class="padding-top0">
                     <div class="xzoom-container">
@@ -195,11 +190,6 @@
 </html>
 
 <?php
-    // Fechar as queries
-    mysqli_free_result($detalhe);
-    mysqli_free_result($detalheU);
-    mysqli_free_result($conCarrinho);
-
     // Fechar conexao
     mysqli_close($conecta);
 ?>

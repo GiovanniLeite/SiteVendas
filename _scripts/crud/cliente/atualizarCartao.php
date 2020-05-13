@@ -15,7 +15,7 @@ if(isset($_POST["numeroCartao"]))
 
     $consult = "SELECT * FROM cartao WHERE codigo = {$codigo}";
     $operacaoConsult = mysqli_query($conecta, $consult);
-    if($operacaoConsult) 
+    if($operacaoConsult) //cliente ja tem cartao registrado
     {
         // Objeto para alterar
         $alterar = "UPDATE cartao ";
@@ -43,7 +43,7 @@ if(isset($_POST["numeroCartao"]))
         }
     } 
     else 
-    {
+    {   //primeiro registro de cartao do cliente
         $inserirCartao = "INSERT INTO cartao ";
         $inserirCartao .= "(codCliente,titular,bandeira,numero,validade,codSegu,tipo) ";
         $inserirCartao .= "VALUES ";

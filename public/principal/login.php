@@ -25,7 +25,7 @@
         else
         {   
             $_SESSION["user_portal"] = $informacao["codigo"];
-            header("location:listagem.php");
+            header("location:index.php");
         }
     }
 ?>
@@ -33,7 +33,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Login</title>
+        <title>Login - vendas.com.br</title>
         
         <script src="https://kit.fontawesome.com/9a0becbb52.js" crossorigin="anonymous"></script>
         <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">

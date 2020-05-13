@@ -55,7 +55,7 @@
         
         <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
         
-        <link href="../../../_css/formNovoProduto.css" rel="stylesheet">
+        <link href="../../../_css/formProduto.css" rel="stylesheet">
         <!-- estilo form -->
         <link href="../../../_css/estilo.css" rel="stylesheet">
     </head>

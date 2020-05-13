@@ -14,7 +14,7 @@ function comprar(quantidade,codProduto,nome,valor,foto,pedido,codigoCliente) {
 
         alert("Produto adicionado ao carrinho.");
 
-    }).fail(function(){//essa falha ele nem conseguiu se comunicar com a pagina atualizar.php
+    }).fail(function(){//essa falha ele nem conseguiu se comunicar com a pagina
         alert("Erro no sistema, tente mais tarde.");
     })
 }

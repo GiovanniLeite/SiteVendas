@@ -47,7 +47,7 @@
         
         <script src="../../../_scripts/js/jquery.js"></script>
         
-        <link href="../../../_css/formNovoProduto.css" rel="stylesheet">
+        <link href="../../../_css/formProduto.css" rel="stylesheet">
         <link href="../../../_css/estilo.css" rel="stylesheet">
         <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     </head>

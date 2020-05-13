@@ -1,9 +1,9 @@
-document.getElementById("linkCentral").href="../../public/principal/listagem.php";
+document.getElementById("linkCentral").href="../../public/principal/index.php";
 document.getElementById("imagemCentral").src="../../_img/VENDAS.png";
 var topoA1 = document.getElementsByClassName("inicio")[0];
-topoA1.href="../principal/listagem.php";
+topoA1.href="../principal/index.php";
 var topoA2 = document.getElementsByClassName("inicio")[1];
-topoA2.href="../principal/listagem.php";
+topoA2.href="../principal/index.php";
 if(adm == 0)
 {
     document.getElementById("clienteAdm").href="../../public/cadastros/formCliente.php";

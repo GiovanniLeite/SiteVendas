@@ -9,16 +9,16 @@
             $saudacao .= "FROM usuario ";
             $saudacao .= "WHERE codigo = {$user}";
 
-            $saudacao_login = mysqli_query($conecta,$saudacao);
+            $saudacaoLogin = mysqli_query($conecta,$saudacao);
 
-            if( !$saudacao_login )
+            if( !$saudacaoLogin )
             {
                 die("Falha  no banco");
             }
 
-            $saudacao_login = mysqli_fetch_assoc($saudacao_login);
-            $nome = $saudacao_login["nome"];
-            $adm = $saudacao_login["adm"];
+            $saudacaoLogin = mysqli_fetch_assoc($saudacaoLogin);
+            $nome = $saudacaoLogin["nome"];
+            $adm = $saudacaoLogin["adm"];
             
             if($adm != 1)
             {
