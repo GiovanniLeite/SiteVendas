@@ -1,8 +1,7 @@
 <?php require_once("../../conexao/conexaoVenda.php") ?>  
 <?php
 
-if(isset($_POST["nome"])) 
-{
+if (isset($_POST["nome"])) {
 
     $codigo = $_POST['codigoCliente'];
     $nome = $_POST['nome'];
@@ -15,37 +14,36 @@ if(isset($_POST["nome"]))
     $endereco = $_POST['endereco'];
     $bairro = $_POST['bairro'];
     $cidade = $_POST['cidade'];
-    $estado = $_POST['estado'];   
+    $estado = $_POST['estado'];
 
     $retorno = array();
-    
+
     //validando cpf, rg, email
     $consulta = "SELECT * FROM usuario";
 
-    $qConsulta = mysqli_query($conecta,$consulta);
-    if($qConsulta)//Consulta a tabela usuario
+    $qConsulta = mysqli_query($conecta, $consulta);
+    if ($qConsulta) //Consulta a tabela usuario
     {
         $cont = 0;
-        foreach($qConsulta as $usuarioS)//percorre a lista de usuarios
-        {  
+        foreach ($qConsulta as $usuarioS) //percorre a lista de usuarios
+        {
 
-            if($usuarioS["cpf"] == $cpf || $usuarioS["rg"] == $rg || $usuarioS["email"] == $email)//verifica se cpf, rg e email ja existem
+            if ($usuarioS["cpf"] == $cpf || $usuarioS["rg"] == $rg || $usuarioS["email"] == $email) //verifica se cpf, rg e email ja existem
             {
                 $retorno["sucesso"] = false;
-                $retorno["mensagem"] = "CPF, RG E/OU EMAIL INDISPONÍVEIS.";  
+                $retorno["mensagem"] = "CPF, RG E/OU EMAIL INDISPONÍVEIS.";
                 $retorno["mensagem1"] = "Cadastro não alterado CPF, RG E/OU EMAIL INDISPONÍVEIS.";
-                $cont ++;
+                $cont++;
 
-                if($cont > 0 && $usuarioS["codigo"] == $codigo)
-                {
+                if ($cont > 0 && $usuarioS["codigo"] == $codigo) {
                     $cont = 0;
                 }
             }
         }
 
-        if($cont == 0)//cpf, rg, email e usuario estao livres
+        if ($cont == 0) //cpf, rg, email e usuario estao livres
         {
-            $retorno["mensagem"] = "CPF, RG E EMAIL LIVRES";   
+            $retorno["mensagem"] = "CPF, RG E EMAIL LIVRES";
 
             // Objeto para alterar
             $alterar = "UPDATE usuario ";
@@ -64,26 +62,22 @@ if(isset($_POST["nome"]))
             $alterar .= "WHERE codigo = {$codigo} ";
 
             $operacaoAlterar = mysqli_query($conecta, $alterar);
-            if($operacaoAlterar) 
-            {
+            if ($operacaoAlterar) {
                 $retorno["sucesso"] = true;
                 $retorno["mensagem1"] = "Cadastro alterado com sucesso.";
-            } 
-            else 
-            {
+            } else {
                 $retorno["sucesso"] = false;
                 $retorno["mensagem1"] = "Falha no sistema-(ALTERAR), tente mais tarde.";
             }
         }
-    } 
-    else//Erro na consulta a tabela usuario
+    } else //Erro na consulta a tabela usuario
     {
         $retorno["sucesso"] = false;
         $retorno["mensagem"] = "ERRO - CPF, RG E EMAIL Não verificados.";
         $retorno["mensagem1"] = "Falha no sistema-(CONSULTA), tente mais tarde..";
     }
-    
-    echo json_encode($retorno); 
+
+    echo json_encode($retorno);
 }
 
 

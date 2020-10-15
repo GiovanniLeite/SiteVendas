@@ -2,8 +2,7 @@
 <?php include_once("funcoes.php"); ?>
 <?php
 
-if(isset($_POST["nome"])) 
-{
+if (isset($_POST["nome"])) {
 
     $codigo = $_POST['codigoProduto'];
 
@@ -12,9 +11,8 @@ if(isset($_POST["nome"]))
     $pesquisa .= "WHERE codigo = {$codigo} ";
 
     $retorno = array();
-    $conProduto = mysqli_query($conecta,$pesquisa);
-    if($conProduto) 
-    {
+    $conProduto = mysqli_query($conecta, $pesquisa);
+    if ($conProduto) {
         $produto = mysqli_fetch_assoc($conProduto);
         $foto1 = $produto["foto1"];
         $foto2 = $produto["foto2"];
@@ -25,14 +23,14 @@ if(isset($_POST["nome"]))
         $foto7 = $produto["foto7"];
         $foto8 = $produto["foto8"];
 
-        $resultado9 = apagarImagem($foto1,"grande");
-        $resultado10 = apagarImagem($foto2,"grande");
-        $resultado11 = apagarImagem($foto3,"grande");
-        $resultado12 = apagarImagem($foto4,"grande");
-        $resultado13 = apagarImagem($foto5,"pequena");
-        $resultado14 = apagarImagem($foto6,"pequena");
-        $resultado15 = apagarImagem($foto7,"pequena");
-        $resultado16 = apagarImagem($foto8,"pequena");
+        $resultado9 = apagarImagem($foto1, "grande");
+        $resultado10 = apagarImagem($foto2, "grande");
+        $resultado11 = apagarImagem($foto3, "grande");
+        $resultado12 = apagarImagem($foto4, "grande");
+        $resultado13 = apagarImagem($foto5, "pequena");
+        $resultado14 = apagarImagem($foto6, "pequena");
+        $resultado15 = apagarImagem($foto7, "pequena");
+        $resultado16 = apagarImagem($foto8, "pequena");
 
         $retorno["mensagem9"] = $resultado9;
         $retorno["mensagem10"] = $resultado10;
@@ -42,10 +40,7 @@ if(isset($_POST["nome"]))
         $retorno["mensagem14"] = $resultado14;
         $retorno["mensagem15"] = $resultado15;
         $retorno["mensagem16"] = $resultado16;
-
-    } 
-    else 
-    {
+    } else {
         $retorno["mensagem9"] = "Falha ao apagar fotos. 1";
         $retorno["mensagem10"] = "Falha ao apagar fotos. 2";
         $retorno["mensagem11"] = "Falha ao apagar fotos. 3";
@@ -59,24 +54,24 @@ if(isset($_POST["nome"]))
 
     //Publicando fotos novas
     //Grandes
-    $resultado1 = publicarImagem($_FILES['fotoGrande1'],"grande");
+    $resultado1 = publicarImagem($_FILES['fotoGrande1'], "grande");
     $mensagem1 = $resultado1[0]; //recebendo mensagem de se foi publicada ou nao
-    $resultado2 = publicarImagem($_FILES['fotoGrande2'],"grande");
+    $resultado2 = publicarImagem($_FILES['fotoGrande2'], "grande");
     $mensagem2 = $resultado2[0];
-    $resultado3 = publicarImagem($_FILES['fotoGrande3'],"grande");
+    $resultado3 = publicarImagem($_FILES['fotoGrande3'], "grande");
     $mensagem3 = $resultado3[0];
-    $resultado4 = publicarImagem($_FILES['fotoGrande4'],"grande");
+    $resultado4 = publicarImagem($_FILES['fotoGrande4'], "grande");
     $mensagem4 = $resultado4[0];
     //Pequenas
-    $resultado5 = publicarImagem($_FILES['fotoPequena1'],"pequena");
+    $resultado5 = publicarImagem($_FILES['fotoPequena1'], "pequena");
     $mensagem5 = $resultado5[0];
-    $resultado6 = publicarImagem($_FILES['fotoPequena2'],"pequena");
+    $resultado6 = publicarImagem($_FILES['fotoPequena2'], "pequena");
     $mensagem6 = $resultado6[0];
-    $resultado7 = publicarImagem($_FILES['fotoPequena3'],"pequena");
+    $resultado7 = publicarImagem($_FILES['fotoPequena3'], "pequena");
     $mensagem7 = $resultado7[0];
-    $resultado8 = publicarImagem($_FILES['fotoPequena4'],"pequena");
+    $resultado8 = publicarImagem($_FILES['fotoPequena4'], "pequena");
     $mensagem8 = $resultado8[0];
-    
+
     //recebendo o nome das fotos depois de publicadas
     $imagemGrande1  = $resultado1[1];
     $imagemGrande2  = $resultado2[1];
@@ -112,10 +107,9 @@ if(isset($_POST["nome"]))
     $alterar .= "foto8 = '{$imagemPequena4}' ";
     $alterar .= "WHERE codigo = {$codigo} ";
 
-    $operacaoAlterar = mysqli_query($conecta,$alterar);
+    $operacaoAlterar = mysqli_query($conecta, $alterar);
 
-    if($operacaoAlterar) 
-    {
+    if ($operacaoAlterar) {
         $retorno["sucesso"] = true;
         $retorno["mensagem"] = "Produto atualizado com sucesso.";
         $retorno["mensagem1"] = $mensagem1;
@@ -126,9 +120,7 @@ if(isset($_POST["nome"]))
         $retorno["mensagem6"] = $mensagem6;
         $retorno["mensagem7"] = $mensagem7;
         $retorno["mensagem8"] = $mensagem8;
-    } 
-    else 
-    {
+    } else {
         $retorno["sucesso"] = false;
         $retorno["mensagem"] = "Falha no sistema, tente mais tarde.";
         $retorno["mensagem1"] = $mensagem1;

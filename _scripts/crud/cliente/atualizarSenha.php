@@ -1,11 +1,10 @@
 <?php require_once("../../conexao/conexaoVenda.php") ?>  
 <?php
 
-if(isset($_POST["codigoCl"])) 
-{
+if (isset($_POST["codigoCl"])) {
 
-    $codigo = $_POST['codigoCl'];  
-    $senha = $_POST['senha']; 
+    $codigo = $_POST['codigoCl'];
+    $senha = $_POST['senha'];
 
     // Objeto para alterar
     $alterar = "UPDATE usuario ";
@@ -15,18 +14,15 @@ if(isset($_POST["codigoCl"]))
 
     $retorno = array();
     $operacaoAlterar = mysqli_query($conecta, $alterar);
-    if($operacaoAlterar) 
-    {
+    if ($operacaoAlterar) {
         $retorno["sucesso"] = true;
         $retorno["mensagem"] = "Senha alterada com sucesso.";
-    } 
-    else 
-    {
+    } else {
         $retorno["sucesso"] = false;
         $retorno["mensagem"] = "Falha no sistema, tente mais tarde.";
     }
 
-    echo json_encode($retorno); 
+    echo json_encode($retorno);
 }
 
 

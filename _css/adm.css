@@ -1,40 +1,41 @@
 main {
-    background-color: rgba(0,127,255,0.1);
-    height:600px;
+    background-color: rgba(0, 127, 255, 0.1);
+    height: 600px;
     padding-top: 50px;
 }
 
 div#crud {
-    margin:0px auto;
+    margin: 0px auto;
     border: 1px solid #00010F;
     width: 700px;
-    box-shadow:2px 2px 6px 2px #00010F;
+    box-shadow: 2px 2px 6px 2px #00010F;
     background-color: #FFF;
 }
 
-div#crud p, h2 {
+div#crud p,
+h2 {
     text-align: center;
 }
 
 div#gerenciar form {
     border: 1px solid black;
     width: 650px;
-    margin:0px auto;
+    margin: 0px auto;
 }
 
 div#gerenciar form input {
     margin: 5px;
     margin-left: 20px;
     width: 537px;
-    border-color:#00010F;
-    border-radius:0;
+    border-color: #00010F;
+    border-radius: 0;
 }
 
 div#gerenciar form button {
     margin: 5px;
-    border-radius:0;
-    border-color:#00021C;
-    background-color:#00021C;
+    border-radius: 0;
+    border-color: #00021C;
+    background-color: #00021C;
     width: 90px;
 }
 
@@ -47,43 +48,44 @@ div#gerenciar ul#titulo {
     border-bottom: none;
     padding-left: 5px;
     width: 650px;
-    margin:0px auto;
+    margin: 0px auto;
 }
 
-div#gerenciar ul#titulo li{
+div#gerenciar ul#titulo li {
     list-style: none;
     display: inline-block;
     font-weight: bold;
 }
 
-div#gerenciar ul#titulo li:nth-child(2){
+div#gerenciar ul#titulo li:nth-child(2) {
     margin-left: 90px;
 }
 
 /******/
 div#produto {
     height: 289px;
-    width:650px;
-    border:1px solid #00010F;
-    font-family:sans-serif;
-    font-size:13px;
-    color:#00010F;
-    overflow-y:scroll;
-    margin:0px auto;
+    width: 650px;
+    border: 1px solid #00010F;
+    font-family: sans-serif;
+    font-size: 13px;
+    color: #00010F;
+    overflow-y: scroll;
+    margin: 0px auto;
 }
 
 div#produto {
-    width:650px;
-    
-    border:1px solid #00010F;
-    font-family:sans-serif;
-    font-size:13px;
-    color:#333;
+    width: 650px;
+
+    border: 1px solid #00010F;
+    font-family: sans-serif;
+    font-size: 13px;
+    color: #333;
 }
 
 div#produto ul {
-    margin:0;padding:0; 
-    border-bottom:1px solid #00010F;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #00010F;
 }
 
 div#produto ul:last-child {
@@ -91,8 +93,8 @@ div#produto ul:last-child {
 }
 
 div#produto li {
-    list-style:none;
-    display:inline-block;
+    list-style: none;
+    display: inline-block;
 }
 
 div#produto li a {
@@ -100,8 +102,8 @@ div#produto li a {
 }
 
 div#produto li:nth-child(1) {
-    width:70px; 
-    padding:8px 4px;
+    width: 70px;
+    padding: 8px 4px;
     text-align: center;
 }
 
@@ -111,18 +113,18 @@ div#produto li:nth-child(1) a {
 }
 
 div#produto li:nth-child(2) {
-    width:260px;  
-    padding:5px 2px;
+    width: 260px;
+    padding: 5px 2px;
     font-weight: bold;
-    color:#00010F;
+    color: #00010F;
     margin-left: 80px;
-}    
+}
 
 li .botao {
-    color:#00010F;
-    text-align:center;
-    padding:10px 10px;
-}  
+    color: #00010F;
+    text-align: center;
+    padding: 10px 10px;
+}
 
 .botao:hover {
     background-color: #00010F;
@@ -137,29 +139,30 @@ button#excluir {
 }
 
 button#botaoSim {
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 0;
 }
 
 button#botaoSim:hover {
     background-color: #00010F;
-    color:white;
+    color: white;
 }
 
 button#botaoNao {
-    color:#FFF;
-    background-color:#00021C;
+    color: #FFF;
+    background-color: #00021C;
     border-radius: 0;
 }
 
-button#botaoNao:hover ,button#excluir:hover{
+button#botaoNao:hover,
+button#excluir:hover {
     background-color: #00010F;
 }
 
 
 h5 {
     margin-left: 145px;
-    color:#00010F;
+    color: #00010F;
 }
 
 div#gerenciar ul#rodape {
@@ -167,11 +170,11 @@ div#gerenciar ul#rodape {
     border-top: none;
     padding-left: 5px;
     width: 650px;
-    margin:0px auto;
+    margin: 0px auto;
     margin-bottom: 25px;
 }
 
-div#gerenciar ul#rodape li{
+div#gerenciar ul#rodape li {
     list-style: none;
     display: inline-block;
     font-weight: bold;
@@ -181,6 +184,3 @@ div#gerenciar ul#rodape li .botao:hover {
     padding-top: 2px;
     padding-bottom: 2px;
 }
-
-
-

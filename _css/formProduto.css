@@ -1,92 +1,89 @@
 main {
-    background-color: rgba(0,127,255,0.1);
+    background-color: rgba(0, 127, 255, 0.1);
     overflow: hidden;
     padding-top: 50px;
     padding-bottom: 50px;
 }
 
 div#formulario {
-    margin:0px auto;
+    margin: 0px auto;
     border: 1px solid #00010F;
     width: 750px;
     background-color: white;
     overflow: hidden;
-    box-shadow:2px 2px 6px 2px #00010F;
+    box-shadow: 2px 2px 6px 2px #00010F;
 }
 
-div#formulario p, h2 {
+div#formulario p,
+h2 {
     text-align: center;
 }
 
-div#formulario form input{
-    border-radius:0;
-    border-color:#00010F;
+div#formulario form input {
+    border-radius: 0;
+    border-color: #00010F;
 }
 
-div#formulario form select{
-    border-radius:0;
-    border-color:#00010F;
+div#formulario form select {
+    border-radius: 0;
+    border-color: #00010F;
 }
 
 div#formulario form textarea {
     resize: none;
     height: 80px;
-    border-radius:0;
-    border-color:#00010F;
+    border-radius: 0;
+    border-color: #00010F;
 }
 
 div#formulario form #modificar {
-    margin-bottom:5px;
-    border-radius:0;
-    border-color:#00021C;
-    background-color:#00021C;
+    margin-bottom: 5px;
+    border-radius: 0;
+    border-color: #00021C;
+    background-color: #00021C;
 }
 
 div#formulario form #modificar:hover {
-    background-color:#00010F;
+    background-color: #00010F;
 }
+
 div#formulario form button {
-    margin-bottom:5px;
-    border-radius:0;
-    border-color:#00010F;
-    background-color:#00021C;
+    margin-bottom: 5px;
+    border-radius: 0;
+    border-color: #00010F;
+    background-color: #00021C;
 }
+
 div#formulario form button:hover {
-    background-color:#00010F;
+    background-color: #00010F;
 }
 
 /***********JANELA*************/
 
 button.botaoNao {
-    color:#FFF;
-    background-color:#00021C;
+    color: #FFF;
+    background-color: #00021C;
     border-radius: 0;
 }
 
 button.botaoNao:hover {
     background-color: #00010F;
-    color:#FFF;
+    color: #FFF;
 }
 
 
 button.botaoSim {
-    border:1px solid #00010F;
+    border: 1px solid #00010F;
     border-radius: 0;
 }
 
 button.botaoSim:hover {
     background-color: #00010F;
-    color:#FFF;
+    color: #FFF;
 }
 
 h5 {
-    color:#00010F;
+    color: #00010F;
 }
+
 /**********JANELA*****************/
-
-
-
-
-
-
-

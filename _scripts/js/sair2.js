@@ -1,1 +1,1 @@
-document.getElementById("sair").href="../../principal/sair.php";
+document.getElementById("sair").href = "../../principal/sair.php";

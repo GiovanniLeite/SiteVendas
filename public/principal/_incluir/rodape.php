@@ -10,12 +10,14 @@
             <li title="Em construção"><a href="#">Sobre</a></li>
         </ul>
     </div>
-    
+
     <ul>
-        <li><h4>Contato</h4></li>
+        <li>
+            <h4>Contato</h4>
+        </li>
         <li><i class="fas fa-phone-alt"></i> 15 98148-3296</li>
         <li><i class="fas fa-envelope"></i> contato@vendas.com.br</li>
-        <li><i class="fas fa-map-marker-alt"></i>  Caixa Postal 184 - Sorocaba</li>
+        <li><i class="fas fa-map-marker-alt"></i> Caixa Postal 184 - Sorocaba</li>
     </ul>
     <br>
     <ul id="cop">

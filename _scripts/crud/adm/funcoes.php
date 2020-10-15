@@ -1,4 +1,5 @@
 <?php
+
 function gerarCodigoUnico() 
 {
     $alfabeto = "23456789ABCDEFGHJKMNPQRS";
@@ -93,6 +94,3 @@ function apagarImagem($foto,$tamanho)
         return "Não apagou a foto.";            
     }
 }
-
-
-?>

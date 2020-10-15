@@ -1,49 +1,50 @@
 main {
     padding-top: 100px;
-    background-color: rgba(0,127,255,0.1);
+    background-color: rgba(0, 127, 255, 0.1);
 }
 
 main div#janelaLogin {
-    height:290px;
-    width:350px;
-    margin:0 auto;
-    border:1px solid #00021C;
-    padding:10px;
-    box-shadow:2px 2px 6px 2px #333;
+    height: 290px;
+    width: 350px;
+    margin: 0 auto;
+    border: 1px solid #00021C;
+    padding: 10px;
+    box-shadow: 2px 2px 6px 2px #333;
     background-color: #FFF;
 }
 
 main div#janelaLogin h2 {
-    text-align:center;
-    margin-bottom:15px;
-    color:#00021C;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #00021C;
 }
 
 main div#janelaLogin input {
-    margin-bottom:15px;
-    border-radius:0;
-    border-color:#00021C;
+    margin-bottom: 15px;
+    border-radius: 0;
+    border-color: #00021C;
 }
 
 main div#janelaLogin button {
-    margin-bottom:5px;
-    border-radius:0;
-    border-color:#00021C;
-    background-color:#00021C;
+    margin-bottom: 5px;
+    border-radius: 0;
+    border-color: #00021C;
+    background-color: #00021C;
 }
+
 main div#janelaLogin button:hover {
-    background-color:#00010F;
+    background-color: #00010F;
 }
 
 main div#janelaLogin p {
-    text-align:center;
+    text-align: center;
 }
 
 main div#janelaLogin p#mensagem {
-    color:red;
+    color: red;
 }
 
 main div#janelaLogin a {
-    font-style:none;
-    color:#00021C;
+    font-style: none;
+    color: #00021C;
 }

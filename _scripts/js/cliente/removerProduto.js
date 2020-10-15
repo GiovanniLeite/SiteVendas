@@ -1,10 +1,13 @@
-function remover(posicao,produtoRemovido, transac) {
+function remover(posicao, produtoRemovido, transac) {
 
     $.ajax({
-    type:"POST",
-    url:"../../_scripts/crud/cliente/removerProduto.php",
-    data:{prodR:produtoRemovido,tranc:transac}
-    }).done(function(data){
+        type: "POST",
+        url: "../../_scripts/crud/cliente/removerProduto.php",
+        data: {
+            prodR: produtoRemovido,
+            tranc: transac
+        }
+    }).done(function (data) {
         console.log(data);
         $sucesso = $.parseJSON(data)["sucesso"];
         $mensagem = $.parseJSON(data)["mensagem"];
@@ -12,16 +15,13 @@ function remover(posicao,produtoRemovido, transac) {
 
         console.log($mensagem);
 
-        if($sucesso)
-        {
-            $('#ul'+posicao).fadeOut(); 
+        if ($sucesso) {
+            $('#ul' + posicao).fadeOut();
             location.reload();
-        }
-        else
-        {
+        } else {
             alert("Erro no sistema, tente mais tarde.");
-        }          
-    }).fail(function(){
-         alert("Erro no sistema, tente mais tarde.");
+        }
+    }).fail(function () {
+        alert("Erro no sistema, tente mais tarde.");
     })
 }

@@ -1,25 +1,24 @@
 var cProduto = 0;
 var idUl = "";
 
-function teste(codigoProduto,numeroUl)
-{
+function teste(codigoProduto, numeroUl) {
     var codUl = "ul" + numeroUl;
-    
+
     idUl = "ul" + numeroUl;
     cProduto = codigoProduto;
 }
 
-$('#botaoSim').click(function(e){
+$('#botaoSim').click(function (e) {
     e.preventDefault();
-    
-    $.ajax({
-        type:"POST",
-        data:"codigo=" + cProduto,
-        url:"../../_scripts/crud/adm/excluirProduto.php",
-        async:true
 
-    }).done(function(data){
-        
+    $.ajax({
+        type: "POST",
+        data: "codigo=" + cProduto,
+        url: "../../_scripts/crud/adm/excluirProduto.php",
+        async: true
+
+    }).done(function (data) {
+
         console.log(data);
         $sucesso = $.parseJSON(data)["sucesso"];
         $mensagem = $.parseJSON(data)["mensagem"];
@@ -32,9 +31,8 @@ $('#botaoSim').click(function(e){
         $mensagem7 = $.parseJSON(data)["mensagem7"];
         $mensagem8 = $.parseJSON(data)["mensagem8"];
 
-        if($sucesso)
-        {
-            $('#'+idUl).fadeOut();//remove o registro da lista
+        if ($sucesso) {
+            $('#' + idUl).fadeOut(); //remove o registro da lista
             console.log("Apagou produto");
             console.log($mensagem1);
             console.log($mensagem2);
@@ -44,9 +42,7 @@ $('#botaoSim').click(function(e){
             console.log($mensagem6);
             console.log($mensagem7);
             console.log($mensagem8);
-        }
-        else
-        {
+        } else {
             console.log("Erro na exclusão do produto");
             console.log($mensagem);
             console.log($mensagem1);
@@ -58,8 +54,8 @@ $('#botaoSim').click(function(e){
             console.log($mensagem7);
             console.log($mensagem8);
         }
-        
-    }).fail(function(){
+
+    }).fail(function () {
         console.log("Erro");
     });
 });

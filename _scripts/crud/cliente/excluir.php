@@ -1,8 +1,7 @@
 <?php require_once("../../conexao/conexaoVenda.php") ?>
 <?php
-    
-if( isset($_POST["codigoC"]) ) 
-{
+
+if (isset($_POST["codigoC"])) {
     $codigo = $_POST["codigoC"];
     $usuario = $_POST["usuario"];
     $senha = $_POST["senhaExcluir"];
@@ -11,34 +10,27 @@ if( isset($_POST["codigoC"]) )
     $sUsuario = "SELECT * FROM usuario WHERE codigo = {$codigo} ";
 
     // cria objeto com dados do usuario
-    $conUsuario = mysqli_query($conecta,$sUsuario);
-    if(!$conUsuario) 
-    {
+    $conUsuario = mysqli_query($conecta, $sUsuario);
+    if (!$conUsuario) {
         $retorno["sucesso"] = false;
         $retorno["mensagem"] = "FALHA - Usuário não encontrado";
-    }
-    else
-    {
+    } else {
         $infoUsuario = mysqli_fetch_assoc($conUsuario);
         $usuarioReal = $infoUsuario["usuario"];
         $senhaReal = $infoUsuario["senha"];
-        if($usuario == $usuarioReal && $senha == $senhaReal)//confirmou certo
+        if ($usuario == $usuarioReal && $senha == $senhaReal) //confirmou certo
         {
             $exclusao = "DELETE FROM usuario ";
             $exclusao .= "WHERE codigo = {$codigo}";
-            $conExclusao = mysqli_query($conecta,$exclusao);
-            if($conExclusao) 
-            {
+            $conExclusao = mysqli_query($conecta, $exclusao);
+            if ($conExclusao) {
                 $retorno["sucesso"] = true;
                 $retorno["mensagem"] = "Conta excluida com sucesso.";
-            } 
-            else 
-            {
+            } else {
                 $retorno["sucesso"] = false;
                 $retorno["mensagem"] = "FALHA - O Sistema não pode excluir.";
             }
-        }
-        else//confirmou errado
+        } else //confirmou errado
         {
             $retorno["sucesso"] = false;
             $retorno["mensagem"] = "Usuário e/ou Senha não correspondem a esta conta.";

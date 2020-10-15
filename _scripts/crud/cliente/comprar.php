@@ -1,9 +1,8 @@
 <?php require_once("../../conexao/conexaoVenda.php") ?>
 <?php include_once("gerarPedido.php") ?>
 <?php
-    
-if(isset($_POST['cod']))
-{
+
+if (isset($_POST['cod'])) {
 
     //ProdutoVendaTemp
     $pedido = $_POST['ped'];
@@ -17,7 +16,7 @@ if(isset($_POST['cod']))
     //retorno
     $retorno = array();
 
-    if($pedido == "SP") //primeira compra do cliente SP = sem pedido pois n existe uma transacao temporaria pra ele ainda
+    if ($pedido == "SP") //primeira compra do cliente SP = sem pedido pois n existe uma transacao temporaria pra ele ainda
     {
         $totalVenda = $valor;
         $dataVenda = "00/00/00";
@@ -29,8 +28,8 @@ if(isset($_POST['cod']))
         $inserirTransacao .= "VALUES ";
         $inserirTransacao .= "('$totalVenda','$dataVenda','$codCliente','$pedido')";
 
-        $opInserirTransacao = mysqli_query($conecta,$inserirTransacao);
-        if($opInserirTransacao) {
+        $opInserirTransacao = mysqli_query($conecta, $inserirTransacao);
+        if ($opInserirTransacao) {
             $retorno["inseriuTran"] = "Transação salva com sucesso.";
 
             /***************Usuario***************/
@@ -38,9 +37,8 @@ if(isset($_POST['cod']))
             $alterarCli .= "SET ";
             $alterarCli .= "transacao = '1' ";
             $alterarCli .= "WHERE codigo = {$codCliente} ";
-            $opAlterarCli = mysqli_query($conecta,$alterarCli);
-            if($opAlterarCli) 
-            {
+            $opAlterarCli = mysqli_query($conecta, $alterarCli);
+            if ($opAlterarCli) {
                 $retorno["alterouCli"] = "Transacao alterada no cliente";
 
                 /***************Produto***************/
@@ -50,37 +48,30 @@ if(isset($_POST['cod']))
                 $inserirProdVend .= "VALUES ";
                 $inserirProdVend .= "('$quantidade','$codProduto','$nome','$valor','$foto','$pedido')";
 
-                $opInserirProdVend = mysqli_query($conecta,$inserirProdVend);
-                if($opInserirProdVend) {
+                $opInserirProdVend = mysqli_query($conecta, $inserirProdVend);
+                if ($opInserirProdVend) {
                     $retorno["inseriuProd"] = "ProdutoVenda temporário salvo com sucesso.";
                 } else {
                     $retorno["inseriuProd"] = "ProdutoVenda temporário não pode ser salvo.";
                 }
 
                 /***************Produtos**************/
-            } 
-            else 
-            {
+            } else {
                 $retorno["alterouCli"] = "Erro ao alterar - Cliente continua SP";
                 $retorno["inseriuProd"] = "ProdutoVenda temporário não pode ser salvo.";
             }
             /***************Usuario***************/
-        } 
-        else 
-        {
+        } else {
             $retorno["inseriuTran"] = "Transação não pode ser salva.";
             $retorno["alterouCli"] = "Erro ao alterar - Cliente continua SP";
             $retorno["inseriuProd"] = "ProdutoVenda temporário não pode ser salvo.";
         }
-    }
-    else
-    {
+    } else {
         /***************Transação***************/
         $consulta = "SELECT * FROM transacaotemp ";
         $consulta .= "WHERE pedido = '{$pedido}' ";
-        $opConsulta = mysqli_query($conecta,$consulta);
-        if($opConsulta) 
-        {
+        $opConsulta = mysqli_query($conecta, $consulta);
+        if ($opConsulta) {
             $transacao = mysqli_fetch_assoc($opConsulta);
             $totalVenda = $valor + $transacao['totalVenda'];
 
@@ -88,10 +79,9 @@ if(isset($_POST['cod']))
             $alterar .= "SET ";
             $alterar .= "totalVenda = '{$totalVenda}' ";
             $alterar .= "WHERE codigo = {$transacao['codigo']} ";
-            $opAlterar = mysqli_query($conecta,$alterar);
+            $opAlterar = mysqli_query($conecta, $alterar);
 
-            if($opAlterar) 
-            {
+            if ($opAlterar) {
                 $retorno["alterouTran"] = "Valor da Transação atualizado";
 
                 /***************Produto***************/
@@ -101,31 +91,24 @@ if(isset($_POST['cod']))
                 $inserirProdVend .= "VALUES ";
                 $inserirProdVend .= "('$quantidade','$codProduto','$nome','$valor','$foto','$pedido')";
 
-                $opInserirProdVend = mysqli_query($conecta,$inserirProdVend);
-                if($opInserirProdVend) 
-                {
+                $opInserirProdVend = mysqli_query($conecta, $inserirProdVend);
+                if ($opInserirProdVend) {
                     $retorno["inseriuProd"] = "ProdutoVenda temporário salvo com sucesso.";
-                } 
-                else 
-                {
+                } else {
                     $retorno["inseriuProd"] = "ProdutoVenda temporário não pode ser salvo.";
                 }
                 /***************Produtos**************/
-            }
-            else
-            {
+            } else {
                 $retorno["alterouTran"] = "Erro na alteração - Valor da Transação não atualizado";
                 $retorno["inseriuProd"] = "ProdutoVenda temporário não pode ser salvo.";
             }
-        } 
-        else 
-        {
+        } else {
             $retorno["alterouTran"] = "Erro na consulta - Valor da Transação não atualizado";
             $retorno["inseriuProd"] = "ProdutoVenda temporário não pode ser salvo.";
         }
         /***************Transação***************/
     }
-    
+
     echo print_r($retorno);
 }
 

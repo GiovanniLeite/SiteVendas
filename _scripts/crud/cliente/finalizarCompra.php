@@ -1,9 +1,8 @@
 <?php require_once("../../conexao/conexaoVenda.php") ?>
 <?php include_once("gerarPedido.php") ?>
 <?php
-    
-if(isset($_POST['tran']))
-{
+
+if (isset($_POST['tran'])) {
 
     /***************Pegando transacao e produtos***************/
     $transacao = $_POST['tran'];
@@ -30,10 +29,10 @@ if(isset($_POST['tran']))
     $inserirTransacao .= "VALUES ";
     $inserirTransacao .= "('$totalVenda','$dataVenda','$codCliente','$pedido')";
 
-    $retorno = array();//RETORNO
+    $retorno = array(); //RETORNO
 
-    $opInserirTransacao = mysqli_query($conecta,$inserirTransacao);
-    if($opInserirTransacao) {
+    $opInserirTransacao = mysqli_query($conecta, $inserirTransacao);
+    if ($opInserirTransacao) {
         $retorno["inseriuTran"] = "Transação permanente salva com sucesso.";
     } else {
         $retorno["inseriuTran"] = "Transação permanente não pode ser salva.";
@@ -49,8 +48,8 @@ if(isset($_POST['tran']))
     $tranTemp .= "pedido = '{$pedidoAleatorio}' ";
     $tranTemp .= "WHERE codigo = {$codTranTemp}";
 
-    $optranTemp = mysqli_query($conecta,$tranTemp);
-    if($optranTemp) {
+    $optranTemp = mysqli_query($conecta, $tranTemp);
+    if ($optranTemp) {
         $retorno["zerouTran"] = "Transação temporária zerada com sucesso.";
     } else {
         $retorno["zerouTran"] = "Transação temporária não pode ser zerada.";
@@ -59,7 +58,7 @@ if(isset($_POST['tran']))
 
     /***************Produtos***************************************************/
     $cont = 1;
-    foreach($produtos as $produto){
+    foreach ($produtos as $produto) {
 
         //Pega os dados do produto temporario
         $codProdutoTemp = $produto['codigo'];
@@ -76,8 +75,8 @@ if(isset($_POST['tran']))
         $inserirProdVend .= "VALUES ";
         $inserirProdVend .= "('$quantidade','$codProduto','$nome','$valor','$foto','$pedido')";
 
-        $opInserirProdVend = mysqli_query($conecta,$inserirProdVend);
-        if($opInserirProdVend) {
+        $opInserirProdVend = mysqli_query($conecta, $inserirProdVend);
+        if ($opInserirProdVend) {
             $retorno["inseriuProd" . $cont] = "ProdutoVenda permanente salvo com sucesso.";
         } else {
             $retorno["inseriuProd" . $cont] = "ProdutoVenda permanente não pode ser salvo.";
@@ -87,14 +86,14 @@ if(isset($_POST['tran']))
         $excluirProdTemp = "DELETE FROM produtovendatemp ";
         $excluirProdTemp .= "WHERE codigo = {$codProdutoTemp}";
 
-        $opExcluirProdTemp = mysqli_query($conecta,$excluirProdTemp);
-        if($opExcluirProdTemp) {
+        $opExcluirProdTemp = mysqli_query($conecta, $excluirProdTemp);
+        if ($opExcluirProdTemp) {
             $retorno["apagouProd" . $cont] = "ProdutoVenda temporária excluída com sucesso.";
         } else {
             $retorno["apagouProd" . $cont] = "ProdutoVenda temporária não pode ser excluída.";
         }
 
-        $cont ++;
+        $cont++;
     }
     /***************Produtos**************************************************/
 
